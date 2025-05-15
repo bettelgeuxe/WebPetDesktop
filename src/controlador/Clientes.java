@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
+
 /**
  *
  * @author Cathecita
@@ -40,7 +41,8 @@ public class Clientes {
     
     //datos desde el formulario
     public Clientes(String PRINOM, String SEGNOM, String PRIAPE, String SEGAPE, 
-            String TIPODOC, String NUMDOC, String EMAIL, String TEL, String DIR){
+            String TIPODOC, String NUMDOC, String EMAIL, String TEL, String DIR)
+    {
     
         
         this.pri_nom_cliente = PRINOM;
