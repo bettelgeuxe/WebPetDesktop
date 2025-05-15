@@ -5,6 +5,7 @@
  */
 package vista;
 
+import java.awt.Color;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import javax.swing.JOptionPane;
@@ -129,6 +130,14 @@ public class FrmRegistroClientes extends javax.swing.JFrame {
         jButton_registrar.setBackground(new java.awt.Color(52, 78, 65));
         jButton_registrar.setForeground(new java.awt.Color(218, 215, 205));
         jButton_registrar.setText("Registrar Usuario");
+        jButton_registrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton_registrarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton_registrarMouseExited(evt);
+            }
+        });
         jButton_registrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_registrarActionPerformed(evt);
@@ -344,6 +353,18 @@ public class FrmRegistroClientes extends javax.swing.JFrame {
         //fl=new FrmLogin();
         //fl.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton_registrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_registrarMouseEntered
+        // TODO add your handling code here:
+        jButton_registrar.setBackground(new Color(88,129,87));
+        jButton_registrar.setForeground(new Color(0,0,0));
+    }//GEN-LAST:event_jButton_registrarMouseEntered
+
+    private void jButton_registrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_registrarMouseExited
+        // TODO add your handling code here:
+        jButton_registrar.setBackground(new Color(58,90,64));
+        jButton_registrar.setForeground(new Color(218,215,205));
+    }//GEN-LAST:event_jButton_registrarMouseExited
 
     
     // create a function to verify the empty fields  

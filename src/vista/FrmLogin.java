@@ -5,6 +5,8 @@
  */
 package vista;
 
+import java.awt.Color;
+
 /**
  *
  * @author Cathecita
@@ -39,7 +41,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jTextField_usuario = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jTextField_passwd = new javax.swing.JTextField();
-        jButton_registro = new javax.swing.JButton();
+        jButton_registroLog = new javax.swing.JButton();
         jButton_ingresar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -61,13 +63,13 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(218, 215, 205));
         jLabel4.setText("Contraseña:");
 
-        jButton_registro.setBackground(new java.awt.Color(88, 129, 87));
-        jButton_registro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton_registro.setForeground(new java.awt.Color(218, 215, 205));
-        jButton_registro.setText("Registro");
-        jButton_registro.addActionListener(new java.awt.event.ActionListener() {
+        jButton_registroLog.setBackground(new java.awt.Color(58, 90, 64));
+        jButton_registroLog.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton_registroLog.setForeground(new java.awt.Color(218, 215, 205));
+        jButton_registroLog.setText("Registro");
+        jButton_registroLog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_registroActionPerformed(evt);
+                jButton_registroLogActionPerformed(evt);
             }
         });
 
@@ -75,6 +77,14 @@ public class FrmLogin extends javax.swing.JFrame {
         jButton_ingresar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton_ingresar.setForeground(new java.awt.Color(52, 78, 65));
         jButton_ingresar.setText("Ingresar");
+        jButton_ingresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton_ingresarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton_ingresarMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -94,7 +104,7 @@ public class FrmLogin extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton_registro, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton_registroLog, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(22, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -116,7 +126,7 @@ public class FrmLogin extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addGap(44, 44, 44)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_registro, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_registroLog, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
@@ -184,11 +194,24 @@ public class FrmLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton_registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_registroActionPerformed
+    private void jButton_registroLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_registroLogActionPerformed
         // TODO add your handling code here:
         fr=new FrmRegistro();
         fr.setVisible(true);
-    }//GEN-LAST:event_jButton_registroActionPerformed
+    }//GEN-LAST:event_jButton_registroLogActionPerformed
+
+    private void jButton_ingresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_ingresarMouseEntered
+        // TODO add your handling code here:
+        jButton_ingresar.setBackground(new Color(52,78,65));
+        jButton_ingresar.setForeground(new Color(218,215,205));
+        
+    }//GEN-LAST:event_jButton_ingresarMouseEntered
+
+    private void jButton_ingresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_ingresarMouseExited
+        // TODO add your handling code here:
+        jButton_ingresar.setBackground(new Color(218,215,205));
+        jButton_ingresar.setForeground(new Color(52,78,65));
+    }//GEN-LAST:event_jButton_ingresarMouseExited
 
     /**
      * @param args the command line arguments
@@ -229,7 +252,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_ingresar;
-    private javax.swing.JButton jButton_registro;
+    private javax.swing.JButton jButton_registroLog;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

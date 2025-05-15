@@ -5,6 +5,7 @@
  */
 package vista;
 
+import java.awt.Color;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import javax.swing.JOptionPane;
@@ -140,16 +141,21 @@ public class FrmRegistro extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel15.setText("Contraseña");
 
-        jPasswordField_pass.setText("jPasswordField1");
-
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel16.setText("Confirmar Contraseña");
 
-        jPasswordField_cpass.setText("jPasswordField2");
-
         jButton_registrar.setBackground(new java.awt.Color(52, 78, 65));
+        jButton_registrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton_registrar.setForeground(new java.awt.Color(218, 215, 205));
         jButton_registrar.setText("Registrar Usuario");
+        jButton_registrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton_registrarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton_registrarMouseExited(evt);
+            }
+        });
         jButton_registrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_registrarActionPerformed(evt);
@@ -409,6 +415,19 @@ public class FrmRegistro extends javax.swing.JFrame {
         fl=new FrmLogin();
         fl.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton_registrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_registrarMouseEntered
+        // TODO add your handling code here:
+        jButton_registrar.setBackground(new Color(88,129,87));
+        jButton_registrar.setForeground(new Color(0,0,0));
+        
+    }//GEN-LAST:event_jButton_registrarMouseEntered
+
+    private void jButton_registrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_registrarMouseExited
+        // TODO add your handling code here:
+        jButton_registrar.setBackground(new Color(58,90,64));
+        jButton_registrar.setForeground(new Color(218,215,205));
+    }//GEN-LAST:event_jButton_registrarMouseExited
 
     
     // create a function to verify the empty fields  
