@@ -54,9 +54,6 @@ public class Clientes {
         this.email_cliente = EMAIL;
         this.tel_cliente = TEL;
         this.dir_cliente = DIR;
-        
-       
-        
     }
 
    
@@ -99,12 +96,7 @@ public class Clientes {
     public String getDir_cliente() {
         return dir_cliente;
     }
-
-    
-    
-
-    
-    
+ 
     // insert a new user
      public static void insertarCliente(Clientes cliente)
     {
@@ -116,7 +108,8 @@ public class Clientes {
         try {
             ps = con.prepareStatement("INSERT INTO `clientes`(`primer_nombre_cliente`, `segundo_nombre_cliente`, `primer_apellido_cliente`, `segundo_apellido_cliente`, `tipo_documento_cliente`, `numero_documento_cliente`, `email_cliente`, `telefono_cliente`, `direccion_cliente`) VALUES (?,?,?,?,?,?,?,?,?)");
 
-            ps.setString(1, cliente.getPri_nom_cliente()); //kt método del ps para agregar lo que llega del get
+            ps.setString(1, cliente.getPri_nom_cliente()); 
+            //kt método del ps para agregar lo que llega del get
             ps.setString(2, cliente.getSeg_nom_cliente());
             ps.setString(3, cliente.getPri_apell_cliente());
             ps.setString(4, cliente.getSeg_apell_cliente());
@@ -127,9 +120,6 @@ public class Clientes {
             ps.setString(9, cliente.getDir_cliente());
            
             
-          
-            
-
             if(ps.executeUpdate() != 0){
                 JOptionPane.showMessageDialog(null, "Cliente agregado correctamente");
                 

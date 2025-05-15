@@ -42,7 +42,8 @@ public class Usuarios {
     
     //datos desde el formulario
     public Usuarios(String PRINOM, String SEGNOM, String PRIAPE, String SEGAPE, 
-            String TIPODOC, String NUMDOC, String EMAIL, String TEL, String DIR, String USER, String PASSWD, String ROL){
+            String TIPODOC, String NUMDOC, String EMAIL, String TEL, String DIR, 
+            String USER, String PASSWD, String ROL){
     
         
         this.pri_nom_usuario = PRINOM;
@@ -63,7 +64,7 @@ public class Usuarios {
 
     
     
-
+    //
     public String getPri_nom_usuario() {
         return pri_nom_usuario;
     }

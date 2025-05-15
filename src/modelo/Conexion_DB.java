@@ -17,6 +17,7 @@ public class Conexion_DB {
       private static String dbname = "webpetdb";
       private static String username = "root";
       private static String password = "123456";
+      
       static Connection con=null;
     
       public static Connection getConnection()

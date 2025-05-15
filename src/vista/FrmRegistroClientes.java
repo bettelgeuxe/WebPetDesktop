@@ -302,6 +302,7 @@ public class FrmRegistroClientes extends javax.swing.JFrame {
         String snombre = jTextField_snombre.getText();
         String papellido = jTextField_papellido.getText();
         String sapellido = jTextField_sapellido.getText();
+        //
         String tipodoc= jComboBox_tipodoc.getSelectedItem().toString();
         String numdoc = jTextField_numdoc.getText();
         String email = jTextField_email.getText();

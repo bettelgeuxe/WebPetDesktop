@@ -392,8 +392,10 @@ public class FrmRegistro extends javax.swing.JFrame {
                  user = new controlador.Usuarios(pnombre,snombre,papellido,sapellido,tipodoc,numdoc,email,tel,dir,usuario,sha1,rol);
                // modelo.Product.insertProduct(product);
                controlador.Usuarios.insertarUsuario(user);
-                JOptionPane.showMessageDialog(null, "Datos insertados correctamente");
+               
+                    JOptionPane.showMessageDialog(null, "Datos insertados correctamente");
              } catch (Exception ex) {
+                 
                  JOptionPane.showMessageDialog(null, "No se pudo guardar usuario"+ex);
              }
              
