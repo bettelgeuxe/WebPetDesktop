@@ -395,7 +395,7 @@ public class FrmRegistro extends javax.swing.JFrame {
                  //  public Users(Integer ID, String UNAME, String PASW, String FNAME, String TEL, String GENDER, String PICTURE)
                  //public Usuarios(Integer ID, String PRINOM, String SEGNOM, String PRIAPE, String SEGAPE, 
             //String TIPODOC, String NUMDOC, String EMAIL, String TEL, String DIR, String USER, String PASSWD, String ROL)
-                 user = new controlador.Usuarios(pnombre,snombre,papellido,sapellido,tipodoc,numdoc,email,tel,dir,usuario,sha1,rol);
+                 user = new controlador.Usuarios(null,pnombre,snombre,papellido,sapellido,tipodoc,numdoc,email,tel,dir,usuario,sha1,rol);
                // modelo.Product.insertProduct(product);
                controlador.Usuarios.insertarUsuario(user);
                

@@ -41,11 +41,12 @@ public class Usuarios {
     }
     
     //datos desde el formulario
-    public Usuarios(String PRINOM, String SEGNOM, String PRIAPE, String SEGAPE, 
+    public Usuarios(Integer ID,String PRINOM, String SEGNOM, String PRIAPE, String SEGAPE, 
             String TIPODOC, String NUMDOC, String EMAIL, String TEL, String DIR, 
             String USER, String PASSWD, String ROL){
     
         
+        this.id= ID;
         this.pri_nom_usuario = PRINOM;
         this.seg_nom_usuario = SEGNOM;
         this.pri_apell_usuario = PRIAPE;
@@ -65,6 +66,12 @@ public class Usuarios {
     
     
     //
+    
+    
+    public Integer getId() {
+        return id;
+    }
+
     public String getPri_nom_usuario() {
         return pri_nom_usuario;
     }
