@@ -52,12 +52,13 @@ public class FrmAdminUsuarios extends javax.swing.JFrame {
     public FrmAdminUsuarios() {
         initComponents();
         llenarJtable();
+        Color verdeOscuro = new Color(52,78,65);
         
         jTable_USUARIOS.setShowGrid(true);
+        //Color según identidad corporativa webpet
+        jTable_USUARIOS.setGridColor(Color.decode("#344E41"));
         
-        jTable_USUARIOS.setGridColor(Color.YELLOW);
-        
-        jTable_USUARIOS.setSelectionBackground(Color.gray);
+        jTable_USUARIOS.setSelectionBackground(Color.decode("#DAD7CD"));
         
         JTableHeader th = jTable_USUARIOS.getTableHeader();
 
@@ -220,9 +221,9 @@ public class FrmAdminUsuarios extends javax.swing.JFrame {
                         .addComponent(jButton_BUSCAR_USU)
                         .addComponent(jButton_ACTUALIZAR_USU)
                         .addComponent(jTextField_VALOR_BUSQUEDA_USU, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
