@@ -7,10 +7,14 @@ package controlador;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import modelo.Conexion_DB;
+
 
 /**
  *
@@ -65,7 +69,7 @@ public class Usuarios {
 
     
     
-    //
+    //Getters
     
     
     public Integer getId() {
@@ -127,7 +131,7 @@ public class Usuarios {
         Connection con = modelo.Conexion_DB.getConnection();
         PreparedStatement ps; //kt permite ejecutar la sentencia sql no expone los datos
         
-        //INSERT INTO `users`(`full_name`, `username`, `password`, `phone`) VALUES ('pedro','pedro','1234','245789')
+        //INSERT INTO `usuarios`(`primer_nombre_usuario`, `segundo_nombre_usuario`, `primer_apellido_usuario`, `segundo_apellido_usuario`, `tipo_documento_usuario`, `numero_documento_usuario`, `email_usuario`, `telefono_usuario`, `direccion_usuario`, `usuario`, `passwd`, `rol_usuario`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)"
         try {
             ps = con.prepareStatement("INSERT INTO `usuarios`(`primer_nombre_usuario`, `segundo_nombre_usuario`, `primer_apellido_usuario`, `segundo_apellido_usuario`, `tipo_documento_usuario`, `numero_documento_usuario`, `email_usuario`, `telefono_usuario`, `direccion_usuario`, `usuario`, `passwd`, `rol_usuario`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
 
@@ -161,6 +165,103 @@ public class Usuarios {
             JOptionPane.showMessageDialog(null, "Error al insertar usuario: " + ex.getMessage());//test
         }
     }
+     
+     // get users list
+    public ArrayList<Usuarios> ListaUsuarios(){
+        
+        ArrayList<Usuarios> lista_usuario = new ArrayList<>();
+        connection = modelo.Conexion_DB.getConnection();
+
+        ResultSet rs;
+        PreparedStatement ps;
+        
+                
+                //`primer_nombre_usuario`, `segundo_nombre_usuario`, `primer_apellido_usuario`, `segundo_apellido_usuario`, `tipo_documento_usuario`, 
+                //`numero_documento_usuario`, `email_usuario`, `telefono_usuario`, `direccion_usuario`, `usuario`, `passwd`, `rol_usuario`
+                
+
+                String query = "SELECT `id`, `primer_nombre_usuario`,`segundo_nombre_usuario`,`primer_apellido_usuario`,`segundo_apellido_usuario`,`tipo_documento_usuario`,`numero_documento_usuario`,`email_usuario`, `telefono_usuario`, `direccion_usuario`, `usuario`, `passwd`, `rol_usuario`FROM `usuarios`";
+        
+        try {
+            ps = connection.prepareStatement(query);
+            rs = ps.executeQuery();
+           //el órden del select y del while debe ser como el del constructor
+            Usuarios usu;
+            while(rs.next()){
+                usu = new Usuarios(rs.getInt("id"),
+                                 rs.getString("primer_nombre_usuario"),
+                                 rs.getString("segundo_nombre_usuario"),
+                                 rs.getString("primer_apellido_usuario"),
+                                 rs.getString("segundo_apellido_usuario"),
+                                 rs.getString("tipo_documento_usuario"),
+                                 rs.getString("numero_documento_usuario"),
+                                 rs.getString("email_usuario"),
+                                 rs.getString("telefono_usuario"),
+                                 rs.getString("direccion_usuario"),
+                                 rs.getString("usuario"),
+                                 rs.getString("passwd"),
+                                 rs.getString("rol_usuario")
+                                  );
+                lista_usuario.add(usu);
+            }
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista_usuario;
+        
+    }
+    
+    
+    //PRUEBA LISTAR CON STRING VAL
+    /*
+    public ArrayList<Usuarios> ListarUsuariosParam(String val){
+        
+        ArrayList<Usuarios> lista_usuarios = new ArrayList<>();
+        connection =  Conexion_DB.getConnection();
+        ResultSet rs;
+        PreparedStatement ps;
+        
+               //String query = "SELECT product.id, product.name, category_id, quantity, price, picture,description,category.name as 'category' FROM product INNER JOIN category ON category.id = product.category_id";
+        ////`primer_nombre_usuario`, `segundo_nombre_usuario`, `primer_nombre_usuario`, `segundo_apellido_usuario`, `tipo_documento_usuario`, 
+                //`numero_documento_usuario`, `email_usuario`, `telefono_usuario`, `direccion_usuario`, `usuario`, `passwd`, `rol_usuario`
+                // SELECT `primer_nombre_usuario`,`primer_nombre_usuario`,`numero_documento_usuario`,`email_usuario`,`usuario`,`rol_usuario` FROM usuarios 
+                
+               String query = "SELECT primer_nombre_usuario, primer_apellido_usuario, numero_documento_usuario, email_usuario, usuario, rol_usuario\n" +
+"  FROM usuarios\n";
+        
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, "%" + val + "%");
+            rs = ps.executeQuery();
+           
+            Usuarios usu;
+            // Integer ID, String NAME, Integer CATEGORY_ID, String PRICE, byte[] PICTURE, Integer QUANTITY, String DESCRIPTION
+            while(rs.next()){
+                usu = new Usuarios(rs.getInt("id"),
+                                 rs.getString("primer_nombre_usuario"),
+                                 rs.getString("segundo_nombre_usuario"),
+                                 rs.getString("primer_apellido_usuario"),
+                                 rs.getString("segundo_apellido_usuario"),
+                                 rs.getString("tipo_documento_usuario"),
+                                 rs.getString("numero_documento_usuario"),
+                                 rs.getString("email_usuario"),
+                                 rs.getString("telefono_usuario"),
+                                 rs.getString("direccion_usuario"),
+                                 rs.getString("usuario"),
+                                 rs.getString("passwd"),
+                                 rs.getString("rol_usuario")
+                                  );
+                
+                lista_usuarios.add(usu);
+            }
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista_usuarios;
+        
+    }*/
     
     
     

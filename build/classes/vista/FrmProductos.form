@@ -53,16 +53,11 @@
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="jTextField_VALOR_BUSQUEDA" max="32767" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jButton_BUSCAR" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jButton_ACTUALIZAR" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="jScrollPane1" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="jTextField_VALOR_BUSQUEDA_PROD" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jButton_BUSCAR_PROD" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jButton_ACTUALIZAR_PROD" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -74,14 +69,12 @@
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButton_BUSCAR" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton_ACTUALIZAR" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField_VALOR_BUSQUEDA" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                          <Component id="jButton_BUSCAR_PROD" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton_ACTUALIZAR_PROD" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextField_VALOR_BUSQUEDA_PROD" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="396" max="32767" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace pref="432" max="32767" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -133,7 +126,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="jButton_BUSCAR">
+        <Component class="javax.swing.JButton" name="jButton_BUSCAR_PROD">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cd" green="d7" red="da" type="rgb"/>
@@ -147,7 +140,7 @@
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton_ACTUALIZAR">
+        <Component class="javax.swing.JButton" name="jButton_ACTUALIZAR_PROD">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="41" green="4e" red="34" type="rgb"/>
@@ -161,7 +154,7 @@
             <Property name="text" type="java.lang.String" value="Actualizar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField_VALOR_BUSQUEDA">
+        <Component class="javax.swing.JTextField" name="jTextField_VALOR_BUSQUEDA_PROD">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cd" green="d7" red="da" type="rgb"/>
@@ -171,10 +164,6 @@
             </Property>
           </Properties>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-        </Container>
       </SubComponents>
     </Container>
   </SubComponents>

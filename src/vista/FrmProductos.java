@@ -31,10 +31,9 @@ public class FrmProductos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jButton_BUSCAR = new javax.swing.JButton();
-        jButton_ACTUALIZAR = new javax.swing.JButton();
-        jTextField_VALOR_BUSQUEDA = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jButton_BUSCAR_PROD = new javax.swing.JButton();
+        jButton_ACTUALIZAR_PROD = new javax.swing.JButton();
+        jTextField_VALOR_BUSQUEDA_PROD = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,18 +63,18 @@ public class FrmProductos extends javax.swing.JFrame {
                 .addGap(39, 39, 39))
         );
 
-        jButton_BUSCAR.setBackground(new java.awt.Color(218, 215, 205));
-        jButton_BUSCAR.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton_BUSCAR.setForeground(new java.awt.Color(52, 78, 65));
-        jButton_BUSCAR.setText("Buscar");
+        jButton_BUSCAR_PROD.setBackground(new java.awt.Color(218, 215, 205));
+        jButton_BUSCAR_PROD.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton_BUSCAR_PROD.setForeground(new java.awt.Color(52, 78, 65));
+        jButton_BUSCAR_PROD.setText("Buscar");
 
-        jButton_ACTUALIZAR.setBackground(new java.awt.Color(52, 78, 65));
-        jButton_ACTUALIZAR.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton_ACTUALIZAR.setForeground(new java.awt.Color(218, 215, 205));
-        jButton_ACTUALIZAR.setText("Actualizar");
+        jButton_ACTUALIZAR_PROD.setBackground(new java.awt.Color(52, 78, 65));
+        jButton_ACTUALIZAR_PROD.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton_ACTUALIZAR_PROD.setForeground(new java.awt.Color(218, 215, 205));
+        jButton_ACTUALIZAR_PROD.setText("Actualizar");
 
-        jTextField_VALOR_BUSQUEDA.setBackground(new java.awt.Color(218, 215, 205));
-        jTextField_VALOR_BUSQUEDA.setForeground(new java.awt.Color(52, 78, 65));
+        jTextField_VALOR_BUSQUEDA_PROD.setBackground(new java.awt.Color(218, 215, 205));
+        jTextField_VALOR_BUSQUEDA_PROD.setForeground(new java.awt.Color(52, 78, 65));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -86,14 +85,11 @@ public class FrmProductos extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1)
                 .addGap(80, 80, 80)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField_VALOR_BUSQUEDA)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton_BUSCAR)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton_ACTUALIZAR))
-                    .addComponent(jScrollPane1))
+                .addComponent(jTextField_VALOR_BUSQUEDA_PROD)
+                .addGap(18, 18, 18)
+                .addComponent(jButton_BUSCAR_PROD)
+                .addGap(18, 18, 18)
+                .addComponent(jButton_ACTUALIZAR_PROD)
                 .addGap(29, 29, 29))
         );
         jPanel1Layout.setVerticalGroup(
@@ -103,12 +99,10 @@ public class FrmProductos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton_BUSCAR)
-                        .addComponent(jButton_ACTUALIZAR)
-                        .addComponent(jTextField_VALOR_BUSQUEDA, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                        .addComponent(jButton_BUSCAR_PROD)
+                        .addComponent(jButton_ACTUALIZAR_PROD)
+                        .addComponent(jTextField_VALOR_BUSQUEDA_PROD, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 432, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -165,13 +159,12 @@ public class FrmProductos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton_ACTUALIZAR;
-    private javax.swing.JButton jButton_BUSCAR;
+    private javax.swing.JButton jButton_ACTUALIZAR_PROD;
+    private javax.swing.JButton jButton_BUSCAR_PROD;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField_VALOR_BUSQUEDA;
+    private javax.swing.JTextField jTextField_VALOR_BUSQUEDA_PROD;
     // End of variables declaration//GEN-END:variables
 }
