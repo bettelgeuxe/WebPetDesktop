@@ -8,6 +8,7 @@ package vista;
 import java.awt.Color;
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -65,7 +66,7 @@ public class FrmRegistro extends javax.swing.JFrame {
         jPasswordField_pass = new javax.swing.JPasswordField();
         jLabel16 = new javax.swing.JLabel();
         jPasswordField_cpass = new javax.swing.JPasswordField();
-        jButton_registrar = new javax.swing.JButton();
+        jButton_registrarUsuario = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jComboBox_rol = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
@@ -144,21 +145,21 @@ public class FrmRegistro extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel16.setText("Confirmar Contraseña");
 
-        jButton_registrar.setBackground(new java.awt.Color(52, 78, 65));
-        jButton_registrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton_registrar.setForeground(new java.awt.Color(218, 215, 205));
-        jButton_registrar.setText("Registrar Usuario");
-        jButton_registrar.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButton_registrarUsuario.setBackground(new java.awt.Color(52, 78, 65));
+        jButton_registrarUsuario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton_registrarUsuario.setForeground(new java.awt.Color(218, 215, 205));
+        jButton_registrarUsuario.setText("Registrar Usuario");
+        jButton_registrarUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton_registrarMouseEntered(evt);
+                jButton_registrarUsuarioMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton_registrarMouseExited(evt);
+                jButton_registrarUsuarioMouseExited(evt);
             }
         });
-        jButton_registrar.addActionListener(new java.awt.event.ActionListener() {
+        jButton_registrarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_registrarActionPerformed(evt);
+                jButton_registrarUsuarioActionPerformed(evt);
             }
         });
 
@@ -232,7 +233,7 @@ public class FrmRegistro extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jPasswordField_pass, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton_registrar)
+                                    .addComponent(jButton_registrarUsuario)
                                     .addComponent(jComboBox_rol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -295,7 +296,7 @@ public class FrmRegistro extends javax.swing.JFrame {
                     .addComponent(jComboBox_rol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton_registrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_registrarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -350,7 +351,7 @@ public class FrmRegistro extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_registrarActionPerformed
+    private void jButton_registrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_registrarUsuarioActionPerformed
         // TODO add your handling code here:
         String pnombre = jTextField_pnombre.getText();
         String snombre = jTextField_snombre.getText();
@@ -408,26 +409,28 @@ public class FrmRegistro extends javax.swing.JFrame {
                             
             
          }
-    }//GEN-LAST:event_jButton_registrarActionPerformed
+    }//GEN-LAST:event_jButton_registrarUsuarioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         fl=new FrmLogin();
         fl.setVisible(true);
+        
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton_registrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_registrarMouseEntered
+    private void jButton_registrarUsuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_registrarUsuarioMouseEntered
         // TODO add your handling code here:
-        jButton_registrar.setBackground(new Color(88,129,87));
-        jButton_registrar.setForeground(new Color(0,0,0));
+        jButton_registrarUsuario.setBackground(new Color(88,129,87));
+        jButton_registrarUsuario.setForeground(new Color(0,0,0));
         
-    }//GEN-LAST:event_jButton_registrarMouseEntered
+    }//GEN-LAST:event_jButton_registrarUsuarioMouseEntered
 
-    private void jButton_registrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_registrarMouseExited
+    private void jButton_registrarUsuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_registrarUsuarioMouseExited
         // TODO add your handling code here:
-        jButton_registrar.setBackground(new Color(58,90,64));
-        jButton_registrar.setForeground(new Color(218,215,205));
-    }//GEN-LAST:event_jButton_registrarMouseExited
+        jButton_registrarUsuario.setBackground(new Color(58,90,64));
+        jButton_registrarUsuario.setForeground(new Color(218,215,205));
+    }//GEN-LAST:event_jButton_registrarUsuarioMouseExited
 
     
     // create a function to verify the empty fields  
@@ -508,7 +511,7 @@ public class FrmRegistro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton_registrar;
+    private javax.swing.JButton jButton_registrarUsuario;
     private javax.swing.JComboBox<String> jComboBox_rol;
     private javax.swing.JComboBox<String> jComboBox_tipodoc;
     private javax.swing.JLabel jLabel1;

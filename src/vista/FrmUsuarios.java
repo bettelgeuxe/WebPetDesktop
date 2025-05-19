@@ -25,18 +25,20 @@ public class FrmUsuarios extends javax.swing.JFrame {
     
     public FrmUsuarios() {
         initComponents();
+        
+        //llenar la tabla para usar el query de búsqueda
         llenarJtableParam("");
-        Color verdeOscuro = new Color(52,78,65);
         
+        //crear color
+        //Color verdeOscuro = new Color(52,78,65);
         jTable_USUARIOS.setShowGrid(true);
-        //Color según identidad corporativa webpet
-        jTable_USUARIOS.setGridColor(Color.decode("#344E41"));
         
-        jTable_USUARIOS.setSelectionBackground(Color.decode("#DAD7CD"));
-        
+        //Personalizar FRONT tabla colores según identidad corporativa webpet
+        jTable_USUARIOS.setGridColor(Color.decode("#A3B18A"));
+        jTable_USUARIOS.setSelectionBackground(Color.decode("#3A5A40"));
+        jTable_USUARIOS.setSelectionForeground(Color.decode("#FFFFFF"));
         JTableHeader th = jTable_USUARIOS.getTableHeader();
-
-        th.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        th.setFont(new Font("Montserrat", Font.BOLD, 12));
     }
     
     public void llenarJtableParam(String val){
@@ -83,6 +85,7 @@ public class FrmUsuarios extends javax.swing.JFrame {
         jTextField_VALOR_BUSQUEDA_USUARIOS = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_USUARIOS = new javax.swing.JTable();
+        jButton_registrarUsuario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -143,23 +146,38 @@ public class FrmUsuarios extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable_USUARIOS);
 
+        jButton_registrarUsuario.setBackground(new java.awt.Color(52, 78, 65));
+        jButton_registrarUsuario.setForeground(new java.awt.Color(218, 215, 205));
+        jButton_registrarUsuario.setText("Registrar Usuario");
+        jButton_registrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_registrarUsuarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
-                .addGap(80, 80, 80)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton_registrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jTextField_VALOR_BUSQUEDA_USUARIOS)
                         .addGap(18, 18, 18)
                         .addComponent(jButton_BUSCAR_USUARIOS)
                         .addGap(18, 18, 18)
                         .addComponent(jButton_ACTUALIZAR_USUARIOS))
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29))
         );
         jPanel1Layout.setVerticalGroup(
@@ -172,9 +190,15 @@ public class FrmUsuarios extends javax.swing.JFrame {
                         .addComponent(jButton_BUSCAR_USUARIOS)
                         .addComponent(jButton_ACTUALIZAR_USUARIOS)
                         .addComponent(jTextField_VALOR_BUSQUEDA_USUARIOS, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(jButton_registrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
@@ -200,6 +224,15 @@ public class FrmUsuarios extends javax.swing.JFrame {
         // TODO add your handling code here:
          llenarJtableParam(jTextField_VALOR_BUSQUEDA_USUARIOS.getText());
     }//GEN-LAST:event_jButton_BUSCAR_USUARIOSActionPerformed
+
+    private void jButton_registrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_registrarUsuarioActionPerformed
+        // TODO add your handling code here:
+        FrmRegistro registrarUsuarioForm = new FrmRegistro();
+            registrarUsuarioForm.pack();
+            registrarUsuarioForm.setVisible(true);
+            registrarUsuarioForm.setLocationRelativeTo(null);
+            registrarUsuarioForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jButton_registrarUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -240,6 +273,7 @@ public class FrmUsuarios extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_ACTUALIZAR_USUARIOS;
     private javax.swing.JButton jButton_BUSCAR_USUARIOS;
+    private javax.swing.JButton jButton_registrarUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

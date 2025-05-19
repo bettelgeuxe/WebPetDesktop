@@ -54,17 +54,18 @@ public class FrmAdminUsuarios extends javax.swing.JFrame {
     public FrmAdminUsuarios() {
         initComponents();
         llenarJtable();
-        Color verdeOscuro = new Color(52,78,65);
-        
+               
+        //Color verdeOscuro = new Color(52,78,65);
         jTable_ADMIN_USUARIOS.setShowGrid(true);
-        //Color según identidad corporativa webpet
-        jTable_ADMIN_USUARIOS.setGridColor(Color.decode("#344E41"));
         
-        jTable_ADMIN_USUARIOS.setSelectionBackground(Color.decode("#DAD7CD"));
-        
+        //Personalizar FRONT tabla colores según identidad corporativa webpet
+        jTable_ADMIN_USUARIOS.setGridColor(Color.decode("#A3B18A"));
+        jTable_ADMIN_USUARIOS.setSelectionBackground(Color.decode("#344E41"));
+        jTable_ADMIN_USUARIOS.setSelectionForeground(Color.decode("#DAD7CD"));
         JTableHeader th = jTable_ADMIN_USUARIOS.getTableHeader();
-
-        th.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        th.setFont(new Font("Montserrat", Font.BOLD, 12));
+        
+        
     }
     
     public void llenarJtable(){

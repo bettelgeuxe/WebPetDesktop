@@ -105,12 +105,12 @@ public class FrmInicio extends javax.swing.JFrame {
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
 
         jMenu_INICIO.setText("INICIO  |");
-        jMenu_INICIO.setFont(new java.awt.Font("Quicksand", 1, 14)); // NOI18N
+        jMenu_INICIO.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         jMenuBar1.add(jMenu_INICIO);
 
         jMenu_USUARIOS.setBackground(new java.awt.Color(255, 255, 255));
         jMenu_USUARIOS.setText("USUARIOS  |");
-        jMenu_USUARIOS.setFont(new java.awt.Font("Quicksand", 1, 14)); // NOI18N
+        jMenu_USUARIOS.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         jMenu_USUARIOS.setMinimumSize(new java.awt.Dimension(105, 30));
         jMenu_USUARIOS.setPreferredSize(new java.awt.Dimension(105, 30));
 
@@ -125,7 +125,7 @@ public class FrmInicio extends javax.swing.JFrame {
         jMenuBar1.add(jMenu_USUARIOS);
 
         jMenu_CLIENTES.setText("CLIENTES |");
-        jMenu_CLIENTES.setFont(new java.awt.Font("Quicksand", 1, 14)); // NOI18N
+        jMenu_CLIENTES.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
 
         jMenuItem_REGISTRAR_CLIENTE.setText("Registrar");
         jMenuItem_REGISTRAR_CLIENTE.addActionListener(new java.awt.event.ActionListener() {
@@ -138,19 +138,19 @@ public class FrmInicio extends javax.swing.JFrame {
         jMenuBar1.add(jMenu_CLIENTES);
 
         jMenu_PROVEEDORES.setText("PROVEEDORES |");
-        jMenu_PROVEEDORES.setFont(new java.awt.Font("Quicksand", 1, 14)); // NOI18N
+        jMenu_PROVEEDORES.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         jMenuBar1.add(jMenu_PROVEEDORES);
 
         jMenu_MASCOTAS.setText("MASCOTAS |");
-        jMenu_MASCOTAS.setFont(new java.awt.Font("Quicksand", 1, 14)); // NOI18N
+        jMenu_MASCOTAS.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         jMenuBar1.add(jMenu_MASCOTAS);
 
         jMenu_AGENDA.setText("AGENDA |");
-        jMenu_AGENDA.setFont(new java.awt.Font("Quicksand", 1, 14)); // NOI18N
+        jMenu_AGENDA.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         jMenuBar1.add(jMenu_AGENDA);
 
         jMenu_PRODUCTOS.setText("PRODUCTOS");
-        jMenu_PRODUCTOS.setFont(new java.awt.Font("Quicksand", 1, 14)); // NOI18N
+        jMenu_PRODUCTOS.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         jMenuBar1.add(jMenu_PRODUCTOS);
 
         setJMenuBar(jMenuBar1);

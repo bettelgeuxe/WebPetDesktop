@@ -6,6 +6,7 @@
 package vista;
 
 import java.awt.Color;
+import javax.swing.JFrame;
 
 /**
  *
@@ -49,6 +50,8 @@ public class FrmLogin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(52, 78, 65));
+        jPanel1.setMaximumSize(new java.awt.Dimension(800, 600));
+        jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
 
         jPanel2.setBackground(new java.awt.Color(52, 78, 65));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(88, 129, 87)));
@@ -83,6 +86,11 @@ public class FrmLogin extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jButton_ingresarMouseExited(evt);
+            }
+        });
+        jButton_ingresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ingresarActionPerformed(evt);
             }
         });
 
@@ -157,22 +165,21 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 524, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(244, 244, 244)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(249, 249, 249))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(143, Short.MAX_VALUE)
+                .addContainerGap(163, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(125, 125, 125)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77))
+                .addGap(106, 106, 106)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -180,12 +187,12 @@ public class FrmLogin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -194,24 +201,31 @@ public class FrmLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton_registroLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_registroLogActionPerformed
-        // TODO add your handling code here:
-        fr=new FrmRegistro();
-        fr.setVisible(true);
-    }//GEN-LAST:event_jButton_registroLogActionPerformed
-
-    private void jButton_ingresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_ingresarMouseEntered
-        // TODO add your handling code here:
-        jButton_ingresar.setBackground(new Color(52,78,65));
-        jButton_ingresar.setForeground(new Color(218,215,205));
-        
-    }//GEN-LAST:event_jButton_ingresarMouseEntered
-
     private void jButton_ingresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_ingresarMouseExited
         // TODO add your handling code here:
         jButton_ingresar.setBackground(new Color(218,215,205));
         jButton_ingresar.setForeground(new Color(52,78,65));
     }//GEN-LAST:event_jButton_ingresarMouseExited
+
+    private void jButton_ingresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_ingresarMouseEntered
+        // TODO add your handling code here:
+        jButton_ingresar.setBackground(new Color(52,78,65));
+        jButton_ingresar.setForeground(new Color(218,215,205));
+
+    }//GEN-LAST:event_jButton_ingresarMouseEntered
+
+    private void jButton_registroLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_registroLogActionPerformed
+        // TODO add your handling code here:
+        FrmRegistro registrarUsuarioForm = new FrmRegistro();
+        registrarUsuarioForm.pack();
+        registrarUsuarioForm.setVisible(true);
+        registrarUsuarioForm.setLocationRelativeTo(null);
+        registrarUsuarioForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jButton_registroLogActionPerformed
+
+    private void jButton_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ingresarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_ingresarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -218,7 +218,7 @@
                                   <Group type="102" alignment="1" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jPasswordField_pass" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                                          <Component id="jButton_registrar" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jButton_registrarUsuario" min="-2" max="-2" attributes="0"/>
                                           <Component id="jComboBox_rol" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="32767" attributes="0"/>
@@ -297,7 +297,7 @@
                       </Group>
                       <EmptySpace pref="26" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jButton_registrar" max="32767" attributes="0"/>
+                          <Component id="jButton_registrarUsuario" max="32767" attributes="0"/>
                           <Component id="jButton1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -440,7 +440,7 @@
             </Component>
             <Component class="javax.swing.JPasswordField" name="jPasswordField_cpass">
             </Component>
-            <Component class="javax.swing.JButton" name="jButton_registrar">
+            <Component class="javax.swing.JButton" name="jButton_registrarUsuario">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="41" green="4e" red="34" type="rgb"/>
@@ -454,9 +454,9 @@
                 <Property name="text" type="java.lang.String" value="Registrar Usuario"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton_registrarMouseEntered"/>
-                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton_registrarMouseExited"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_registrarActionPerformed"/>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton_registrarUsuarioMouseEntered"/>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton_registrarUsuarioMouseExited"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_registrarUsuarioActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel17">
