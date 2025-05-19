@@ -146,6 +146,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_BUSCAR_USUActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton_ACTUALIZAR_USU">
           <Properties>
@@ -178,7 +181,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable_USUARIOS">
+            <Component class="javax.swing.JTable" name="jTable_ADMIN_USUARIOS">
             </Component>
           </SubComponents>
         </Container>

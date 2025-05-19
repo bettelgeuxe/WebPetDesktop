@@ -213,6 +213,61 @@ public class Usuarios {
     }
     
     
+    
+    //listar resultados de búsqueda
+    public ArrayList<Usuarios> usuariosList(String val) {
+
+    ArrayList<Usuarios> usuarios_list = new ArrayList<>();
+    connection =  Conexion_DB.getConnection();
+    ResultSet rs;
+    PreparedStatement ps;
+
+    String query = "SELECT * FROM usuarios " +
+               "WHERE CONCAT_WS('', " +
+               "primer_nombre_usuario, " +
+               "primer_apellido_usuario, " +
+               "numero_documento_usuario, " +
+               "email_usuario, " +
+               "usuario, " +
+               "rol_usuario" +
+               ") LIKE ?";
+
+
+    try {
+        ps = connection.prepareStatement(query);
+        ps.setString(1, "%" + val + "%");
+        rs = ps.executeQuery();
+        
+
+        Usuarios usr;
+        while (rs.next()) {
+            usr = new Usuarios  (rs.getInt("id"),
+                                 rs.getString("primer_nombre_usuario"),
+                                 rs.getString("segundo_nombre_usuario"),
+                                 rs.getString("primer_apellido_usuario"),
+                                 rs.getString("segundo_apellido_usuario"),
+                                 rs.getString("tipo_documento_usuario"),
+                                 rs.getString("numero_documento_usuario"),
+                                 rs.getString("email_usuario"),
+                                 rs.getString("telefono_usuario"),
+                                 rs.getString("direccion_usuario"),
+                                 rs.getString("usuario"),
+                                 rs.getString("passwd"),
+                                 rs.getString("rol_usuario")
+                                 
+            );
+            usuarios_list.add(usr);
+        }
+
+    } catch (SQLException ex) {
+        Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+    return usuarios_list;
+}
+
+    
+    
     //PRUEBA LISTAR CON STRING VAL
     /*
     public ArrayList<Usuarios> ListarUsuariosParam(String val){

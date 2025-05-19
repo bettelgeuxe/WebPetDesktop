@@ -10,35 +10,8 @@ import java.awt.Font;
 import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
-import javax.swing.table.JTableHeader;
-import controlador.Usuarios;
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Font;
-import java.awt.Image;
-import java.io.IOException;
-import java.io.InputStream;
-import java.math.BigInteger;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.security.MessageDigest;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 
@@ -46,92 +19,52 @@ import javax.swing.table.JTableHeader;
  *
  * @author Cathecita
  */
-public class FrmAdminUsuarios extends javax.swing.JFrame {
-    
-    
+public class FrmUsuarios extends javax.swing.JFrame {
 
+    controlador.Usuarios user;
     
-    public FrmAdminUsuarios() {
+    public FrmUsuarios() {
         initComponents();
-        llenarJtable();
+        llenarJtableParam("");
         Color verdeOscuro = new Color(52,78,65);
         
-        jTable_ADMIN_USUARIOS.setShowGrid(true);
+        jTable_USUARIOS.setShowGrid(true);
         //Color según identidad corporativa webpet
-        jTable_ADMIN_USUARIOS.setGridColor(Color.decode("#344E41"));
+        jTable_USUARIOS.setGridColor(Color.decode("#344E41"));
         
-        jTable_ADMIN_USUARIOS.setSelectionBackground(Color.decode("#DAD7CD"));
+        jTable_USUARIOS.setSelectionBackground(Color.decode("#DAD7CD"));
         
-        JTableHeader th = jTable_ADMIN_USUARIOS.getTableHeader();
+        JTableHeader th = jTable_USUARIOS.getTableHeader();
 
         th.setFont(new Font("Tahoma", Font.PLAIN, 16));
     }
     
-    public void llenarJtable(){
-        //traer usuarios del controlador
-        controlador.Usuarios usuario = new controlador.Usuarios();
-        ArrayList<controlador.Usuarios> listausuarios = usuario.ListaUsuarios();
-        
-            
-        //Encabezado de la tabla independiente a variables y a mysql
-        String[] colNames = {"Nombre","Apellido","Documento","Email","Usuario","Rol"};
-             
-        Object[][] rows = new Object[listausuarios.size()][6];
-       
-        for(int i = 0; i < listausuarios.size(); i++){
-            rows[i][0] = listausuarios.get(i).getPri_nom_usuario();
-            rows[i][1] = listausuarios.get(i).getPri_apell_usuario();
-            rows[i][2] = listausuarios.get(i).getNum_doc_usuario();
-            rows[i][3] = listausuarios.get(i).getEmail_usuario();
-            rows[i][4] = listausuarios.get(i).getUsuario();
-            rows[i][5] = listausuarios.get(i).getRol_usuario();
-           
-        }
-       
-        modelo.MyTableModelUsuarios mmd = new modelo.MyTableModelUsuarios(rows, colNames);
-        jTable_ADMIN_USUARIOS.setModel(mmd);
-        jTable_ADMIN_USUARIOS.setRowHeight(80);
-        
-        // DESDE INDEX 
-        jTable_ADMIN_USUARIOS.getColumnModel().getColumn(5).setPreferredWidth(120);
-        
-        
-    }
-    
-    //prueba con parámetros
-    /*
     public void llenarJtableParam(String val){
         
         controlador.Usuarios usu = new controlador.Usuarios();
-        ArrayList<controlador.Usuarios> listausuarios = usu.ListarUsuariosParam(val);
+        ArrayList<controlador.Usuarios> listaUsuario = usu.usuariosList(val);
         
         String[] colNames = {"Nombre","Apellido","Documento","Email","Usuario","Rol"};
-        Object[][] rows = new Object[listausuarios.size()][6];
+        Object[][] rows = new Object[listaUsuario.size()][6];
         
-        for(int i = 0; i < listausuarios.size(); i++){
-            rows[i][0] = listausuarios.get(i).getPri_nom_usuario();
-            rows[i][1] = listausuarios.get(i).getPri_apell_usuario();
-            rows[i][2] = listausuarios.get(i).getNum_doc_usuario();
-            rows[i][3] = listausuarios.get(i).getEmail_usuario();
-            rows[i][4] = listausuarios.get(i).getUsuario();
-            rows[i][5] = listausuarios.get(i).getRol_usuario();
-           
+        for(int i = 0; i < listaUsuario.size(); i++){
+            rows[i][0] = listaUsuario.get(i).getPri_nom_usuario();
+            rows[i][1] = listaUsuario.get(i).getPri_apell_usuario();
+            rows[i][2] = listaUsuario.get(i).getNum_doc_usuario();
+            rows[i][3] = listaUsuario.get(i).getEmail_usuario();
+            rows[i][4] = listaUsuario.get(i).getUsuario();
+            rows[i][5] = listaUsuario.get(i).getRol_usuario();
+            
+
         }
         
         modelo.MyTableModelUsuarios mmd = new modelo.MyTableModelUsuarios(rows, colNames);
         jTable_USUARIOS.setModel(mmd);
         jTable_USUARIOS.setRowHeight(80);
-        jTable_USUARIOS.getColumnModel().getColumn(4).setPreferredWidth(150);
-        jTable_USUARIOS.getColumnModel().getColumn(3).setPreferredWidth(120);
+        jTable_USUARIOS.getColumnModel().getColumn(5).setPreferredWidth(120);
+    
     }
-    */
-    /*
-    */
-    
-    
-    
-        
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -145,11 +78,11 @@ public class FrmAdminUsuarios extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jButton_BUSCAR_USU = new javax.swing.JButton();
-        jButton_ACTUALIZAR_USU = new javax.swing.JButton();
-        jTextField_VALOR_BUSQUEDA_USU = new javax.swing.JTextField();
+        jButton_BUSCAR_USUARIOS = new javax.swing.JButton();
+        jButton_ACTUALIZAR_USUARIOS = new javax.swing.JButton();
+        jTextField_VALOR_BUSQUEDA_USUARIOS = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable_ADMIN_USUARIOS = new javax.swing.JTable();
+        jTable_USUARIOS = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -173,31 +106,42 @@ public class FrmAdminUsuarios extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(47, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
                 .addComponent(jLabel2)
-                .addGap(39, 39, 39))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
-        jButton_BUSCAR_USU.setBackground(new java.awt.Color(218, 215, 205));
-        jButton_BUSCAR_USU.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton_BUSCAR_USU.setForeground(new java.awt.Color(52, 78, 65));
-        jButton_BUSCAR_USU.setText("Buscar");
-        jButton_BUSCAR_USU.addActionListener(new java.awt.event.ActionListener() {
+        jButton_BUSCAR_USUARIOS.setBackground(new java.awt.Color(218, 215, 205));
+        jButton_BUSCAR_USUARIOS.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton_BUSCAR_USUARIOS.setForeground(new java.awt.Color(52, 78, 65));
+        jButton_BUSCAR_USUARIOS.setText("Buscar");
+        jButton_BUSCAR_USUARIOS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_BUSCAR_USUActionPerformed(evt);
+                jButton_BUSCAR_USUARIOSActionPerformed(evt);
             }
         });
 
-        jButton_ACTUALIZAR_USU.setBackground(new java.awt.Color(52, 78, 65));
-        jButton_ACTUALIZAR_USU.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton_ACTUALIZAR_USU.setForeground(new java.awt.Color(218, 215, 205));
-        jButton_ACTUALIZAR_USU.setText("Actualizar");
+        jButton_ACTUALIZAR_USUARIOS.setBackground(new java.awt.Color(52, 78, 65));
+        jButton_ACTUALIZAR_USUARIOS.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton_ACTUALIZAR_USUARIOS.setForeground(new java.awt.Color(218, 215, 205));
+        jButton_ACTUALIZAR_USUARIOS.setText("Actualizar");
 
-        jTextField_VALOR_BUSQUEDA_USU.setBackground(new java.awt.Color(218, 215, 205));
-        jTextField_VALOR_BUSQUEDA_USU.setForeground(new java.awt.Color(52, 78, 65));
+        jTextField_VALOR_BUSQUEDA_USUARIOS.setBackground(new java.awt.Color(218, 215, 205));
+        jTextField_VALOR_BUSQUEDA_USUARIOS.setForeground(new java.awt.Color(52, 78, 65));
 
-        jScrollPane1.setViewportView(jTable_ADMIN_USUARIOS);
+        jTable_USUARIOS.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(jTable_USUARIOS);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -210,11 +154,11 @@ public class FrmAdminUsuarios extends javax.swing.JFrame {
                 .addGap(80, 80, 80)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField_VALOR_BUSQUEDA_USU)
+                        .addComponent(jTextField_VALOR_BUSQUEDA_USUARIOS)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton_BUSCAR_USU)
+                        .addComponent(jButton_BUSCAR_USUARIOS)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton_ACTUALIZAR_USU))
+                        .addComponent(jButton_ACTUALIZAR_USUARIOS))
                     .addComponent(jScrollPane1))
                 .addGap(29, 29, 29))
         );
@@ -225,13 +169,14 @@ public class FrmAdminUsuarios extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton_BUSCAR_USU)
-                        .addComponent(jButton_ACTUALIZAR_USU)
-                        .addComponent(jTextField_VALOR_BUSQUEDA_USU, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton_BUSCAR_USUARIOS)
+                        .addComponent(jButton_ACTUALIZAR_USUARIOS)
+                        .addComponent(jTextField_VALOR_BUSQUEDA_USUARIOS, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -251,10 +196,10 @@ public class FrmAdminUsuarios extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton_BUSCAR_USUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BUSCAR_USUActionPerformed
+    private void jButton_BUSCAR_USUARIOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BUSCAR_USUARIOSActionPerformed
         // TODO add your handling code here:
-         //populateJtable(jTextField_VALOR_BUSQUEDA_USU.getText());
-    }//GEN-LAST:event_jButton_BUSCAR_USUActionPerformed
+         llenarJtableParam(jTextField_VALOR_BUSQUEDA_USUARIOS.getText());
+    }//GEN-LAST:event_jButton_BUSCAR_USUARIOSActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,13 +218,13 @@ public class FrmAdminUsuarios extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmAdminUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmAdminUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmAdminUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmAdminUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -287,20 +232,20 @@ public class FrmAdminUsuarios extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmAdminUsuarios().setVisible(true);
+                new FrmUsuarios().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton_ACTUALIZAR_USU;
-    private javax.swing.JButton jButton_BUSCAR_USU;
+    private javax.swing.JButton jButton_ACTUALIZAR_USUARIOS;
+    private javax.swing.JButton jButton_BUSCAR_USUARIOS;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable_ADMIN_USUARIOS;
-    private javax.swing.JTextField jTextField_VALOR_BUSQUEDA_USU;
+    private javax.swing.JTable jTable_USUARIOS;
+    private javax.swing.JTextField jTextField_VALOR_BUSQUEDA_USUARIOS;
     // End of variables declaration//GEN-END:variables
 }
