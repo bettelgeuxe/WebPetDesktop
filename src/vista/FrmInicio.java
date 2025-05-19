@@ -44,6 +44,7 @@ public class FrmInicio extends javax.swing.JFrame {
         jMenu_PRODUCTOS = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 600));
 
         jPanel1.setBackground(new java.awt.Color(218, 215, 205));
 
@@ -58,22 +59,22 @@ public class FrmInicio extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(253, 253, 253)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(251, 251, 251))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(58, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addGap(50, 50, 50))
         );
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(52, 78, 65));
-        jLabel3.setText("Bienvenid@ a WebPet, el mejor software de gestión veterinario.");
+        jLabel3.setText("Bienvenid@ a WebPet, el mejor software de gestión veterinaria.");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -97,9 +98,9 @@ public class FrmInicio extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(187, 187, 187)
                 .addComponent(jLabel3)
-                .addGap(217, 217, 217)
+                .addGap(174, 174, 174)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(730, Short.MAX_VALUE))
+                .addContainerGap(739, Short.MAX_VALUE))
         );
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
@@ -225,14 +226,14 @@ public class FrmInicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem_REGISTRAR_CLIENTE;
-    private javax.swing.JMenuItem jMenuItem_REGISTRAR_USUARIO;
+    public javax.swing.JMenuItem jMenuItem_REGISTRAR_USUARIO;
     private javax.swing.JMenu jMenu_AGENDA;
     private javax.swing.JMenu jMenu_CLIENTES;
     private javax.swing.JMenu jMenu_INICIO;
     private javax.swing.JMenu jMenu_MASCOTAS;
     private javax.swing.JMenu jMenu_PRODUCTOS;
     private javax.swing.JMenu jMenu_PROVEEDORES;
-    private javax.swing.JMenu jMenu_USUARIOS;
+    public javax.swing.JMenu jMenu_USUARIOS;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables

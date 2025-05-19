@@ -6,7 +6,16 @@
 package vista;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,9 +50,9 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextField_usuario = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField_passwd = new javax.swing.JTextField();
         jButton_registroLog = new javax.swing.JButton();
         jButton_ingresar = new javax.swing.JButton();
+        jPasswordField_passwd = new javax.swing.JPasswordField();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -106,12 +115,12 @@ public class FrmLogin extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jLabel3))
                         .addGap(39, 39, 39)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField_passwd, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField_usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                            .addComponent(jPasswordField_passwd)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                         .addComponent(jButton_registroLog, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(22, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -130,8 +139,8 @@ public class FrmLogin extends javax.swing.JFrame {
                     .addComponent(jTextField_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_passwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(jPasswordField_passwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_registroLog, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -225,6 +234,117 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private void jButton_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ingresarActionPerformed
         // TODO add your handling code here:
+        PreparedStatement st;
+        ResultSet rs;
+        
+        // obtener usuario y passwd escritos por el usuario
+        String username = jTextField_usuario.getText();
+        String password = String.valueOf(jPasswordField_passwd.getPassword());
+        
+      
+        
+        
+         //encriptar la clave
+         String sha1 = "";
+		
+		// With the java libraries
+	try {
+                        MessageDigest digest = MessageDigest.getInstance("SHA-1");
+	        digest.reset();
+	        digest.update(password.getBytes("utf8"));
+	        sha1 = String.format("%040x", new BigInteger(1, digest.digest()));
+	} catch (Exception e){
+	    e.printStackTrace();
+	}
+        
+       try {  //jTextField_Username y por este jPasswordField_1
+        //create a select query to check if the username and the password exist in the database
+        st = modelo.Conexion_DB.getConnection().prepareStatement("SELECT `usuario`, `passwd`,`rol_usuario` FROM `usuarios` WHERE `usuario` = ? AND `passwd` = ?");
+           
+      //  String query = "SELECT * FROM `users` WHERE `username` = ? AND `password` = ?";
+        
+        // show a message if the username or the password fields are empty
+        if(username.trim().equals("usuario"))
+        {
+            JOptionPane.showMessageDialog(null, "Enter Your Username", "Empty Username", 2);
+        }
+        else if(password.trim().equals("passwd"))
+        {
+            JOptionPane.showMessageDialog(null, "Enter Your Password", "Empty Password", 2);
+        }
+        else{
+            
+            
+                //mvc
+           // st = modelo.Conexion_DB.getConnection().prepareStatement(query);
+            
+            st.setString(1, username);
+            st.setString(2, sha1);
+            
+            rs = st.executeQuery();
+            //si cumple con usuario y contraseña
+            if(rs.next())
+            { //String rol = rs.getString("rol_usuario");
+                // show a new form
+                
+                /*
+                   Register_Form ver=new Register_Form();
+                 ver.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                  ver.setVisible(true);
+                 
+                 */
+                 FrmInicio inicioForm = new FrmInicio();
+                 
+                 //Probando para restringir a usuario Empleado
+                if(rs.getString("rol_usuario").equals("Empleado"))
+                {
+                    //jMenu_USUARIO del formulario al que voy  debe ser publico
+                    
+                    //form.jMenu_USUARIOS.setVisible(false);
+                    inicioForm.jMenuItem_REGISTRAR_USUARIO.setVisible(false);
+                    
+                }
+                
+               /*
+                //user_type es el campo de la base de datos y user es el rol o el registro en tabla
+                 if(rs.getString("user_type").equals("user"))
+                {
+                    homeForm.jMenu5_USER_.setVisible(false);
+                
+                }
+                
+                
+                */
+               
+               
+                    inicioForm.pack();
+                    inicioForm.setVisible(true);
+                    inicioForm.setLocationRelativeTo(null);
+                    inicioForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    this.dispose();
+                /*
+               // todo eso ocurre en el formulario Home_Form
+                form.pack();
+                form.setExtendedState(form.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+                Dimension r =form.getBounds().getSize();
+                
+                
+                
+               form.setLocationRelativeTo(null);
+               form.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                //me oculte de este formulario Login_Form
+                this.dispose();*/
+                
+            }else{
+                // error message
+                JOptionPane.showMessageDialog(null, "Invalid Username / Password","Login Error",2);
+            }
+            
+        }
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton_ingresarActionPerformed
 
     /**
@@ -274,7 +394,7 @@ public class FrmLogin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField_passwd;
+    private javax.swing.JPasswordField jPasswordField_passwd;
     private javax.swing.JTextField jTextField_usuario;
     // End of variables declaration//GEN-END:variables
 }
