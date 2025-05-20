@@ -32,10 +32,11 @@ public class FrmInicio extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jButton_SALIR = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu_INICIO = new javax.swing.JMenu();
         jMenu_USUARIOS = new javax.swing.JMenu();
-        jMenuItem_BUSCAR_USUARIO = new javax.swing.JMenuItem();
+        jMenuItem_ADMINISTRAR_USUARIOS = new javax.swing.JMenuItem();
         jMenuItem_REGISTRAR_USUARIO = new javax.swing.JMenuItem();
         jMenu_CLIENTES = new javax.swing.JMenu();
         jMenuItem_REGISTRAR_CLIENTE = new javax.swing.JMenuItem();
@@ -62,7 +63,7 @@ public class FrmInicio extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(253, 253, 253)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(253, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -76,36 +77,47 @@ public class FrmInicio extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(52, 78, 65));
         jLabel3.setText("Bienvenid@ a WebPet, el mejor software de gestión veterinaria.");
 
+        jButton_SALIR.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
+        jButton_SALIR.setForeground(new java.awt.Color(52, 78, 65));
+        jButton_SALIR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-salir-webpet-app.png"))); // NOI18N
+        jButton_SALIR.setText("SALIR");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(107, 107, 107))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jLabel3))
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)))
-                .addContainerGap(123, Short.MAX_VALUE))
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(323, 323, 323)
+                        .addComponent(jButton_SALIR, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(43, 43, 43)
                 .addComponent(jLabel1)
-                .addGap(187, 187, 187)
+                .addGap(127, 127, 127)
                 .addComponent(jLabel3)
-                .addGap(218, 218, 218)
+                .addGap(34, 34, 34)
+                .addComponent(jButton_SALIR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(132, 132, 132)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(695, Short.MAX_VALUE))
+                .addContainerGap(282, Short.MAX_VALUE))
         );
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jMenu_INICIO.setText("INICIO  |");
+        jMenu_INICIO.setText("MENÚ  |");
         jMenu_INICIO.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         jMenuBar1.add(jMenu_INICIO);
 
@@ -115,14 +127,18 @@ public class FrmInicio extends javax.swing.JFrame {
         jMenu_USUARIOS.setMinimumSize(new java.awt.Dimension(105, 30));
         jMenu_USUARIOS.setPreferredSize(new java.awt.Dimension(105, 30));
 
-        jMenuItem_BUSCAR_USUARIO.setText("Buscar");
-        jMenuItem_BUSCAR_USUARIO.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem_ADMINISTRAR_USUARIOS.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+        jMenuItem_ADMINISTRAR_USUARIOS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/buscar-icono-webpet.png"))); // NOI18N
+        jMenuItem_ADMINISTRAR_USUARIOS.setText("Administrar");
+        jMenuItem_ADMINISTRAR_USUARIOS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem_BUSCAR_USUARIOActionPerformed(evt);
+                jMenuItem_ADMINISTRAR_USUARIOSActionPerformed(evt);
             }
         });
-        jMenu_USUARIOS.add(jMenuItem_BUSCAR_USUARIO);
+        jMenu_USUARIOS.add(jMenuItem_ADMINISTRAR_USUARIOS);
 
+        jMenuItem_REGISTRAR_USUARIO.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+        jMenuItem_REGISTRAR_USUARIO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-agregar-webpet-app.png"))); // NOI18N
         jMenuItem_REGISTRAR_USUARIO.setText("Registrar");
         jMenuItem_REGISTRAR_USUARIO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,6 +152,8 @@ public class FrmInicio extends javax.swing.JFrame {
         jMenu_CLIENTES.setText("CLIENTES |");
         jMenu_CLIENTES.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
 
+        jMenuItem_REGISTRAR_CLIENTE.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+        jMenuItem_REGISTRAR_CLIENTE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-agregar-webpet-app.png"))); // NOI18N
         jMenuItem_REGISTRAR_CLIENTE.setText("Registrar");
         jMenuItem_REGISTRAR_CLIENTE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,11 +211,11 @@ public class FrmInicio extends javax.swing.JFrame {
         regFormCli.setVisible(true);
     }//GEN-LAST:event_jMenuItem_REGISTRAR_CLIENTEActionPerformed
 
-    private void jMenuItem_BUSCAR_USUARIOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_BUSCAR_USUARIOActionPerformed
+    private void jMenuItem_ADMINISTRAR_USUARIOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ADMINISTRAR_USUARIOSActionPerformed
         // TODO add your handling code here:
         vista.FrmUsuarios usuariosForm = new vista.FrmUsuarios();
         usuariosForm.setVisible(true);
-    }//GEN-LAST:event_jMenuItem_BUSCAR_USUARIOActionPerformed
+    }//GEN-LAST:event_jMenuItem_ADMINISTRAR_USUARIOSActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,11 +253,12 @@ public class FrmInicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton_SALIR;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
-    public javax.swing.JMenuItem jMenuItem_BUSCAR_USUARIO;
+    public javax.swing.JMenuItem jMenuItem_ADMINISTRAR_USUARIOS;
     private javax.swing.JMenuItem jMenuItem_REGISTRAR_CLIENTE;
     public javax.swing.JMenuItem jMenuItem_REGISTRAR_USUARIO;
     private javax.swing.JMenu jMenu_AGENDA;
