@@ -30,7 +30,7 @@ public class MyTableModelUsuarios extends AbstractTableModel{
     public Class getColumnClass(int col)
     {
         //Se cuenta desde 0 hasta 5 para lograr las 6 columnas
-        if(col == 6){ return Icon.class; }
+        if(col == 7){ return Icon.class; }
         
         else{
             return getValueAt(0, col).getClass();

@@ -12,7 +12,7 @@ import java.sql.DriverManager;
  *
  * @author MIller
  */
-public class Conexion_DB {
+public class Conexion_DBOriginal {
     
       private static String dbname = "webpetdb";
       private static String username = "root";
@@ -20,22 +20,24 @@ public class Conexion_DB {
       
       static Connection con=null;
     
-      public static Connection getConnection() {
+      public static Connection getConnection()
+    {
+        if (con != null) return con;
+        // get db, user, pass from settings file
         return getConnection(dbname, username, password);
-      }
-      
-      
-        private static Connection getConnection(String db_name, String user_name, String password) {
-        Connection con = null;
-        try {
+    }
+
+    private static Connection getConnection(String db_name,String user_name,String password)
+    {
+        try
+        {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3307/" + db_name + "?useSSL=false&serverTimezone=UTC",
-                user_name, password
-            );
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3307/"+db_name+"?user="+user_name+"&password="+password);
             System.out.println("Conectado ok");
-        } catch (Exception e) {
-            System.out.println("Error de conexión a la bd: " + e);
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error de conexión a la bd"+e);
         }
 
         return con;     

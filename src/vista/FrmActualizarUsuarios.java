@@ -74,8 +74,6 @@ public class FrmActualizarUsuarios extends javax.swing.JFrame {
         jTextField_usuario = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jPasswordField_pass = new javax.swing.JPasswordField();
-        jLabel16 = new javax.swing.JLabel();
-        jPasswordField_cpass = new javax.swing.JPasswordField();
         jButton_actualizarUsuario = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jComboBox_rol = new javax.swing.JComboBox<>();
@@ -151,9 +149,6 @@ public class FrmActualizarUsuarios extends javax.swing.JFrame {
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel15.setText("Contraseña");
-
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel16.setText("Confirmar Contraseña");
 
         jButton_actualizarUsuario.setBackground(new java.awt.Color(52, 78, 65));
         jButton_actualizarUsuario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -246,17 +241,14 @@ public class FrmActualizarUsuarios extends javax.swing.JFrame {
                                     .addComponent(jButton_actualizarUsuario)
                                     .addComponent(jComboBox_rol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTextField_snombre, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField_sapellido, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField_numdoc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField_tel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_usuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPasswordField_cpass, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField_usuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -297,9 +289,7 @@ public class FrmActualizarUsuarios extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
-                    .addComponent(jPasswordField_pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16)
-                    .addComponent(jPasswordField_cpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordField_pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
@@ -434,25 +424,20 @@ public class FrmActualizarUsuarios extends javax.swing.JFrame {
         String dir = jTextField_dir.getText();
         String usuario = jTextField_usuario.getText();
         String pass1 = String.valueOf(jPasswordField_pass.getPassword());
-        String pass2 = String.valueOf(jPasswordField_cpass.getPassword());
         String rol=jComboBox_rol.getSelectedItem().toString();
         
         // check empty fields
         if(pnombre.trim().equals("") || snombre.trim().equals("") || papellido.trim().equals("")
            || sapellido.trim().equals("") || tipodoc.trim().equals("Seleccione") || numdoc.trim().equals("")
            || email.trim().equals("") || tel.trim().equals("") || dir.trim().equals("") || usuario.trim().equals("")
-           || pass1.trim().equals("") || pass2.trim().equals("") || rol.trim().equals("Seleccione"))
+           || pass1.trim().equals("") || rol.trim().equals("Seleccione"))
         {
             JOptionPane.showMessageDialog(null, "Uno o más campos están vacíos o sin selección","Campos vacíos",2);
             return false;
         }
         
         // check if the two password are equals
-        else if(!pass1.equals(pass2))
-        {
-           JOptionPane.showMessageDialog(null, "Usuario o contraseña no corresponden","Confirme password",2); 
-           return false;
-        }
+        
         
         // if everything is ok
         else{
@@ -511,7 +496,6 @@ public class FrmActualizarUsuarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
@@ -524,7 +508,6 @@ public class FrmActualizarUsuarios extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    public javax.swing.JPasswordField jPasswordField_cpass;
     public javax.swing.JPasswordField jPasswordField_pass;
     public javax.swing.JTextField jTextField_dir;
     public javax.swing.JTextField jTextField_email;

@@ -49,24 +49,31 @@ public class FrmUsuarios extends javax.swing.JFrame {
         controlador.Usuarios usu = new controlador.Usuarios();
         ArrayList<controlador.Usuarios> listaUsuario = usu.usuariosList(val);
         
-        String[] colNames = {"Nombre","Apellido","Documento","Email","Usuario","Rol"};
-        Object[][] rows = new Object[listaUsuario.size()][6];
+        String[] colNames = {"ID","Nombre","Apellido","Documento","Email","Usuario","Rol"};
+        Object[][] rows = new Object[listaUsuario.size()][7];
         
         for(int i = 0; i < listaUsuario.size(); i++){
-            rows[i][0] = listaUsuario.get(i).getPri_nom_usuario();
-            rows[i][1] = listaUsuario.get(i).getPri_apell_usuario();
-            rows[i][2] = listaUsuario.get(i).getNum_doc_usuario();
-            rows[i][3] = listaUsuario.get(i).getEmail_usuario();
-            rows[i][4] = listaUsuario.get(i).getUsuario();
-            rows[i][5] = listaUsuario.get(i).getRol_usuario();
+            rows[i][0] = listaUsuario.get(i).getId();
+            rows[i][1] = listaUsuario.get(i).getPri_nom_usuario();
+            rows[i][2] = listaUsuario.get(i).getPri_apell_usuario();
+            rows[i][3] = listaUsuario.get(i).getNum_doc_usuario();
+            rows[i][4] = listaUsuario.get(i).getEmail_usuario();
+            rows[i][5] = listaUsuario.get(i).getUsuario();
+            rows[i][6] = listaUsuario.get(i).getRol_usuario();
             
 
         }
         
         modelo.MyTableModelUsuarios mmd = new modelo.MyTableModelUsuarios(rows, colNames);
         jTable_USUARIOS.setModel(mmd);
-        jTable_USUARIOS.setRowHeight(80);
-        jTable_USUARIOS.getColumnModel().getColumn(5).setPreferredWidth(120);
+        jTable_USUARIOS.setRowHeight(30);
+        jTable_USUARIOS.getColumnModel().getColumn(6).setPreferredWidth(120);
+        
+        //Ocultar la columna ID pero sigue disponible para luego llamar la info para actualizar
+        
+        jTable_USUARIOS.getColumnModel().getColumn(0).setMinWidth(0);
+        jTable_USUARIOS.getColumnModel().getColumn(0).setMaxWidth(0);
+        jTable_USUARIOS.getColumnModel().getColumn(0).setWidth(0);
     
     }
 
@@ -262,9 +269,43 @@ public class FrmUsuarios extends javax.swing.JFrame {
 
     private void jButton_editarUsuarioSeleccionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_editarUsuarioSeleccionadoActionPerformed
         // TODO add your handling code here:
+        try {
+        int filaSeleccionada = jTable_USUARIOS.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(null, "Seleccione un usuario de la tabla", "Sin usuarios seleccionados", 2);
+            return;
+        }
+        // Obtener el ID oculto
+        int idUsuario = Integer.parseInt(jTable_USUARIOS.getValueAt(filaSeleccionada, 0).toString());
+
+        // Buscar el usuario completo desde la base de datos (esto es importante)
+        controlador.Usuarios usuarioCompleto = controlador.Usuarios.buscarUsuarioPorId(idUsuario);
+
+        FrmActualizarUsuarios actualizarUsuariosForm = new FrmActualizarUsuarios();
+        actualizarUsuariosForm.usuarioId = usuarioCompleto.getId();
+        actualizarUsuariosForm.jTextField_pnombre.setText(usuarioCompleto.getPri_nom_usuario());
+        actualizarUsuariosForm.jTextField_snombre.setText(usuarioCompleto.getSeg_nom_usuario());
+        actualizarUsuariosForm.jTextField_papellido.setText(usuarioCompleto.getPri_apell_usuario());
+        actualizarUsuariosForm.jTextField_sapellido.setText(usuarioCompleto.getSeg_apell_usuario());
+        actualizarUsuariosForm.jComboBox_tipodoc.setSelectedItem(usuarioCompleto.getTipo_doc_usuario());
+        actualizarUsuariosForm.jTextField_numdoc.setText(usuarioCompleto.getNum_doc_usuario());
+        actualizarUsuariosForm.jTextField_email.setText(usuarioCompleto.getEmail_usuario());
+        actualizarUsuariosForm.jTextField_tel.setText(usuarioCompleto.getTel_usuario());
+        actualizarUsuariosForm.jTextField_dir.setText(usuarioCompleto.getDir_usuario());
+        actualizarUsuariosForm.jTextField_usuario.setText(usuarioCompleto.getUsuario());
+        actualizarUsuariosForm.jPasswordField_pass.setText(usuarioCompleto.getPasswd_usuario());
+        actualizarUsuariosForm.jComboBox_rol.setSelectedItem(usuarioCompleto.getRol_usuario());
+
+        actualizarUsuariosForm.setVisible(true);
+        actualizarUsuariosForm.pack();
+        actualizarUsuariosForm.setLocationRelativeTo(null);
+        actualizarUsuariosForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+    } catch(Exception e) {
+        JOptionPane.showMessageDialog(null, "Error al abrir formulario de edición: " + e.getMessage());
+    }
         
-        
-        
+        /*
         try{
 
             // open the edit product form and display data into the fields
@@ -295,7 +336,7 @@ public class FrmUsuarios extends javax.swing.JFrame {
                     actualizarUsuariosForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         }catch(Exception Ex){
             JOptionPane.showMessageDialog(null, "Seleccione un usuario de la tabla", "Sin usuarios seleccionados", 2);
-        }
+        }*/
     }//GEN-LAST:event_jButton_editarUsuarioSeleccionadoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

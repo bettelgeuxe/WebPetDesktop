@@ -322,14 +322,61 @@ public class Usuarios {
     return usuarios_list;
 }
     
-    public static void actualizarUsuarios(Usuarios usuario)
+    public static void actualizarUsuarios(Usuarios usuario) {
+    Connection con = Conexion_DB.getConnection();
+    PreparedStatement ps;
+
+    try {
+        ps = con.prepareStatement("UPDATE `usuarios` SET "
+                + "`primer_nombre_usuario`=?,"
+                + "`segundo_nombre_usuario`=?,"
+                + "`primer_apellido_usuario`=?,"
+                + "`segundo_apellido_usuario`=?,"
+                + "`tipo_documento_usuario`=?,"
+                + "`numero_documento_usuario`=?,"
+                + "`email_usuario`=?,"
+                + "`telefono_usuario`=?,"
+                + "`direccion_usuario`=?,"
+                + "`usuario`=?,"
+                + "`passwd`=?,"
+                + "`rol_usuario`=? "
+                + "WHERE `id` = ?");
+
+        ps.setString(1, usuario.getPri_nom_usuario());
+        ps.setString(2, usuario.getSeg_nom_usuario());
+        ps.setString(3, usuario.getPri_apell_usuario());
+        ps.setString(4, usuario.getSeg_apell_usuario());
+        ps.setString(5, usuario.getTipo_doc_usuario());
+        ps.setString(6, usuario.getNum_doc_usuario());
+        ps.setString(7, usuario.getEmail_usuario());
+        ps.setString(8, usuario.getTel_usuario());
+        ps.setString(9, usuario.getDir_usuario());
+        ps.setString(10, usuario.getUsuario());
+        ps.setString(11, usuario.getPasswd_usuario());
+        ps.setString(12, usuario.getRol_usuario());
+        ps.setInt(13, usuario.getId());
+
+        if (ps.executeUpdate() != 0) {
+            JOptionPane.showMessageDialog(null, "Usuario actualizado correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(null, "No se pudo actualizar el usuario.");
+        }
+
+    } catch (SQLException ex) {
+        Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        JOptionPane.showMessageDialog(null, "Error al actualizar: " + ex.getMessage());
+    }
+}
+
+    
+    /*public static void actualizarUsuarios(Usuarios usuario)
     {
         Connection con = Conexion_DB.getConnection();
         PreparedStatement ps;
         
                 
             try {
-            ps = con.prepareStatement("UPDATE `usuarios` SET `primer_nombre_usuario`=?,`segundo_nombre_usuario`=?,`primer_apellido_usuario`=?,`segundo_apellido_usuario`=?,`tipo_documento_usuario`=?,`numero_documento_usuario`=?,`email_usuario`=?,`telefono_usuario`=?,`direccion_usuario`=?,`quantity`=?,`usuario`=?,`passwd`=? WHERE `id` = ?");
+            ps = con.prepareStatement("UPDATE `usuarios` SET `primer_nombre_usuario`=?,`segundo_nombre_usuario`=?,`primer_apellido_usuario`=?,`segundo_apellido_usuario`=?,`tipo_documento_usuario`=?,`numero_documento_usuario`=?,`email_usuario`=?,`telefono_usuario`=?,`direccion_usuario`=?,`usuario`=?,`passwd`=? WHERE `id` = ?");
 
             ps.setString(1, usuario.getPri_nom_usuario());
             ps.setString(2, usuario.getSeg_nom_usuario());
@@ -363,7 +410,38 @@ public class Usuarios {
             
         
         
+    }*/
+    
+    public static Usuarios buscarUsuarioPorId(int id) {
+    Usuarios u = new Usuarios();
+    try {
+        Connection con = Conexion_DB.getConnection();
+        String sql = "SELECT * FROM usuarios WHERE id = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            u.setId(rs.getInt("id"));
+            u.setPri_nom_usuario(rs.getString("primer_nombre_usuario"));
+            u.setSeg_nom_usuario(rs.getString("segundo_nombre_usuario"));
+            u.setPri_apell_usuario(rs.getString("primer_apellido_usuario"));
+            u.setSeg_apell_usuario(rs.getString("segundo_apellido_usuario"));
+            u.setTipo_doc_usuario(rs.getString("tipo_documento_usuario"));
+            u.setNum_doc_usuario(rs.getString("numero_documento_usuario"));
+            u.setEmail_usuario(rs.getString("email_usuario"));
+            u.setTel_usuario(rs.getString("telefono_usuario"));
+            u.setDir_usuario(rs.getString("direccion_usuario"));
+            u.setUsuario(rs.getString("usuario"));
+            u.setPasswd_usuario(rs.getString("passwd"));
+            u.setRol_usuario(rs.getString("rol_usuario"));
+        }
+        con.close();
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error al buscar usuario por ID: " + e.getMessage());
     }
+    return u;
+}
+
 
     
     
