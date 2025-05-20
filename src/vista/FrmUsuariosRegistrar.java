@@ -10,6 +10,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import modelo.Conexion_DB;
 
 /**
  *
@@ -68,9 +69,9 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jComboBox_rol = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButton_IR_A_LOGIN = new javax.swing.JButton();
         Inicio = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButton_SALIR = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -153,12 +154,12 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
         jLabel18.setForeground(new java.awt.Color(52, 78, 65));
         jLabel18.setText("REGISTRO DE USUARIOS DEL SISTEMA");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-login-webpet-app.png"))); // NOI18N
-        jButton1.setText("Volver a Login");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_IR_A_LOGIN.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton_IR_A_LOGIN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-login-webpet-app.png"))); // NOI18N
+        jButton_IR_A_LOGIN.setText("Volver a Login");
+        jButton_IR_A_LOGIN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton_IR_A_LOGINActionPerformed(evt);
             }
         });
 
@@ -166,11 +167,11 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
         Inicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-home-webpet-app.png"))); // NOI18N
         Inicio.setText("Inicio");
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-salir-webpet-app.png"))); // NOI18N
-        jButton3.setText("Salir");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButton_SALIR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-salir-webpet-app.png"))); // NOI18N
+        jButton_SALIR.setText("Salir");
+        jButton_SALIR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButton_SALIRActionPerformed(evt);
             }
         });
 
@@ -245,9 +246,9 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(Inicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(jButton_IR_A_LOGIN)
                         .addGap(26, 26, 26)
-                        .addComponent(jButton3)))
+                        .addComponent(jButton_SALIR)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -299,8 +300,8 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_registrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton_IR_A_LOGIN, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_SALIR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -435,13 +436,30 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
          }
     }//GEN-LAST:event_jButton_registrarUsuarioActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton_IR_A_LOGINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_IR_A_LOGINActionPerformed
         // TODO add your handling code here:
-        fl=new FrmLogin();
-        fl.setVisible(true);
+        try {
+        // Cerrar la conexión a la base de datos si está abierta
+        if (Conexion_DB.getConnection() != null && !Conexion_DB.getConnection().isClosed()) {
+            Conexion_DB.getConnection().close();
+            System.out.println("Conexión cerrada correctamente");
+        }
+    } catch (Exception e) {
+        System.out.println("Error al cerrar la conexión: " + e.getMessage());
+    }
+
+            // Cerrar  el formulario UsuariosRegistrar
+            this.dispose(); // o this.setVisible(false);
+
+            // Abrir el formulario de login
+            FrmLogin login = new FrmLogin();
+            login.setVisible(true);
+            login.pack();
+            login.setLocationRelativeTo(null);
+            login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton_IR_A_LOGINActionPerformed
 
     private void jButton_registrarUsuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_registrarUsuarioMouseEntered
         // TODO add your handling code here:
@@ -456,12 +474,27 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
         jButton_registrarUsuario.setForeground(new Color(218,215,205));
     }//GEN-LAST:event_jButton_registrarUsuarioMouseExited
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButton_SALIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SALIRActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        try {
+        // Cerrar la conexión a la base de datos si está abierta
+        if (Conexion_DB.getConnection() != null && !Conexion_DB.getConnection().isClosed()) {
+            Conexion_DB.getConnection().close();
+            System.out.println("Conexión cerrada correctamente");
+        }
+    } catch (Exception e) {
+        System.out.println("Error al cerrar la conexión: " + e.getMessage());
+    }
+
+            // Cerrar  el formulario UsuariosRegistrar
+            this.dispose(); // o this.setVisible(false);
+
+            
+
+    }//GEN-LAST:event_jButton_SALIRActionPerformed
 
     
-    // create a function to verify the empty fields  
+    
     public boolean verificarCampos()
     {
         String pnombre = jTextField_pnombre.getText();
@@ -542,8 +575,8 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Inicio;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton_IR_A_LOGIN;
+    private javax.swing.JButton jButton_SALIR;
     private javax.swing.JButton jButton_registrarUsuario;
     private javax.swing.JComboBox<String> jComboBox_rol;
     private javax.swing.JComboBox<String> jComboBox_tipodoc;
