@@ -39,6 +39,9 @@ public class FrmUsuarios extends javax.swing.JFrame {
         jTable_USUARIOS.setSelectionForeground(Color.decode("#FFFFFF"));
         JTableHeader th = jTable_USUARIOS.getTableHeader();
         th.setFont(new Font("Montserrat", Font.BOLD, 12));
+        
+        
+        
     }
     
     public void llenarJtableParam(String val){
@@ -260,12 +263,17 @@ public class FrmUsuarios extends javax.swing.JFrame {
     private void jButton_editarUsuarioSeleccionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_editarUsuarioSeleccionadoActionPerformed
         // TODO add your handling code here:
         
+        
+        
         try{
 
             // open the edit product form and display data into the fields
             FrmActualizarUsuarios actualizarUsuariosForm = new FrmActualizarUsuarios();
-
+            int filaSeleccionada = jTable_USUARIOS.getSelectedRow();
+            
             Integer rowIndex = jTable_USUARIOS.getSelectedRow();
+            
+            
 
             actualizarUsuariosForm.usuarioId = Integer.valueOf(jTable_USUARIOS.getValueAt(rowIndex, 0).toString());
             actualizarUsuariosForm.jTextField_pnombre.setText(jTable_USUARIOS.getValueAt(rowIndex, 1).toString());
