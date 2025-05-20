@@ -323,10 +323,11 @@ public class Usuarios {
 }
     
     public static void actualizarUsuarios(Usuarios usuario) {
-    Connection con = Conexion_DB.getConnection();
-    PreparedStatement ps;
+    Connection con = null;
+    PreparedStatement ps =null;
 
     try {
+        con = Conexion_DB.getConnection();
         ps = con.prepareStatement("UPDATE `usuarios` SET "
                 + "`primer_nombre_usuario`=?,"
                 + "`segundo_nombre_usuario`=?,"
@@ -356,16 +357,26 @@ public class Usuarios {
         ps.setString(12, usuario.getRol_usuario());
         ps.setInt(13, usuario.getId());
 
-        if (ps.executeUpdate() != 0) {
+        int result = ps.executeUpdate();
+        if (result != 0) {
             JOptionPane.showMessageDialog(null, "Usuario actualizado correctamente.");
         } else {
-            JOptionPane.showMessageDialog(null, "No se pudo actualizar el usuario.");
+            JOptionPane.showMessageDialog(null, "Error: No se actualizó el usuario.");
         }
 
     } catch (SQLException ex) {
-        Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
-        JOptionPane.showMessageDialog(null, "Error al actualizar: " + ex.getMessage());
+        JOptionPane.showMessageDialog(null, "Error al actualizar: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        ex.printStackTrace();
+    } finally {
+        // Cierre seguro de recursos
+        try {
+            if (ps != null) ps.close();
+            if (con != null) con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
 }
 
     
