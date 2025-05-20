@@ -5,6 +5,11 @@
  */
 package vista;
 
+
+import javax.swing.JFrame;
+import modelo.Conexion_DB;
+
+
 /**
  *
  * @author Cathecita
@@ -81,6 +86,11 @@ public class FrmInicio extends javax.swing.JFrame {
         jButton_SALIR.setForeground(new java.awt.Color(52, 78, 65));
         jButton_SALIR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-salir-webpet-app.png"))); // NOI18N
         jButton_SALIR.setText("SALIR");
+        jButton_SALIR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_SALIRActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -216,6 +226,30 @@ public class FrmInicio extends javax.swing.JFrame {
         vista.FrmUsuarios usuariosForm = new vista.FrmUsuarios();
         usuariosForm.setVisible(true);
     }//GEN-LAST:event_jMenuItem_ADMINISTRAR_USUARIOSActionPerformed
+
+    private void jButton_SALIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SALIRActionPerformed
+        // TODO add your handling code here:
+         try {
+        // Cerrar la conexión a la base de datos si está abierta
+            if (Conexion_DB.getConnection() != null && !Conexion_DB.getConnection().isClosed()) {
+                Conexion_DB.getConnection().close();
+                System.out.println("Conexión cerrada correctamente");
+                }
+            } catch (Exception e) {
+                System.out.println("Error al cerrar la conexión: " + e.getMessage());
+            }
+
+            // Cerrar el formulario inicio
+            this.dispose(); // o this.setVisible(false);
+
+            // Abre el formulario de login
+            FrmLogin login = new FrmLogin();
+            login.setVisible(true);
+            login.pack();
+            login.setLocationRelativeTo(null);
+            login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+    }//GEN-LAST:event_jButton_SALIRActionPerformed
 
     /**
      * @param args the command line arguments
