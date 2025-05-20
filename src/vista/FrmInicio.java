@@ -211,7 +211,7 @@ public class FrmInicio extends javax.swing.JFrame {
 
     private void jMenuItem_REGISTRAR_USUARIOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_REGISTRAR_USUARIOActionPerformed
         // TODO add your handling code here:
-        vista.FrmRegistroUsuarios regForm = new vista.FrmRegistroUsuarios();
+        vista.FrmUsuariosRegistrar regForm = new vista.FrmUsuariosRegistrar();
         regForm.setVisible(true);
     }//GEN-LAST:event_jMenuItem_REGISTRAR_USUARIOActionPerformed
 
@@ -223,7 +223,7 @@ public class FrmInicio extends javax.swing.JFrame {
 
     private void jMenuItem_ADMINISTRAR_USUARIOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ADMINISTRAR_USUARIOSActionPerformed
         // TODO add your handling code here:
-        vista.FrmUsuarios usuariosForm = new vista.FrmUsuarios();
+        vista.FrmUsuariosAdministrar usuariosForm = new vista.FrmUsuariosAdministrar();
         usuariosForm.setVisible(true);
     }//GEN-LAST:event_jMenuItem_ADMINISTRAR_USUARIOSActionPerformed
 

@@ -19,11 +19,11 @@ import javax.swing.table.JTableHeader;
  *
  * @author Cathecita
  */
-public class FrmUsuarios extends javax.swing.JFrame {
+public class FrmUsuariosAdministrar extends javax.swing.JFrame {
 
     controlador.Usuarios user;
     
-    public FrmUsuarios() {
+    public FrmUsuariosAdministrar() {
         initComponents();
         
         //llenar la tabla para usar el query de búsqueda
@@ -279,7 +279,7 @@ public class FrmUsuarios extends javax.swing.JFrame {
 
     private void jButton_registrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_registrarUsuarioActionPerformed
         // TODO add your handling code here:
-        FrmRegistroUsuarios registrarUsuarioForm = new FrmRegistroUsuarios();
+        FrmUsuariosRegistrar registrarUsuarioForm = new FrmUsuariosRegistrar();
             registrarUsuarioForm.pack();
             registrarUsuarioForm.setVisible(true);
             registrarUsuarioForm.setLocationRelativeTo(null);
@@ -300,7 +300,7 @@ public class FrmUsuarios extends javax.swing.JFrame {
         // Buscar el usuario completo desde la base de datos (esto es importante)
         controlador.Usuarios usuarioCompleto = controlador.Usuarios.buscarUsuarioPorId(idUsuario);
 
-        FrmActualizarUsuarios actualizarUsuariosForm = new FrmActualizarUsuarios();
+        FrmUsuariosActualizar actualizarUsuariosForm = new FrmUsuariosActualizar();
         actualizarUsuariosForm.usuarioId = usuarioCompleto.getId();
         actualizarUsuariosForm.jTextField_pnombre.setText(usuarioCompleto.getPri_nom_usuario());
         actualizarUsuariosForm.jTextField_snombre.setText(usuarioCompleto.getSeg_nom_usuario());
@@ -328,7 +328,7 @@ public class FrmUsuarios extends javax.swing.JFrame {
         try{
 
             // open the edit product form and display data into the fields
-            FrmActualizarUsuarios actualizarUsuariosForm = new FrmActualizarUsuarios();
+            FrmUsuariosActualizar actualizarUsuariosForm = new FrmUsuariosActualizar();
             int filaSeleccionada = jTable_USUARIOS.getSelectedRow();
             
             Integer rowIndex = jTable_USUARIOS.getSelectedRow();
@@ -420,21 +420,23 @@ public class FrmUsuarios extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmUsuariosAdministrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmUsuariosAdministrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmUsuariosAdministrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmUsuariosAdministrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmUsuarios().setVisible(true);
+                new FrmUsuariosAdministrar().setVisible(true);
             }
         });
     }

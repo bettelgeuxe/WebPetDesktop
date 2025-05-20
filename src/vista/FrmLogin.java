@@ -28,7 +28,7 @@ public class FrmLogin extends javax.swing.JFrame {
      */
     
     //creamos objeto frmregistro para llamarlo desde login
-    public static FrmRegistroUsuarios fr;
+    public static FrmUsuariosRegistrar fr;
     
     public FrmLogin() {
         initComponents();
@@ -221,7 +221,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private void jButton_registroLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_registroLogActionPerformed
         // TODO add your handling code here:
-        FrmRegistroUsuarios registrarUsuarioForm = new FrmRegistroUsuarios();
+        FrmUsuariosRegistrar registrarUsuarioForm = new FrmUsuariosRegistrar();
         registrarUsuarioForm.pack();
         registrarUsuarioForm.setVisible(true);
         registrarUsuarioForm.setLocationRelativeTo(null);
