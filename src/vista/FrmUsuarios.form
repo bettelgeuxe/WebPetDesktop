@@ -60,8 +60,9 @@
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Component id="jButton_editarUsuarioSeleccionado" max="32767" attributes="0"/>
-                              <Component id="jButton_registrarUsuario" pref="170" max="32767" attributes="0"/>
-                              <Component id="jButton1" max="32767" attributes="0"/>
+                              <Component id="jButton_registrarUsuario" max="32767" attributes="0"/>
+                              <Component id="jButton_volverInicio" max="32767" attributes="0"/>
+                              <Component id="jButton_eliminarUsuarioSeleccionado" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                       </Group>
@@ -104,7 +105,9 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jButton_editarUsuarioSeleccionado" min="-2" pref="44" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" pref="43" max="-2" attributes="0"/>
+                          <Component id="jButton_volverInicio" min="-2" pref="43" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jButton_eliminarUsuarioSeleccionado" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -245,12 +248,20 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_editarUsuarioSeleccionadoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="jButton_volverInicio">
           <Properties>
             <Property name="text" type="java.lang.String" value="Volver a INICIO"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_volverInicioActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton_eliminarUsuarioSeleccionado">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Eliminar Usuario Seleccionado"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_eliminarUsuarioSeleccionadoActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

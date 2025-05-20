@@ -378,6 +378,36 @@ public class Usuarios {
     }
 
 }
+    
+    public static void eliminarUsuarioPorId(int id) {
+    Connection con = null;
+    PreparedStatement ps = null;
+
+    try {
+        con = Conexion_DB.getConnection();
+        ps = con.prepareStatement("DELETE FROM usuarios WHERE id = ?");
+        ps.setInt(1, id);
+
+        int result = ps.executeUpdate();
+        if (result != 0) {
+            JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(null, "No se pudo eliminar el usuario.");
+        }
+
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al eliminar: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        ex.printStackTrace();
+    } finally {
+        try {
+            if (ps != null) ps.close();
+            if (con != null) con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
 
     
     /*public static void actualizarUsuarios(Usuarios usuario)

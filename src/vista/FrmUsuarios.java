@@ -97,7 +97,8 @@ public class FrmUsuarios extends javax.swing.JFrame {
         jTable_USUARIOS = new javax.swing.JTable();
         jButton_registrarUsuario = new javax.swing.JButton();
         jButton_editarUsuarioSeleccionado = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButton_volverInicio = new javax.swing.JButton();
+        jButton_eliminarUsuarioSeleccionado = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -174,10 +175,17 @@ public class FrmUsuarios extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Volver a INICIO");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_volverInicio.setText("Volver a INICIO");
+        jButton_volverInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton_volverInicioActionPerformed(evt);
+            }
+        });
+
+        jButton_eliminarUsuarioSeleccionado.setText("Eliminar Usuario Seleccionado");
+        jButton_eliminarUsuarioSeleccionado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_eliminarUsuarioSeleccionadoActionPerformed(evt);
             }
         });
 
@@ -196,8 +204,9 @@ public class FrmUsuarios extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jButton_editarUsuarioSeleccionado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton_registrarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton_registrarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_volverInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_eliminarUsuarioSeleccionado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -230,7 +239,9 @@ public class FrmUsuarios extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton_editarUsuarioSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton_volverInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton_eliminarUsuarioSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
@@ -339,12 +350,50 @@ public class FrmUsuarios extends javax.swing.JFrame {
         }*/
     }//GEN-LAST:event_jButton_editarUsuarioSeleccionadoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton_volverInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_volverInicioActionPerformed
         // TODO add your handling code here:
         vista.FrmInicio inicioForm = new vista.FrmInicio();
         inicioForm.setVisible(true);
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton_volverInicioActionPerformed
+
+    private void jButton_eliminarUsuarioSeleccionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_eliminarUsuarioSeleccionadoActionPerformed
+        // TODO add your handling code here:
+        int fila = jTable_USUARIOS.getSelectedRow();
+
+            if (fila == -1) {
+                JOptionPane.showMessageDialog(null, "Por favor seleccione un usuario de la tabla.");
+                return;
+            }
+
+        // Confirmación antes de eliminar
+            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas eliminar este usuario?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+            
+            if (confirmacion != JOptionPane.YES_OPTION) {
+                return;
+            }
+
+            try {
+        // Traer la lista completa para acceder al ID 
+            controlador.Usuarios usu = new controlador.Usuarios();
+            ArrayList<controlador.Usuarios> listaUsuarios = usu.usuariosList(""); 
+
+        // El ID está en la posición de la lista, no en la tabla, porque la tabla solo muestra 6 campos
+            int idUsuario = listaUsuarios.get(fila).getId();
+
+        // Llamar método para eliminar
+            controlador.Usuarios.eliminarUsuarioPorId(idUsuario);
+
+        // Refrescar tabla
+            llenarJtableParam("");
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al intentar eliminar el usuario: " + e.getMessage());
+                e.printStackTrace();
+            }
+
+        
+    }//GEN-LAST:event_jButton_eliminarUsuarioSeleccionadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -383,11 +432,12 @@ public class FrmUsuarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_ACTUALIZAR_USUARIOS;
     private javax.swing.JButton jButton_BUSCAR_USUARIOS;
     private javax.swing.JButton jButton_editarUsuarioSeleccionado;
+    private javax.swing.JButton jButton_eliminarUsuarioSeleccionado;
     private javax.swing.JButton jButton_registrarUsuario;
+    private javax.swing.JButton jButton_volverInicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
