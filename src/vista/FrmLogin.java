@@ -28,7 +28,7 @@ public class FrmLogin extends javax.swing.JFrame {
      */
     
     //creamos objeto frmregistro para llamarlo desde login
-    public static FrmRegistro fr;
+    public static FrmRegistroUsuarios fr;
     
     public FrmLogin() {
         initComponents();
@@ -225,7 +225,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private void jButton_registroLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_registroLogActionPerformed
         // TODO add your handling code here:
-        FrmRegistro registrarUsuarioForm = new FrmRegistro();
+        FrmRegistroUsuarios registrarUsuarioForm = new FrmRegistroUsuarios();
         registrarUsuarioForm.pack();
         registrarUsuarioForm.setVisible(true);
         registrarUsuarioForm.setLocationRelativeTo(null);
@@ -300,7 +300,8 @@ public class FrmLogin extends javax.swing.JFrame {
                 {
                     //jMenu_USUARIO del formulario al que voy  debe ser publico
                     
-                    //form.jMenu_USUARIOS.setVisible(false);
+                    inicioForm.jMenu_USUARIOS.setVisible(false);
+                    inicioForm.jMenuItem_REGISTRAR_USUARIO.setVisible(false);
                     inicioForm.jMenuItem_REGISTRAR_USUARIO.setVisible(false);
                     
                 }

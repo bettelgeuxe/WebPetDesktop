@@ -35,6 +35,7 @@ public class FrmInicio extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu_INICIO = new javax.swing.JMenu();
         jMenu_USUARIOS = new javax.swing.JMenu();
+        jMenuItem_BUSCAR_USUARIO = new javax.swing.JMenuItem();
         jMenuItem_REGISTRAR_USUARIO = new javax.swing.JMenuItem();
         jMenu_CLIENTES = new javax.swing.JMenu();
         jMenuItem_REGISTRAR_CLIENTE = new javax.swing.JMenuItem();
@@ -44,7 +45,6 @@ public class FrmInicio extends javax.swing.JFrame {
         jMenu_PRODUCTOS = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
 
         jPanel1.setBackground(new java.awt.Color(218, 215, 205));
 
@@ -80,7 +80,6 @@ public class FrmInicio extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -90,6 +89,7 @@ public class FrmInicio extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel1)))
                 .addContainerGap(123, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,9 +98,9 @@ public class FrmInicio extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(187, 187, 187)
                 .addComponent(jLabel3)
-                .addGap(174, 174, 174)
+                .addGap(218, 218, 218)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(739, Short.MAX_VALUE))
+                .addContainerGap(695, Short.MAX_VALUE))
         );
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
@@ -114,6 +114,14 @@ public class FrmInicio extends javax.swing.JFrame {
         jMenu_USUARIOS.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         jMenu_USUARIOS.setMinimumSize(new java.awt.Dimension(105, 30));
         jMenu_USUARIOS.setPreferredSize(new java.awt.Dimension(105, 30));
+
+        jMenuItem_BUSCAR_USUARIO.setText("Buscar");
+        jMenuItem_BUSCAR_USUARIO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_BUSCAR_USUARIOActionPerformed(evt);
+            }
+        });
+        jMenu_USUARIOS.add(jMenuItem_BUSCAR_USUARIO);
 
         jMenuItem_REGISTRAR_USUARIO.setText("Registrar");
         jMenuItem_REGISTRAR_USUARIO.addActionListener(new java.awt.event.ActionListener() {
@@ -175,7 +183,7 @@ public class FrmInicio extends javax.swing.JFrame {
 
     private void jMenuItem_REGISTRAR_USUARIOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_REGISTRAR_USUARIOActionPerformed
         // TODO add your handling code here:
-        vista.FrmRegistro regForm = new vista.FrmRegistro();
+        vista.FrmRegistroUsuarios regForm = new vista.FrmRegistroUsuarios();
         regForm.setVisible(true);
     }//GEN-LAST:event_jMenuItem_REGISTRAR_USUARIOActionPerformed
 
@@ -184,6 +192,12 @@ public class FrmInicio extends javax.swing.JFrame {
         vista.FrmRegistroClientes regFormCli = new vista.FrmRegistroClientes();
         regFormCli.setVisible(true);
     }//GEN-LAST:event_jMenuItem_REGISTRAR_CLIENTEActionPerformed
+
+    private void jMenuItem_BUSCAR_USUARIOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_BUSCAR_USUARIOActionPerformed
+        // TODO add your handling code here:
+        vista.FrmUsuarios usuariosForm = new vista.FrmUsuarios();
+        usuariosForm.setVisible(true);
+    }//GEN-LAST:event_jMenuItem_BUSCAR_USUARIOActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,6 +239,7 @@ public class FrmInicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
+    public javax.swing.JMenuItem jMenuItem_BUSCAR_USUARIO;
     private javax.swing.JMenuItem jMenuItem_REGISTRAR_CLIENTE;
     public javax.swing.JMenuItem jMenuItem_REGISTRAR_USUARIO;
     private javax.swing.JMenu jMenu_AGENDA;

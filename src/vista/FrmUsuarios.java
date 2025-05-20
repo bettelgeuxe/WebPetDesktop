@@ -86,6 +86,8 @@ public class FrmUsuarios extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_USUARIOS = new javax.swing.JTable();
         jButton_registrarUsuario = new javax.swing.JButton();
+        jButton_editarUsuarioSeleccionado = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -155,6 +157,20 @@ public class FrmUsuarios extends javax.swing.JFrame {
             }
         });
 
+        jButton_editarUsuarioSeleccionado.setText("Editar Usuario Seleccionado");
+        jButton_editarUsuarioSeleccionado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_editarUsuarioSeleccionadoActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Volver a INICIO");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -168,7 +184,10 @@ public class FrmUsuarios extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton_registrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButton_editarUsuarioSeleccionado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_registrarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -190,14 +209,18 @@ public class FrmUsuarios extends javax.swing.JFrame {
                         .addComponent(jButton_BUSCAR_USUARIOS)
                         .addComponent(jButton_ACTUALIZAR_USUARIOS)
                         .addComponent(jTextField_VALOR_BUSQUEDA_USUARIOS, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(65, 65, 65)
-                        .addComponent(jButton_registrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton_registrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton_editarUsuarioSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
@@ -227,12 +250,52 @@ public class FrmUsuarios extends javax.swing.JFrame {
 
     private void jButton_registrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_registrarUsuarioActionPerformed
         // TODO add your handling code here:
-        FrmRegistro registrarUsuarioForm = new FrmRegistro();
+        FrmRegistroUsuarios registrarUsuarioForm = new FrmRegistroUsuarios();
             registrarUsuarioForm.pack();
             registrarUsuarioForm.setVisible(true);
             registrarUsuarioForm.setLocationRelativeTo(null);
             registrarUsuarioForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jButton_registrarUsuarioActionPerformed
+
+    private void jButton_editarUsuarioSeleccionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_editarUsuarioSeleccionadoActionPerformed
+        // TODO add your handling code here:
+        
+        try{
+
+            // open the edit product form and display data into the fields
+            FrmActualizarUsuarios actualizarUsuariosForm = new FrmActualizarUsuarios();
+
+            Integer rowIndex = jTable_USUARIOS.getSelectedRow();
+
+            actualizarUsuariosForm.usuarioId = Integer.valueOf(jTable_USUARIOS.getValueAt(rowIndex, 0).toString());
+            actualizarUsuariosForm.jTextField_pnombre.setText(jTable_USUARIOS.getValueAt(rowIndex, 1).toString());
+            actualizarUsuariosForm.jTextField_snombre.setText(jTable_USUARIOS.getValueAt(rowIndex, 2).toString());
+            actualizarUsuariosForm.jTextField_papellido.setText(jTable_USUARIOS.getValueAt(rowIndex, 3).toString());
+            actualizarUsuariosForm.jTextField_sapellido.setText(jTable_USUARIOS.getValueAt(rowIndex, 4).toString());
+            actualizarUsuariosForm.jComboBox_tipodoc.setSelectedItem(jTable_USUARIOS.getValueAt(rowIndex, 5));
+            actualizarUsuariosForm.jTextField_numdoc.setText(jTable_USUARIOS.getValueAt(rowIndex, 6).toString());
+            actualizarUsuariosForm.jTextField_email.setText(jTable_USUARIOS.getValueAt(rowIndex, 7).toString());
+            actualizarUsuariosForm.jTextField_tel.setText(jTable_USUARIOS.getValueAt(rowIndex, 8).toString());
+            actualizarUsuariosForm.jTextField_dir.setText(jTable_USUARIOS.getValueAt(rowIndex, 9).toString());
+            actualizarUsuariosForm.jTextField_usuario.setText(jTable_USUARIOS.getValueAt(rowIndex, 10).toString());
+            actualizarUsuariosForm.jPasswordField_pass.setText(jTable_USUARIOS.getValueAt(rowIndex, 11).toString());
+            actualizarUsuariosForm.jComboBox_rol.setSelectedItem(jTable_USUARIOS.getValueAt(rowIndex, 12));
+          
+            actualizarUsuariosForm.setVisible(true);
+                    actualizarUsuariosForm.pack();
+                    actualizarUsuariosForm.setLocationRelativeTo(null);
+                    actualizarUsuariosForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        }catch(Exception Ex){
+            JOptionPane.showMessageDialog(null, "Seleccione un usuario de la tabla", "Sin usuarios seleccionados", 2);
+        }
+    }//GEN-LAST:event_jButton_editarUsuarioSeleccionadoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        vista.FrmInicio inicioForm = new vista.FrmInicio();
+        inicioForm.setVisible(true);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -271,8 +334,10 @@ public class FrmUsuarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_ACTUALIZAR_USUARIOS;
     private javax.swing.JButton jButton_BUSCAR_USUARIOS;
+    private javax.swing.JButton jButton_editarUsuarioSeleccionado;
     private javax.swing.JButton jButton_registrarUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

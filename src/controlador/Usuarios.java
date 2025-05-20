@@ -124,6 +124,62 @@ public class Usuarios {
         return rol_usuario;
     }
     
+    //Setters
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setPri_nom_usuario(String pri_nom_usuario) {
+        this.pri_nom_usuario = pri_nom_usuario;
+    }
+
+    public void setSeg_nom_usuario(String seg_nom_usuario) {
+        this.seg_nom_usuario = seg_nom_usuario;
+    }
+
+    public void setPri_apell_usuario(String pri_apell_usuario) {
+        this.pri_apell_usuario = pri_apell_usuario;
+    }
+
+    public void setSeg_apell_usuario(String seg_apell_usuario) {
+        this.seg_apell_usuario = seg_apell_usuario;
+    }
+
+    public void setTipo_doc_usuario(String tipo_doc_usuario) {
+        this.tipo_doc_usuario = tipo_doc_usuario;
+    }
+
+    public void setNum_doc_usuario(String num_doc_usuario) {
+        this.num_doc_usuario = num_doc_usuario;
+    }
+
+    public void setEmail_usuario(String email_usuario) {
+        this.email_usuario = email_usuario;
+    }
+
+    public void setTel_usuario(String tel_usuario) {
+        this.tel_usuario = tel_usuario;
+    }
+
+    public void setDir_usuario(String dir_usuario) {
+        this.dir_usuario = dir_usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public void setPasswd_usuario(String passwd_usuario) {
+        this.passwd_usuario = passwd_usuario;
+    }
+
+    public void setRol_usuario(String rol_usuario) {
+        this.rol_usuario = rol_usuario;
+    }
+    
+    
+    
     // insert a new user
      public static void insertarUsuario(Usuarios usuario)
     {
@@ -265,6 +321,49 @@ public class Usuarios {
 
     return usuarios_list;
 }
+    
+    public static void actualizarUsuarios(Usuarios usuario)
+    {
+        Connection con = Conexion_DB.getConnection();
+        PreparedStatement ps;
+        
+                
+            try {
+            ps = con.prepareStatement("UPDATE `usuarios` SET `primer_nombre_usuario`=?,`segundo_nombre_usuario`=?,`primer_apellido_usuario`=?,`segundo_apellido_usuario`=?,`tipo_documento_usuario`=?,`numero_documento_usuario`=?,`email_usuario`=?,`telefono_usuario`=?,`direccion_usuario`=?,`quantity`=?,`usuario`=?,`passwd`=? WHERE `id` = ?");
+
+            ps.setString(1, usuario.getPri_nom_usuario());
+            ps.setString(2, usuario.getSeg_nom_usuario());
+            ps.setString(3, usuario.getPri_apell_usuario());
+            ps.setString(4, usuario.getSeg_apell_usuario());
+            ps.setString(5, usuario.getTipo_doc_usuario());
+            ps.setString(6, usuario.getNum_doc_usuario());
+            ps.setString(7, usuario.getEmail_usuario());
+            ps.setString(8, usuario.getTel_usuario());
+            ps.setString(9, usuario.getDir_usuario());
+            ps.setString(10, usuario.getUsuario());
+            ps.setString(11, usuario.getPasswd_usuario());
+            ps.setString(12, usuario.getRol_usuario());
+            ps.setInt(13, usuario.getId());
+            
+            
+            if(ps.executeUpdate() != 0){
+                JOptionPane.showMessageDialog(null, "Usuario Actualizado");
+                
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Algo anda mal");
+                    
+                }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+            
+        
+        
+    }
 
     
     
