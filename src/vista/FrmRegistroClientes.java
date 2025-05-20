@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import javax.swing.JOptionPane;
+import modelo.Conexion_DB;
+import controlador.Clientes;
 
 /**
  *
@@ -21,6 +23,7 @@ public class FrmRegistroClientes extends javax.swing.JFrame {
      */
     //creamos objeto frmregistro para llamarlo desde login
     public static FrmLogin fl;
+    
     
     public FrmRegistroClientes() {
         initComponents();
@@ -42,26 +45,26 @@ public class FrmRegistroClientes extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField_pnombre = new javax.swing.JTextField();
+        jTextField_pnombreCLIENTE = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField_papellido = new javax.swing.JTextField();
+        jTextField_papellidoCLIENTE = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox_tipodoc = new javax.swing.JComboBox<>();
+        jComboBox_tipodocCLIENTE = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        jTextField_numdoc = new javax.swing.JTextField();
+        jTextField_numdocCLIENTE = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField_snombre = new javax.swing.JTextField();
+        jTextField_snombreCLIENTE = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField_sapellido = new javax.swing.JTextField();
+        jTextField_sapellidoCLIENTE = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jTextField_email = new javax.swing.JTextField();
+        jTextField_emailCLIENTE = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTextField_tel = new javax.swing.JTextField();
+        jTextField_telCLIENTE = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jTextField_dir = new javax.swing.JTextField();
-        jButton_registrar = new javax.swing.JButton();
+        jTextField_dirCLIENTE = new javax.swing.JTextField();
+        jButton_registrarCLIENTE = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButton_registrarMASCOTA = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,7 +110,7 @@ public class FrmRegistroClientes extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Tipo documento");
 
-        jComboBox_tipodoc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "CC", "CE", "RUT", "NIT" }));
+        jComboBox_tipodocCLIENTE.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "CC", "CE", "RUT", "NIT" }));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel8.setText("Número documento");
@@ -127,18 +130,18 @@ public class FrmRegistroClientes extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel13.setText("Dirección");
 
-        jButton_registrar.setText("Registrar Usuario");
-        jButton_registrar.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButton_registrarCLIENTE.setText("Registrar Cliente");
+        jButton_registrarCLIENTE.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton_registrarMouseEntered(evt);
+                jButton_registrarCLIENTEMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton_registrarMouseExited(evt);
+                jButton_registrarCLIENTEMouseExited(evt);
             }
         });
-        jButton_registrar.addActionListener(new java.awt.event.ActionListener() {
+        jButton_registrarCLIENTE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_registrarActionPerformed(evt);
+                jButton_registrarCLIENTEActionPerformed(evt);
             }
         });
 
@@ -146,11 +149,11 @@ public class FrmRegistroClientes extends javax.swing.JFrame {
         jLabel18.setForeground(new java.awt.Color(52, 78, 65));
         jLabel18.setText("REGISTRO DE CLIENTES");
 
-        jButton1.setBackground(new java.awt.Color(218, 215, 205));
-        jButton1.setText("Registrar Mascota");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_registrarMASCOTA.setBackground(new java.awt.Color(218, 215, 205));
+        jButton_registrarMASCOTA.setText("Registrar Mascota");
+        jButton_registrarMASCOTA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton_registrarMASCOTAActionPerformed(evt);
             }
         });
 
@@ -174,19 +177,19 @@ public class FrmRegistroClientes extends javax.swing.JFrame {
                                         .addGap(1, 1, 1)
                                         .addComponent(jLabel5)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextField_pnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextField_pnombreCLIENTE, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel9))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel6)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextField_papellido, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextField_papellidoCLIENTE, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                                         .addComponent(jLabel10))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBox_tipodoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBox_tipodocCLIENTE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel8))
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -198,22 +201,22 @@ public class FrmRegistroClientes extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextField_email)
-                                            .addComponent(jTextField_dir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jTextField_emailCLIENTE)
+                                            .addComponent(jTextField_dirCLIENTE, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel12))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jButton_registrar)
+                                        .addComponent(jButton_registrarCLIENTE)
                                         .addGap(0, 0, Short.MAX_VALUE)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField_snombre, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField_sapellido, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField_numdoc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField_tel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTextField_snombreCLIENTE, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField_sapellidoCLIENTE, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField_numdocCLIENTE, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField_telCLIENTE, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(265, 265, 265)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton_registrarMASCOTA, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -224,35 +227,35 @@ public class FrmRegistroClientes extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField_pnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_pnombreCLIENTE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField_snombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField_snombreCLIENTE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField_papellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_sapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_papellidoCLIENTE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_sapellidoCLIENTE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jComboBox_tipodoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox_tipodocCLIENTE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField_numdoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField_numdocCLIENTE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jTextField_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_emailCLIENTE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
-                    .addComponent(jTextField_tel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField_telCLIENTE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jTextField_dir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField_dirCLIENTE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton_registrarMASCOTA, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_registrarCLIENTE, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27))
         );
 
@@ -304,18 +307,17 @@ public class FrmRegistroClientes extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_registrarActionPerformed
+    private void jButton_registrarCLIENTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_registrarCLIENTEActionPerformed
         // TODO add your handling code here:
-        String pnombre = jTextField_pnombre.getText();
-        String snombre = jTextField_snombre.getText();
-        String papellido = jTextField_papellido.getText();
-        String sapellido = jTextField_sapellido.getText();
-        //
-        String tipodoc= jComboBox_tipodoc.getSelectedItem().toString();
-        String numdoc = jTextField_numdoc.getText();
-        String email = jTextField_email.getText();
-        String tel = jTextField_tel.getText();
-        String dir = jTextField_dir.getText();
+        String pnombre = jTextField_pnombreCLIENTE.getText();
+        String snombre = jTextField_snombreCLIENTE.getText();
+        String papellido = jTextField_papellidoCLIENTE.getText();
+        String sapellido = jTextField_sapellidoCLIENTE.getText();
+        String tipodoc= jComboBox_tipodocCLIENTE.getSelectedItem().toString();
+        String numdoc = jTextField_numdocCLIENTE.getText();
+        String email = jTextField_emailCLIENTE.getText();
+        String tel = jTextField_telCLIENTE.getText();
+        String dir = jTextField_dirCLIENTE.getText();
         
         
            
@@ -334,9 +336,11 @@ public class FrmRegistroClientes extends javax.swing.JFrame {
                  //  public Users(Integer ID, String UNAME, String PASW, String FNAME, String TEL, String GENDER, String PICTURE)
                  //public Usuarios(Integer ID, String PRINOM, String SEGNOM, String PRIAPE, String SEGAPE, 
             //String TIPODOC, String NUMDOC, String EMAIL, String TEL, String DIR, String USER, String PASSWD, String ROL)
-                 client = new controlador.Clientes(pnombre,snombre,papellido,sapellido,tipodoc,numdoc,email,tel,dir);
+                 client = new controlador.Clientes(null,pnombre,snombre,papellido,sapellido,tipodoc,numdoc,email,tel,dir);
                // modelo.Product.insertProduct(product);
                controlador.Clientes.insertarCliente(client);
+               
+               
                 JOptionPane.showMessageDialog(null, "Datos insertados correctamente");
              } catch (Exception ex) {
                  JOptionPane.showMessageDialog(null, "No se pudo guardar usuario"+ex);
@@ -345,39 +349,39 @@ public class FrmRegistroClientes extends javax.swing.JFrame {
                             
             
          }
-    }//GEN-LAST:event_jButton_registrarActionPerformed
+    }//GEN-LAST:event_jButton_registrarCLIENTEActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton_registrarMASCOTAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_registrarMASCOTAActionPerformed
         // TODO add your handling code here:
         //fl=new FrmLogin();
         //fl.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton_registrarMASCOTAActionPerformed
 
-    private void jButton_registrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_registrarMouseEntered
+    private void jButton_registrarCLIENTEMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_registrarCLIENTEMouseEntered
         // TODO add your handling code here:
-        jButton_registrar.setBackground(new Color(88,129,87));
-        jButton_registrar.setForeground(new Color(0,0,0));
-    }//GEN-LAST:event_jButton_registrarMouseEntered
+        jButton_registrarCLIENTE.setBackground(new Color(88,129,87));
+        jButton_registrarCLIENTE.setForeground(new Color(0,0,0));
+    }//GEN-LAST:event_jButton_registrarCLIENTEMouseEntered
 
-    private void jButton_registrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_registrarMouseExited
+    private void jButton_registrarCLIENTEMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_registrarCLIENTEMouseExited
         // TODO add your handling code here:
-        jButton_registrar.setBackground(new Color(58,90,64));
-        jButton_registrar.setForeground(new Color(218,215,205));
-    }//GEN-LAST:event_jButton_registrarMouseExited
+        jButton_registrarCLIENTE.setBackground(new Color(58,90,64));
+        jButton_registrarCLIENTE.setForeground(new Color(218,215,205));
+    }//GEN-LAST:event_jButton_registrarCLIENTEMouseExited
 
     
     // create a function to verify the empty fields  
     public boolean verificarCampos()
     {
-        String pnombre = jTextField_pnombre.getText();
-        String snombre = jTextField_snombre.getText();
-        String papellido = jTextField_papellido.getText();
-        String sapellido = jTextField_sapellido.getText();
-        String tipodoc= jComboBox_tipodoc.getSelectedItem().toString();
-        String numdoc = jTextField_numdoc.getText();
-        String email = jTextField_email.getText();
-        String tel = jTextField_tel.getText();
-        String dir = jTextField_dir.getText();
+        String pnombre = jTextField_pnombreCLIENTE.getText();
+        String snombre = jTextField_snombreCLIENTE.getText();
+        String papellido = jTextField_papellidoCLIENTE.getText();
+        String sapellido = jTextField_sapellidoCLIENTE.getText();
+        String tipodoc= jComboBox_tipodocCLIENTE.getSelectedItem().toString();
+        String numdoc = jTextField_numdocCLIENTE.getText();
+        String email = jTextField_emailCLIENTE.getText();
+        String tel = jTextField_telCLIENTE.getText();
+        String dir = jTextField_dirCLIENTE.getText();
                 
         // check empty fields
         if(pnombre.trim().equals("") || snombre.trim().equals("") || papellido.trim().equals("")
@@ -433,9 +437,9 @@ public class FrmRegistroClientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton_registrar;
-    private javax.swing.JComboBox<String> jComboBox_tipodoc;
+    private javax.swing.JButton jButton_registrarCLIENTE;
+    private javax.swing.JButton jButton_registrarMASCOTA;
+    private javax.swing.JComboBox<String> jComboBox_tipodocCLIENTE;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -452,13 +456,13 @@ public class FrmRegistroClientes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField_dir;
-    private javax.swing.JTextField jTextField_email;
-    private javax.swing.JTextField jTextField_numdoc;
-    private javax.swing.JTextField jTextField_papellido;
-    private javax.swing.JTextField jTextField_pnombre;
-    private javax.swing.JTextField jTextField_sapellido;
-    private javax.swing.JTextField jTextField_snombre;
-    private javax.swing.JTextField jTextField_tel;
+    private javax.swing.JTextField jTextField_dirCLIENTE;
+    private javax.swing.JTextField jTextField_emailCLIENTE;
+    private javax.swing.JTextField jTextField_numdocCLIENTE;
+    private javax.swing.JTextField jTextField_papellidoCLIENTE;
+    private javax.swing.JTextField jTextField_pnombreCLIENTE;
+    private javax.swing.JTextField jTextField_sapellidoCLIENTE;
+    private javax.swing.JTextField jTextField_snombreCLIENTE;
+    private javax.swing.JTextField jTextField_telCLIENTE;
     // End of variables declaration//GEN-END:variables
 }

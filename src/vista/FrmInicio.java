@@ -217,8 +217,7 @@ public class FrmInicio extends javax.swing.JFrame {
 
     private void jMenuItem_REGISTRAR_CLIENTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_REGISTRAR_CLIENTEActionPerformed
         // TODO add your handling code here:
-        vista.FrmRegistroClientes regFormCli = new vista.FrmRegistroClientes();
-        regFormCli.setVisible(true);
+       
     }//GEN-LAST:event_jMenuItem_REGISTRAR_CLIENTEActionPerformed
 
     private void jMenuItem_ADMINISTRAR_USUARIOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ADMINISTRAR_USUARIOSActionPerformed

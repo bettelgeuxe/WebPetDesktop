@@ -40,11 +40,11 @@ public class Clientes {
     }
     
     //datos desde el formulario
-    public Clientes(String PRINOM, String SEGNOM, String PRIAPE, String SEGAPE, 
+    public Clientes(Integer ID,String PRINOM, String SEGNOM, String PRIAPE, String SEGAPE, 
             String TIPODOC, String NUMDOC, String EMAIL, String TEL, String DIR)
     {
     
-        
+        this.id = ID;
         this.pri_nom_cliente = PRINOM;
         this.seg_nom_cliente = SEGNOM;
         this.pri_apell_cliente = PRIAPE;
@@ -96,6 +96,48 @@ public class Clientes {
     public String getDir_cliente() {
         return dir_cliente;
     }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setPri_nom_cliente(String pri_nom_cliente) {
+        this.pri_nom_cliente = pri_nom_cliente;
+    }
+
+    public void setSeg_nom_cliente(String seg_nom_cliente) {
+        this.seg_nom_cliente = seg_nom_cliente;
+    }
+
+    public void setPri_apell_cliente(String pri_apell_cliente) {
+        this.pri_apell_cliente = pri_apell_cliente;
+    }
+
+    public void setSeg_apell_cliente(String seg_apell_cliente) {
+        this.seg_apell_cliente = seg_apell_cliente;
+    }
+
+    public void setTipo_doc_cliente(String tipo_doc_cliente) {
+        this.tipo_doc_cliente = tipo_doc_cliente;
+    }
+
+    public void setNum_doc_cliente(String num_doc_cliente) {
+        this.num_doc_cliente = num_doc_cliente;
+    }
+
+    public void setEmail_cliente(String email_cliente) {
+        this.email_cliente = email_cliente;
+    }
+
+    public void setTel_cliente(String tel_cliente) {
+        this.tel_cliente = tel_cliente;
+    }
+
+    public void setDir_cliente(String dir_cliente) {
+        this.dir_cliente = dir_cliente;
+    }
+    
+    
  
     // insert a new user
      public static void insertarCliente(Clientes cliente)
@@ -107,9 +149,9 @@ public class Clientes {
         //INSERT INTO `users`(`full_name`, `username`, `password`, `phone`) VALUES ('pedro','pedro','1234','245789')
         try {
             ps = con.prepareStatement("INSERT INTO `clientes`(`primer_nombre_cliente`, `segundo_nombre_cliente`, `primer_apellido_cliente`, `segundo_apellido_cliente`, `tipo_documento_cliente`, `numero_documento_cliente`, `email_cliente`, `telefono_cliente`, `direccion_cliente`) VALUES (?,?,?,?,?,?,?,?,?)");
-
-            ps.setString(1, cliente.getPri_nom_cliente()); 
+                
             //kt método del ps para agregar lo que llega del get
+            ps.setString(1, cliente.getPri_nom_cliente()); 
             ps.setString(2, cliente.getSeg_nom_cliente());
             ps.setString(3, cliente.getPri_apell_cliente());
             ps.setString(4, cliente.getSeg_apell_cliente());
