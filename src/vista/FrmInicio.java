@@ -35,7 +35,9 @@ public class FrmInicio extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jButton_VENDER = new javax.swing.JButton();
         jButton_SALIR = new javax.swing.JButton();
+        jButton_ATENDER = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -61,6 +63,16 @@ public class FrmInicio extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(52, 78, 65));
         jLabel3.setText("Bienvenid@ a WebPet, el mejor software de gestión veterinaria.");
 
+        jButton_VENDER.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
+        jButton_VENDER.setForeground(new java.awt.Color(52, 78, 65));
+        jButton_VENDER.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-vender-webpet-app.png"))); // NOI18N
+        jButton_VENDER.setText("VENDER");
+        jButton_VENDER.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_VENDERActionPerformed(evt);
+            }
+        });
+
         jButton_SALIR.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
         jButton_SALIR.setForeground(new java.awt.Color(52, 78, 65));
         jButton_SALIR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-salir-webpet-app.png"))); // NOI18N
@@ -68,6 +80,16 @@ public class FrmInicio extends javax.swing.JFrame {
         jButton_SALIR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_SALIRActionPerformed(evt);
+            }
+        });
+
+        jButton_ATENDER.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
+        jButton_ATENDER.setForeground(new java.awt.Color(52, 78, 65));
+        jButton_ATENDER.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-atender-servicio-webpet-app.png"))); // NOI18N
+        jButton_ATENDER.setText("ATENDER");
+        jButton_ATENDER.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ATENDERActionPerformed(evt);
             }
         });
 
@@ -84,7 +106,11 @@ public class FrmInicio extends javax.swing.JFrame {
                         .addGap(153, 153, 153)
                         .addComponent(jLabel3))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(358, 358, 358)
+                        .addGap(237, 237, 237)
+                        .addComponent(jButton_ATENDER, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton_VENDER, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton_SALIR, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(170, Short.MAX_VALUE))
         );
@@ -96,7 +122,10 @@ public class FrmInicio extends javax.swing.JFrame {
                 .addGap(82, 82, 82)
                 .addComponent(jLabel3)
                 .addGap(37, 37, 37)
-                .addComponent(jButton_SALIR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_VENDER, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_SALIR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_ATENDER, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(191, Short.MAX_VALUE))
         );
 
@@ -226,7 +255,7 @@ public class FrmInicio extends javax.swing.JFrame {
         usuariosForm.setVisible(true);
     }//GEN-LAST:event_jMenuItem_ADMINISTRAR_USUARIOSActionPerformed
 
-    private void jButton_SALIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SALIRActionPerformed
+    private void jButton_VENDERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VENDERActionPerformed
         // TODO add your handling code here:
          try {
         // Cerrar la conexión a la base de datos si está abierta
@@ -248,7 +277,15 @@ public class FrmInicio extends javax.swing.JFrame {
             login.setLocationRelativeTo(null);
             login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+    }//GEN-LAST:event_jButton_VENDERActionPerformed
+
+    private void jButton_SALIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SALIRActionPerformed
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton_SALIRActionPerformed
+
+    private void jButton_ATENDERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ATENDERActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_ATENDERActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,7 +323,9 @@ public class FrmInicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton_ATENDER;
     private javax.swing.JButton jButton_SALIR;
+    private javax.swing.JButton jButton_VENDER;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
