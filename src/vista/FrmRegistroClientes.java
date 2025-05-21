@@ -23,6 +23,7 @@ public class FrmRegistroClientes extends javax.swing.JFrame {
      */
     //creamos objeto frmregistro para llamarlo desde login
     public static FrmLogin fl;
+    private int idClienteRecienInsertado = -1;
     
     
     public FrmRegistroClientes() {
@@ -309,52 +310,46 @@ public class FrmRegistroClientes extends javax.swing.JFrame {
 
     private void jButton_registrarCLIENTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_registrarCLIENTEActionPerformed
         // TODO add your handling code here:
-        String pnombre = jTextField_pnombreCLIENTE.getText();
-        String snombre = jTextField_snombreCLIENTE.getText();
-        String papellido = jTextField_papellidoCLIENTE.getText();
-        String sapellido = jTextField_sapellidoCLIENTE.getText();
-        String tipodoc= jComboBox_tipodocCLIENTE.getSelectedItem().toString();
-        String numdoc = jTextField_numdocCLIENTE.getText();
-        String email = jTextField_emailCLIENTE.getText();
-        String tel = jTextField_telCLIENTE.getText();
-        String dir = jTextField_dirCLIENTE.getText();
         
+                                                    
+    String pnombre = jTextField_pnombreCLIENTE.getText();
+    String snombre = jTextField_snombreCLIENTE.getText();
+    String papellido = jTextField_papellidoCLIENTE.getText();
+    String sapellido = jTextField_sapellidoCLIENTE.getText();
+    String tipodoc = jComboBox_tipodocCLIENTE.getSelectedItem().toString();
+    String numdoc = jTextField_numdocCLIENTE.getText();
+    String email = jTextField_emailCLIENTE.getText();
+    String tel = jTextField_telCLIENTE.getText();
+    String dir = jTextField_dirCLIENTE.getText();
+
+    if (verificarCampos()) {
+        controlador.Clientes client = new controlador.Clientes(null, pnombre, snombre, papellido, sapellido, tipodoc, numdoc, email, tel, dir);
+
+        try {
+            idClienteRecienInsertado = controlador.Clientes.insertarClienteN(client);
+
+            if (idClienteRecienInsertado != -1) {
+                JOptionPane.showMessageDialog(null, "Cliente registrado correctamente.\nID: " + idClienteRecienInsertado);
+            } else {
+                JOptionPane.showMessageDialog(null, "El cliente no se registró.");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al registrar cliente: " + ex.getMessage());
+        }
+    }
         
-           
-        
-         if(verificarCampos())
-         {
-            //crear el objeto de la clase en la que voy a registrar
-            controlador.Clientes client;
-             
-              
-           
-              try {
-                 
-                // public Users(Integer ID, String UNAME, String PASW, String FNAME, String TEL)
-               // public Users(Integer ID, String UNAME, String PASW, String FNAME, String TEL){
-                 //  public Users(Integer ID, String UNAME, String PASW, String FNAME, String TEL, String GENDER, String PICTURE)
-                 //public Usuarios(Integer ID, String PRINOM, String SEGNOM, String PRIAPE, String SEGAPE, 
-            //String TIPODOC, String NUMDOC, String EMAIL, String TEL, String DIR, String USER, String PASSWD, String ROL)
-                 client = new controlador.Clientes(null,pnombre,snombre,papellido,sapellido,tipodoc,numdoc,email,tel,dir);
-               // modelo.Product.insertProduct(product);
-               controlador.Clientes.insertarCliente(client);
-               
-               
-                JOptionPane.showMessageDialog(null, "Datos insertados correctamente");
-             } catch (Exception ex) {
-                 JOptionPane.showMessageDialog(null, "No se pudo guardar usuario"+ex);
-             }
-             
-                            
-            
-         }
     }//GEN-LAST:event_jButton_registrarCLIENTEActionPerformed
 
     private void jButton_registrarMASCOTAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_registrarMASCOTAActionPerformed
         // TODO add your handling code here:
         //fl=new FrmLogin();
         //fl.setVisible(true);
+        if (idClienteRecienInsertado != -1) {
+        FrmMascotasRegistrar formularioMascotas = new FrmMascotasRegistrar(idClienteRecienInsertado);
+        formularioMascotas.setVisible(true);
+        } else {
+        JOptionPane.showMessageDialog(null, "Primero debes registrar al cliente, luego sus mascotas.");
+        }
     }//GEN-LAST:event_jButton_registrarMASCOTAActionPerformed
 
     private void jButton_registrarCLIENTEMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_registrarCLIENTEMouseEntered
