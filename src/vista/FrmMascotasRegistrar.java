@@ -5,6 +5,7 @@
  */
 package vista;
 
+import controlador.Mascotas;
 import java.awt.Color;
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import java.util.List;
 
 /**
  *
@@ -76,6 +78,32 @@ public class FrmMascotasRegistrar extends javax.swing.JFrame {
     JTableHeader th = jTable_MASCOTASadd.getTableHeader();
     th.setFont(new Font("Montserrat", Font.BOLD, 12));
 }
+    
+    //TRAER la lista desde jtable
+    public List<Mascotas> obtenerMascotasDeTabla(int idCliente) {
+        List<Mascotas> listaMascotas = new ArrayList<>();
+
+        for (int i = 0; i < jTable_MASCOTASadd.getRowCount(); i++) {
+            String nombre = jTable_MASCOTASadd.getValueAt(i, 0).toString();
+            String especie = jTable_MASCOTASadd.getValueAt(i, 1).toString();
+            String genero = jTable_MASCOTASadd.getValueAt(i, 2).toString();
+            String raza = jTable_MASCOTASadd.getValueAt(i, 3).toString();
+            String color = jTable_MASCOTASadd.getValueAt(i, 4).toString();
+            String edad = jTable_MASCOTASadd.getValueAt(i, 5).toString();
+
+            Mascotas mascota = new Mascotas(null, nombre, especie, genero, raza, color, edad, idCliente);
+            listaMascotas.add(mascota);
+        }
+
+        return listaMascotas;
+}
+    
+    public void limpiarTablaMascotas() {
+    DefaultTableModel model = (DefaultTableModel) jTable_MASCOTASadd.getModel();
+    model.setRowCount(0); // Limpia todas las filas
+    }
+    
+    
 
     
     
@@ -108,12 +136,12 @@ public class FrmMascotasRegistrar extends javax.swing.JFrame {
         jComboBox_generoMASCOTA = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jButton_GuardarMASCOTAS = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
         Inicio = new javax.swing.JButton();
         jButton_SALIRmascotas = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_MASCOTASadd = new javax.swing.JTable();
+        jButton_GuardarMASCOTAS = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -229,22 +257,12 @@ public class FrmMascotasRegistrar extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("Hecho con ♥ por Catherine Escobar SENA ADSO CBA");
 
-        jButton_GuardarMASCOTAS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-agregar-webpet-app.png"))); // NOI18N
-        jButton_GuardarMASCOTAS.setText("Guardar Mascotas");
-        jButton_GuardarMASCOTAS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_GuardarMASCOTASActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jButton_GuardarMASCOTAS)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(332, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(274, 274, 274))
         );
@@ -252,10 +270,8 @@ public class FrmMascotasRegistrar extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton_GuardarMASCOTAS, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel4)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -284,6 +300,14 @@ public class FrmMascotasRegistrar extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable_MASCOTASadd);
 
+        jButton_GuardarMASCOTAS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-agregar-webpet-app.png"))); // NOI18N
+        jButton_GuardarMASCOTAS.setText("Guardar Mascotas");
+        jButton_GuardarMASCOTAS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_GuardarMASCOTASActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -307,9 +331,15 @@ public class FrmMascotasRegistrar extends javax.swing.JFrame {
                         .addComponent(Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton_SALIRmascotas)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jButton_GuardarMASCOTAS)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
@@ -331,7 +361,8 @@ public class FrmMascotasRegistrar extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton_SALIRmascotas, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButton_SALIRmascotas, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton_GuardarMASCOTAS, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(56, 56, 56)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -392,6 +423,24 @@ public class FrmMascotasRegistrar extends javax.swing.JFrame {
 
     private void jButton_GuardarMASCOTASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_GuardarMASCOTASActionPerformed
         // TODO add your handling code here:
+        try {
+            int idCliente = this.idCliente; // O la variable donde guardas el id del cliente
+            List<Mascotas> listaMascotas = obtenerMascotasDeTabla(idCliente);
+
+        if (listaMascotas.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No hay mascotas para guardar");
+            return;
+        }
+
+        Mascotas.insertarVariasMascotas(listaMascotas);
+
+        // Opcional: limpiar tabla después de guardar
+        limpiarTablaMascotas();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al guardar mascotas: " + e.getMessage());
+        }
+        
                     
 
     }//GEN-LAST:event_jButton_GuardarMASCOTASActionPerformed

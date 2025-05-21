@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import java.util.List;
+
 
 
 /**
@@ -28,6 +30,7 @@ public class Mascotas {
     private String color_mascota;
     private String edad_mascota;
     private Integer id_cliente_mascota;
+    
     
     
     
@@ -156,7 +159,54 @@ public class Mascotas {
             }
     }
 
-   
+    
+    //Método estático para insertar lista
+   public static void insertarVariasMascotas(List<Mascotas> mascotasList) {
+            Connection con = modelo.Conexion_DB.getConnection();
+            PreparedStatement ps = null;
+
+            String sql = "INSERT INTO mascotas(nombre_mascota, especie_mascota, genero_mascota, raza_mascota, color_mascota, edad_mascota, id_cliente_mascota) VALUES (?,?,?,?,?,?,?)";
+
+            try {
+                ps = con.prepareStatement(sql);
+
+                for (Mascotas mascota : mascotasList) {
+                    ps.setString(1, mascota.getNombre_mascota());
+                    ps.setString(2, mascota.getEspecie_mascota());
+                    ps.setString(3, mascota.getGenero_mascota());
+                    ps.setString(4, mascota.getRaza_mascota());
+                    ps.setString(5, mascota.getColor_mascota());
+                    ps.setString(6, mascota.getEdad_mascota());
+                    ps.setInt(7, mascota.getId_cliente_mascota());
+
+                    ps.addBatch(); // Agregamos al batch
+                }
+
+                int[] resultados = ps.executeBatch(); // Ejecutamos todo junto
+
+                int sum = 0;
+                for (int res : resultados) {
+                    sum += res; // sumamos los insert exitosos
+                }
+
+                if (sum == mascotasList.size()) {
+                    JOptionPane.showMessageDialog(null, "Todas las mascotas fueron agregadas correctamente");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Algunas mascotas no pudieron ser registradas");
+                }
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(Mascotas.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "Error al insertar mascotas: " + ex.getMessage());
+                } finally {
+                    try {
+                        if (ps != null) ps.close();
+                        if (con != null) con.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+   }
     
  
    
