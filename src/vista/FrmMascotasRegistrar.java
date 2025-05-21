@@ -404,9 +404,12 @@ public class FrmMascotasRegistrar extends javax.swing.JFrame {
         
         //limpiar campos después de agregar a jtable
         jTextField_nombreMASCOTA.setText("");
+        jComboBox_especieMASCOTA.setSelectedItem("Seleccione");
+        jComboBox_generoMASCOTA.setSelectedItem("Seleccione");
         jTextField_razaMASCOTA.setText("");
         jTextField_colorMASCOTA.setText("");
         jTextField_edadMASCOTAS.setText("");
+        
         
     }//GEN-LAST:event_jButton_agregarMASCOTAtablaActionPerformed
 
