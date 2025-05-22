@@ -43,11 +43,20 @@ public class FrmClientesActualizar extends javax.swing.JFrame {
     }
     
     public FrmClientesActualizar(int idCliente) {
-    initComponents();
-    this.idCliente = idCliente;
-    cargarDatosCliente();
-    cargarMascotasCliente(); 
+    initComponents(); // se cargan los componentes de la ventana
+    this.idCliente = idCliente; // se guarda el id del cliente que llegó desde FrmClientesAdministrar
+    cargarDatosCliente(); // se cargan los datos de ese cliente
+    cargarMascotasCliente(); // se cargan las mascotas de ese cliente
+
+    //PARA EJECUTAR ESTE BLOQUE DE CÓDIGO PERSONALIZADO Y NO EL QUE VIENE POR DEFECTO en el botón de insertar la mascota
+    jButton_agregarMASCOTAcliact.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            agregarMascotaParaCliente();
+        }
+    });
 }
+
     
     private void cargarDatosCliente() {
     Connection con = Conexion_DB.getConnection();
@@ -210,6 +219,57 @@ public class FrmClientesActualizar extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }
+}
+   
+   private void agregarMascotaParaCliente() {
+    String nombre = jTextField_nombreMASCOTAactualizar.getText().trim();
+    String especie = (String) jComboBox_especieMASCOTAactualizar.getSelectedItem();
+    String genero = (String) jComboBox_generoMASCOTAactualizar.getSelectedItem();
+    String raza = jTextField_razaMASCOTAactualizar.getText().trim();
+    String color = jTextField_colorMASCOTAactualizar.getText().trim();
+    String edad = jTextField_edadMASCOTASactualizar.getText().trim();
+
+    if (nombre.isEmpty() || especie == null || genero == null || raza.isEmpty() || color.isEmpty() || edad.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor completa todos los campos de la mascota.", "Datos incompletos", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    Connection con = Conexion_DB.getConnection();
+    PreparedStatement ps;
+
+    try {
+        ps = con.prepareStatement("INSERT INTO mascotas (nombre_mascota, especie_mascota, genero_mascota, raza_mascota, color_mascota, edad_mascota, id_cliente_mascota) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        ps.setString(1, nombre);
+        ps.setString(2, especie);
+        ps.setString(3, genero);
+        ps.setString(4, raza);
+        ps.setString(5, color);
+        ps.setString(6, edad);
+        ps.setInt(7, idCliente); // id del cliente cargado actualmente
+
+        int filasInsertadas = ps.executeUpdate();
+
+        if (filasInsertadas > 0) {
+            JOptionPane.showMessageDialog(this, "Mascota agregada exitosamente.");
+            cargarMascotasCliente(); // actualizar el combo con la nueva mascota
+            limpiarCamposMascota();
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo agregar la mascota.");
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al agregar la mascota: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
+
+   
+private void limpiarCamposMascota() {
+    jTextField_nombreMASCOTAactualizar.setText("");
+    jComboBox_especieMASCOTAactualizar.setSelectedIndex(0);
+    jComboBox_generoMASCOTAactualizar.setSelectedIndex(0);
+    jTextField_razaMASCOTAactualizar.setText("");
+    jTextField_colorMASCOTAactualizar.setText("");
+    jTextField_edadMASCOTASactualizar.setText("");
 }
 
 

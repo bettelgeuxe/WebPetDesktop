@@ -8,7 +8,8 @@ package vista;
 
 import javax.swing.JFrame;
 import modelo.Conexion_DB;
-
+import java.sql.Connection;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,7 +22,10 @@ public class FrmInicio extends javax.swing.JFrame {
      */
     public FrmInicio() {
         initComponents();
+       
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,10 +50,9 @@ public class FrmInicio extends javax.swing.JFrame {
         jMenuItem_ADMINISTRAR_USUARIOS = new javax.swing.JMenuItem();
         jMenuItem_REGISTRAR_USUARIO = new javax.swing.JMenuItem();
         jMenu_CLIENTES = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem_REGISTRAR_CLIENTE = new javax.swing.JMenuItem();
         jMenu_PROVEEDORES = new javax.swing.JMenu();
-        jMenu_MASCOTAS = new javax.swing.JMenu();
-        jMenu_AGENDA = new javax.swing.JMenu();
         jMenu_PRODUCTOS = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -188,6 +191,11 @@ public class FrmInicio extends javax.swing.JFrame {
         jMenu_CLIENTES.setText("CLIENTES |");
         jMenu_CLIENTES.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
 
+        jMenuItem1.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/buscar-icono-webpet.png"))); // NOI18N
+        jMenuItem1.setText("Administrar");
+        jMenu_CLIENTES.add(jMenuItem1);
+
         jMenuItem_REGISTRAR_CLIENTE.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
         jMenuItem_REGISTRAR_CLIENTE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-agregar-webpet-app.png"))); // NOI18N
         jMenuItem_REGISTRAR_CLIENTE.setText("Registrar");
@@ -203,14 +211,6 @@ public class FrmInicio extends javax.swing.JFrame {
         jMenu_PROVEEDORES.setText("PROVEEDORES |");
         jMenu_PROVEEDORES.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         jMenuBar1.add(jMenu_PROVEEDORES);
-
-        jMenu_MASCOTAS.setText("MASCOTAS |");
-        jMenu_MASCOTAS.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
-        jMenuBar1.add(jMenu_MASCOTAS);
-
-        jMenu_AGENDA.setText("AGENDA |");
-        jMenu_AGENDA.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
-        jMenuBar1.add(jMenu_AGENDA);
 
         jMenu_PRODUCTOS.setText("PRODUCTOS");
         jMenu_PRODUCTOS.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
@@ -257,30 +257,36 @@ public class FrmInicio extends javax.swing.JFrame {
 
     private void jButton_VENDERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VENDERActionPerformed
         // TODO add your handling code here:
-         try {
-        // Cerrar la conexión a la base de datos si está abierta
-            if (Conexion_DB.getConnection() != null && !Conexion_DB.getConnection().isClosed()) {
-                Conexion_DB.getConnection().close();
-                System.out.println("Conexión cerrada correctamente");
-                }
-            } catch (Exception e) {
-                System.out.println("Error al cerrar la conexión: " + e.getMessage());
-            }
-
-            // Cerrar el formulario inicio
-            this.dispose(); // o this.setVisible(false);
-
-            // Abre el formulario de login
-            FrmLogin login = new FrmLogin();
-            login.setVisible(true);
-            login.pack();
-            login.setLocationRelativeTo(null);
-            login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+         
     }//GEN-LAST:event_jButton_VENDERActionPerformed
 
     private void jButton_SALIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SALIRActionPerformed
         // TODO add your handling code here:
+        int confirmacion = JOptionPane.showConfirmDialog(
+        this,
+        "¿Está seguro de que desea salir del sistema?",
+        "Confirmar salida",
+        JOptionPane.YES_NO_OPTION
+    );
+
+    if (confirmacion == JOptionPane.YES_OPTION) {
+        try {
+            Connection con = Conexion_DB.getConnection();
+            if (con != null && !con.isClosed()) {
+                con.close();
+                System.out.println("Conexión cerrada correctamente");
+            }
+        } catch (Exception e) {
+            System.out.println("Error al cerrar la conexión: " + e.getMessage());
+        }
+
+        this.dispose(); // Cierra FrmInicio
+
+        // Abre de nuevo el login
+        vista.FrmLogin login = new vista.FrmLogin(); // ajusta el paquete si es necesario
+        login.setVisible(true);
+    }
+        
     }//GEN-LAST:event_jButton_SALIRActionPerformed
 
     private void jButton_ATENDERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ATENDERActionPerformed
@@ -330,13 +336,12 @@ public class FrmInicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     public javax.swing.JMenuItem jMenuItem_ADMINISTRAR_USUARIOS;
     private javax.swing.JMenuItem jMenuItem_REGISTRAR_CLIENTE;
     public javax.swing.JMenuItem jMenuItem_REGISTRAR_USUARIO;
-    private javax.swing.JMenu jMenu_AGENDA;
     private javax.swing.JMenu jMenu_CLIENTES;
     private javax.swing.JMenu jMenu_INICIO;
-    private javax.swing.JMenu jMenu_MASCOTAS;
     private javax.swing.JMenu jMenu_PRODUCTOS;
     private javax.swing.JMenu jMenu_PROVEEDORES;
     public javax.swing.JMenu jMenu_USUARIOS;

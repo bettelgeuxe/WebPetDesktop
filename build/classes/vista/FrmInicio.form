@@ -81,6 +81,17 @@
             </Property>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Montserrat" size="12" style="0"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/vista/images/buscar-icono-webpet.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Administrar"/>
+              </Properties>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_REGISTRAR_CLIENTE">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -100,22 +111,6 @@
         <Menu class="javax.swing.JMenu" name="jMenu_PROVEEDORES">
           <Properties>
             <Property name="text" type="java.lang.String" value="PROVEEDORES |"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Montserrat" size="14" style="1"/>
-            </Property>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu_MASCOTAS">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="MASCOTAS |"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Montserrat" size="14" style="1"/>
-            </Property>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu_AGENDA">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="AGENDA |"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Montserrat" size="14" style="1"/>
             </Property>
