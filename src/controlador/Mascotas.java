@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 
 
@@ -208,6 +209,7 @@ public class Mascotas {
                 }
    }
     
+   
  
    
     

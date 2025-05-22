@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import modelo.Conexion_DB;
 
 
@@ -223,7 +224,78 @@ public class Clientes {
             JOptionPane.showMessageDialog(null, "Error al insertar usuario: " + ex.getMessage());//test
         }
     }
-    
+     
+     
+     //buscar los clientes y mascotas para jtableCLIENTES de frmadministrarclientes
+     
+    public static ArrayList<String[]> buscarClientesConMascotas(String valorBusqueda) {
+    ArrayList<String[]> listaResultados = new ArrayList<>();
+    Connection con = Conexion_DB.getConnection();
+
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+
+    try {
+        String sql = "SELECT c.id_cliente, c.primer_nombre_cliente, c.primer_apellido_cliente, c.numero_documento_cliente, c.telefono_cliente, " +
+                     "GROUP_CONCAT(m.nombre_mascota SEPARATOR ', ') AS mascotas " +
+                     "FROM clientes c " +
+                     "LEFT JOIN mascotas m ON c.id_cliente = m.id_cliente_mascota " +
+                     "WHERE CONCAT_WS(' ', c.primer_nombre_cliente, c.segundo_nombre_cliente, c.primer_apellido_cliente, c.segundo_apellido_cliente, " +
+                     "c.tipo_documento_cliente, c.numero_documento_cliente, c.email_cliente, c.telefono_cliente, c.direccion_cliente, m.nombre_mascota) LIKE ? " +
+                     "GROUP BY c.id_cliente";
+
+        ps = con.prepareStatement(sql);
+        ps.setString(1, "%" + valorBusqueda + "%");
+        rs = ps.executeQuery();
+
+        while (rs.next()) {
+            String[] fila = new String[6];
+            fila[0] = String.valueOf(rs.getInt("id_cliente")); // ID como texto
+            fila[1] = rs.getString("primer_nombre_cliente");
+            fila[2] = rs.getString("primer_apellido_cliente");
+            fila[3] = rs.getString("numero_documento_cliente");
+            fila[4] = rs.getString("telefono_cliente");
+            fila[5] = rs.getString("mascotas") != null ? rs.getString("mascotas") : "Sin mascotas";
+            listaResultados.add(fila);
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al buscar clientes: " + e.getMessage());
+        e.printStackTrace();
+    } finally {
+        try { if (rs != null) rs.close(); } catch (Exception e) {}
+        try { if (ps != null) ps.close(); } catch (Exception e) {}
+        try { if (con != null) con.close(); } catch (Exception e) {}
+    }
+
+    return listaResultados;
+}
+
+
+    public static boolean eliminarClientePorId(int idCliente) {
+    Connection con = Conexion_DB.getConnection();
+    PreparedStatement ps = null;
+    boolean eliminado = false;
+
+    try {
+        String sql = "DELETE FROM clientes WHERE id_cliente = ?";
+        ps = con.prepareStatement(sql);
+        ps.setInt(1, idCliente);
+
+        int filasAfectadas = ps.executeUpdate();
+        eliminado = filasAfectadas > 0;
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al eliminar cliente: " + e.getMessage());
+        e.printStackTrace();
+    } finally {
+        try { if (ps != null) ps.close(); } catch (Exception e) {}
+        try { if (con != null) con.close(); } catch (Exception e) {}
+    }
+
+    return eliminado;
+}
+
     
     
     
