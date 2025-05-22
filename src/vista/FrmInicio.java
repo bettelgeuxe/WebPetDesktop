@@ -45,7 +45,6 @@ public class FrmInicio extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu_INICIO = new javax.swing.JMenu();
         jMenu_USUARIOS = new javax.swing.JMenu();
         jMenuItem_ADMINISTRAR_USUARIOS = new javax.swing.JMenuItem();
         jMenuItem_REGISTRAR_USUARIO = new javax.swing.JMenuItem();
@@ -156,15 +155,11 @@ public class FrmInicio extends javax.swing.JFrame {
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jMenu_INICIO.setText("MENÚ  |");
-        jMenu_INICIO.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
-        jMenuBar1.add(jMenu_INICIO);
-
         jMenu_USUARIOS.setBackground(new java.awt.Color(255, 255, 255));
-        jMenu_USUARIOS.setText("USUARIOS  |");
+        jMenu_USUARIOS.setText("USUARIOS DEL SISTEMA  |");
         jMenu_USUARIOS.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         jMenu_USUARIOS.setMinimumSize(new java.awt.Dimension(105, 30));
-        jMenu_USUARIOS.setPreferredSize(new java.awt.Dimension(105, 30));
+        jMenu_USUARIOS.setPreferredSize(new java.awt.Dimension(200, 50));
 
         jMenuItem_ADMINISTRAR_USUARIOS.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
         jMenuItem_ADMINISTRAR_USUARIOS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/buscar-icono-webpet.png"))); // NOI18N
@@ -190,6 +185,7 @@ public class FrmInicio extends javax.swing.JFrame {
 
         jMenu_CLIENTES.setText("CLIENTES |");
         jMenu_CLIENTES.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+        jMenu_CLIENTES.setPreferredSize(new java.awt.Dimension(93, 50));
 
         jMenuItem1.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/buscar-icono-webpet.png"))); // NOI18N
@@ -210,10 +206,12 @@ public class FrmInicio extends javax.swing.JFrame {
 
         jMenu_PROVEEDORES.setText("PROVEEDORES |");
         jMenu_PROVEEDORES.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+        jMenu_PROVEEDORES.setPreferredSize(new java.awt.Dimension(137, 50));
         jMenuBar1.add(jMenu_PROVEEDORES);
 
         jMenu_PRODUCTOS.setText("PRODUCTOS");
         jMenu_PRODUCTOS.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+        jMenu_PRODUCTOS.setPreferredSize(new java.awt.Dimension(109, 50));
         jMenuBar1.add(jMenu_PRODUCTOS);
 
         setJMenuBar(jMenuBar1);
@@ -341,7 +339,6 @@ public class FrmInicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem_REGISTRAR_CLIENTE;
     public javax.swing.JMenuItem jMenuItem_REGISTRAR_USUARIO;
     private javax.swing.JMenu jMenu_CLIENTES;
-    private javax.swing.JMenu jMenu_INICIO;
     private javax.swing.JMenu jMenu_PRODUCTOS;
     private javax.swing.JMenu jMenu_PROVEEDORES;
     public javax.swing.JMenu jMenu_USUARIOS;
