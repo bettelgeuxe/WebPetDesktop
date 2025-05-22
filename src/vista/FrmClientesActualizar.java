@@ -107,7 +107,7 @@ public class FrmClientesActualizar extends javax.swing.JFrame {
     String itemSeleccionado = (String) jComboBox_NOMBREMASCOTAS.getSelectedItem();
 
     if (itemSeleccionado == null || itemSeleccionado.equals("No hay mascotas registradas")) {
-        JOptionPane.showMessageDialog(this, "No hay mascota seleccionada.");
+        JOptionPane.showMessageDialog(this, "No hay mascotas registradas");
         return;
     }
 
@@ -141,6 +141,77 @@ public class FrmClientesActualizar extends javax.swing.JFrame {
     }
 }
  
+   private void actualizarClienteYmascota() {
+    // Validar si hay mascota seleccionada
+    String itemSeleccionado = (String) jComboBox_NOMBREMASCOTAS.getSelectedItem();
+    if (itemSeleccionado == null || itemSeleccionado.equals("No hay mascotas registradas")) {
+        JOptionPane.showMessageDialog(this, "No hay mascotas registradas.");
+        return;
+    }
+
+    // Extraer ID de mascota
+    int idMascota = Integer.parseInt(itemSeleccionado.split(" - ")[0]);
+
+    Connection con = Conexion_DB.getConnection();
+
+    try {
+        // Desactivar autocommit para manejo de transacción
+        con.setAutoCommit(false);
+
+        //  ACTUALIZAR CLIENTE 
+        String sqlCliente = "UPDATE clientes SET primer_nombre_cliente=?, segundo_nombre_cliente=?, primer_apellido_cliente=?, segundo_apellido_cliente=?, tipo_documento_cliente=?, numero_documento_cliente=?, email_cliente=?, telefono_cliente=?, direccion_cliente=? WHERE id_cliente=?";
+
+        try (PreparedStatement psCliente = con.prepareStatement(sqlCliente)) {
+            psCliente.setString(1, jTextField_pnombreCLIENTEactualizar.getText());
+            psCliente.setString(2, jTextField_snombreCLIENTEactualizar.getText());
+            psCliente.setString(3, jTextField_papellidoCLIENTEactualizar.getText());
+            psCliente.setString(4, jTextField_sapellidoCLIENTEactualizar.getText());
+            psCliente.setString(5, jComboBox_tipodocCLIENTEactualizar.getSelectedItem().toString());
+            psCliente.setString(6, jTextField_numdocCLIENTEactualizar.getText());
+            psCliente.setString(7, jTextField_emailCLIENTEactualizar.getText());
+            psCliente.setString(8, jTextField_telCLIENTEactualizar.getText());
+            psCliente.setString(9, jTextField_dirCLIENTEactualizar.getText());
+            psCliente.setInt(10, idCliente);
+
+            psCliente.executeUpdate();
+        }
+
+        //  ACTUALIZAR MASCOTA 
+        String sqlMascota = "UPDATE mascotas SET nombre_mascota=?, especie_mascota=?, genero_mascota=?, raza_mascota=?, color_mascota=?, edad_mascota=? WHERE id_mascota=? AND id_cliente_mascota=?";
+
+        try (PreparedStatement psMascota = con.prepareStatement(sqlMascota)) {
+            psMascota.setString(1, jTextField_nombreMASCOTAactualizar.getText());
+            psMascota.setString(2, jComboBox_especieMASCOTAactualizar.getSelectedItem().toString());
+            psMascota.setString(3, jComboBox_generoMASCOTAactualizar.getSelectedItem().toString());
+            psMascota.setString(4, jTextField_razaMASCOTAactualizar.getText());
+            psMascota.setString(5, jTextField_colorMASCOTAactualizar.getText());
+            psMascota.setString(6, jTextField_edadMASCOTASactualizar.getText());
+            psMascota.setInt(7, idMascota);
+            psMascota.setInt(8, idCliente);
+
+            psMascota.executeUpdate();
+        }
+
+        // Confirmar transacción
+        con.commit();
+        JOptionPane.showMessageDialog(this, "Cliente y mascota actualizados correctamente.");
+
+    } catch (SQLException e) {
+        try {
+            con.rollback(); // revertir si hay error
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        JOptionPane.showMessageDialog(this, "Error al actualizar: " + e.getMessage());
+    } finally {
+        try {
+            con.setAutoCommit(true);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+}
+
 
 
     
@@ -266,6 +337,7 @@ public class FrmClientesActualizar extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jComboBox_generoMASCOTAactualizar = new javax.swing.JComboBox<>();
         jLabel21 = new javax.swing.JLabel();
+        jButton_agregarMASCOTAcliact = new javax.swing.JButton();
         jButton_ACTUALIZARclimasc = new javax.swing.JButton();
         jButton_VOLVERclientesactualizar = new javax.swing.JButton();
 
@@ -283,14 +355,14 @@ public class FrmClientesActualizar extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(331, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(275, 275, 275))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
+                .addContainerGap(59, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(40, 40, 40))
         );
@@ -341,6 +413,8 @@ public class FrmClientesActualizar extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(52, 78, 65));
         jLabel4.setText("SELECCIONE LA MASCOTA");
 
+        jButton_seleccionarMASCOTActualizarcli.setFont(new java.awt.Font("Montserrat", 1, 11)); // NOI18N
+        jButton_seleccionarMASCOTActualizarcli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-seleccionar-webpet-app.png"))); // NOI18N
         jButton_seleccionarMASCOTActualizarcli.setText("Seleccionar");
         jButton_seleccionarMASCOTActualizarcli.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -361,9 +435,9 @@ public class FrmClientesActualizar extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(9, 9, 9)
@@ -398,21 +472,19 @@ public class FrmClientesActualizar extends javax.swing.JFrame {
                                     .addComponent(jTextField_dirCLIENTEactualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel12)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jComboBox_NOMBREMASCOTAS, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(9, 9, 9)))
-                        .addGap(30, 30, 30)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jTextField_snombreCLIENTEactualizar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                    .addComponent(jTextField_sapellidoCLIENTEactualizar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                    .addComponent(jTextField_numdocCLIENTEactualizar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                    .addComponent(jTextField_telCLIENTEactualizar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                    .addComponent(jButton_seleccionarMASCOTActualizarcli, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextField_snombreCLIENTEactualizar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                            .addComponent(jTextField_sapellidoCLIENTEactualizar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                            .addComponent(jTextField_numdocCLIENTEactualizar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                            .addComponent(jTextField_telCLIENTEactualizar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox_NOMBREMASCOTAS, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton_seleccionarMASCOTActualizarcli, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -550,9 +622,27 @@ public class FrmClientesActualizar extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton_ACTUALIZARclimasc.setText("Actualizar");
+        jButton_agregarMASCOTAcliact.setFont(new java.awt.Font("Montserrat", 0, 11)); // NOI18N
+        jButton_agregarMASCOTAcliact.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-agregar-webpet-app.png"))); // NOI18N
+        jButton_agregarMASCOTAcliact.setText("Registrar");
 
-        jButton_VOLVERclientesactualizar.setText("Volver Clientes");
+        jButton_ACTUALIZARclimasc.setFont(new java.awt.Font("Montserrat", 0, 11)); // NOI18N
+        jButton_ACTUALIZARclimasc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-actualizar-webpet-app.png"))); // NOI18N
+        jButton_ACTUALIZARclimasc.setText("Actualizar");
+        jButton_ACTUALIZARclimasc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ACTUALIZARclimascActionPerformed(evt);
+            }
+        });
+
+        jButton_VOLVERclientesactualizar.setFont(new java.awt.Font("Montserrat", 0, 11)); // NOI18N
+        jButton_VOLVERclientesactualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-atras-webpet-app.png"))); // NOI18N
+        jButton_VOLVERclientesactualizar.setText("Administrar  Clientes");
+        jButton_VOLVERclientesactualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_VOLVERclientesactualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -561,43 +651,44 @@ public class FrmClientesActualizar extends javax.swing.JFrame {
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(59, 59, 59)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
                         .addComponent(jLabel2)
-                        .addGap(101, 101, 101)
-                        .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton_VOLVERclientesactualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton_ACTUALIZARclimasc, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton_ACTUALIZARclimasc)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton_VOLVERclientesactualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jButton_agregarMASCOTAcliact, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(69, 69, 69)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton_VOLVERclientesactualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3))
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 89, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addGap(50, 50, 50)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jButton_ACTUALIZARclimasc, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton_VOLVERclientesactualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton_ACTUALIZARclimasc, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton_agregarMASCOTAcliact, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -634,6 +725,21 @@ public class FrmClientesActualizar extends javax.swing.JFrame {
         jButton_seleccionarMASCOTActualizarcli.setBackground(new Color(58,90,64));
         jButton_seleccionarMASCOTActualizarcli.setForeground(new Color(218,215,205));
     }//GEN-LAST:event_jButton_seleccionarMASCOTActualizarcliMouseExited
+
+    private void jButton_ACTUALIZARclimascActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ACTUALIZARclimascActionPerformed
+        // TODO add your handling code here:
+        actualizarClienteYmascota();
+    }//GEN-LAST:event_jButton_ACTUALIZARclimascActionPerformed
+
+    private void jButton_VOLVERclientesactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VOLVERclientesactualizarActionPerformed
+        // TODO add your handling code here:
+        // Cerrar este formulario
+        this.dispose();
+
+        // Abrir el formulario de administración
+        FrmClientesAdministrar frmAdministrar = new FrmClientesAdministrar();
+        frmAdministrar.setVisible(true);
+    }//GEN-LAST:event_jButton_VOLVERclientesactualizarActionPerformed
 
     
     // create a function to verify the empty fields  
@@ -711,6 +817,7 @@ public class FrmClientesActualizar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_ACTUALIZARclimasc;
     private javax.swing.JButton jButton_VOLVERclientesactualizar;
+    private javax.swing.JButton jButton_agregarMASCOTAcliact;
     private javax.swing.JButton jButton_seleccionarMASCOTActualizarcli;
     private javax.swing.JComboBox<String> jComboBox_NOMBREMASCOTAS;
     private javax.swing.JComboBox<String> jComboBox_especieMASCOTAactualizar;

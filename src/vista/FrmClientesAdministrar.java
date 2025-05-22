@@ -174,6 +174,7 @@ public class FrmClientesAdministrar extends javax.swing.JFrame {
         jButton_editarCLIENTESeleccionado = new javax.swing.JButton();
         jButton_volverInicio = new javax.swing.JButton();
         jButton_eliminarCLIENTESeleccionado = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -278,6 +279,10 @@ public class FrmClientesAdministrar extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(218, 215, 205));
+        jLabel3.setText("ADMINISTRAR CLIENTES Y MASCOTAS");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -302,6 +307,10 @@ public class FrmClientesAdministrar extends javax.swing.JFrame {
                         .addComponent(jButton_ACTUALIZAR_CLIENTES, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(31, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(308, 308, 308))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,12 +328,14 @@ public class FrmClientesAdministrar extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton_volverInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(43, 43, 43)
                                 .addComponent(jButton_ACTUALIZAR_CLIENTES, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton_BUSCAR_CLIENTES, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextField_VALOR_BUSQUEDA_CLIENTES, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -384,11 +395,11 @@ public class FrmClientesAdministrar extends javax.swing.JFrame {
 
     private void jButton_registrarCLIENTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_registrarCLIENTEActionPerformed
         // TODO add your handling code here:
-        FrmUsuariosRegistrar registrarUsuarioForm = new FrmUsuariosRegistrar();
-            registrarUsuarioForm.pack();
-            registrarUsuarioForm.setVisible(true);
-            registrarUsuarioForm.setLocationRelativeTo(null);
-            registrarUsuarioForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        FrmClientesRegistrar registrarClienteForm = new FrmClientesRegistrar();
+            registrarClienteForm.pack();
+            registrarClienteForm.setVisible(true);
+            registrarClienteForm.setLocationRelativeTo(null);
+            registrarClienteForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jButton_registrarCLIENTEActionPerformed
 
     private void jButton_editarCLIENTESeleccionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_editarCLIENTESeleccionadoActionPerformed
@@ -499,6 +510,7 @@ public class FrmClientesAdministrar extends javax.swing.JFrame {
     private javax.swing.JButton jButton_volverInicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
