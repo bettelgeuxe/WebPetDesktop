@@ -20,6 +20,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import modelo.Conexion_DB;
+import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+import vista.FrmClientesActualizar;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 
@@ -384,74 +393,16 @@ public class FrmClientesAdministrar extends javax.swing.JFrame {
 
     private void jButton_editarCLIENTESeleccionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_editarCLIENTESeleccionadoActionPerformed
         // TODO add your handling code here:
-        try {
         int filaSeleccionada = jTable_CLIENTES.getSelectedRow();
-        if (filaSeleccionada == -1) {
-            JOptionPane.showMessageDialog(null, "Seleccione un usuario de la tabla", "Sin usuarios seleccionados", 2);
-            return;
-        }
-        // Obtener el ID oculto
-        int idUsuario = Integer.parseInt(jTable_CLIENTES.getValueAt(filaSeleccionada, 0).toString());
+            if (filaSeleccionada != -1) {
+            int idCliente = Integer.parseInt(jTable_CLIENTES.getValueAt(filaSeleccionada, 0).toString());
+            FrmClientesActualizar actualizar = new FrmClientesActualizar(idCliente);
+            actualizar.setVisible(true);
+            this.dispose(); // Opcional: cierra FrmClientesAdministrar si no quieres que queden ambos abiertos
+            } else {
+            JOptionPane.showMessageDialog(null, "Por favor, selecciona un cliente para editar.");
+}
 
-        // Buscar el usuario completo desde la base de datos (esto es importante)
-        controlador.Usuarios usuarioCompleto = controlador.Usuarios.buscarUsuarioPorId(idUsuario);
-
-        FrmUsuariosActualizar actualizarUsuariosForm = new FrmUsuariosActualizar();
-        actualizarUsuariosForm.usuarioId = usuarioCompleto.getId();
-        actualizarUsuariosForm.jTextField_pnombre.setText(usuarioCompleto.getPri_nom_usuario());
-        actualizarUsuariosForm.jTextField_snombre.setText(usuarioCompleto.getSeg_nom_usuario());
-        actualizarUsuariosForm.jTextField_papellido.setText(usuarioCompleto.getPri_apell_usuario());
-        actualizarUsuariosForm.jTextField_sapellido.setText(usuarioCompleto.getSeg_apell_usuario());
-        actualizarUsuariosForm.jComboBox_tipodoc.setSelectedItem(usuarioCompleto.getTipo_doc_usuario());
-        actualizarUsuariosForm.jTextField_numdoc.setText(usuarioCompleto.getNum_doc_usuario());
-        actualizarUsuariosForm.jTextField_email.setText(usuarioCompleto.getEmail_usuario());
-        actualizarUsuariosForm.jTextField_tel.setText(usuarioCompleto.getTel_usuario());
-        actualizarUsuariosForm.jTextField_dir.setText(usuarioCompleto.getDir_usuario());
-        actualizarUsuariosForm.jTextField_usuario.setText(usuarioCompleto.getUsuario());
-        actualizarUsuariosForm.jPasswordField_pass.setText(usuarioCompleto.getPasswd_usuario());
-        actualizarUsuariosForm.jComboBox_rol.setSelectedItem(usuarioCompleto.getRol_usuario());
-
-        actualizarUsuariosForm.setVisible(true);
-        actualizarUsuariosForm.pack();
-        actualizarUsuariosForm.setLocationRelativeTo(null);
-        actualizarUsuariosForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-    } catch(Exception e) {
-        JOptionPane.showMessageDialog(null, "Error al abrir formulario de edición: " + e.getMessage());
-    }
-        
-        /*
-        try{
-
-            // open the edit product form and display data into the fields
-            FrmUsuariosActualizar actualizarUsuariosForm = new FrmUsuariosActualizar();
-            int filaSeleccionada = jTable_USUARIOS.getSelectedRow();
-            
-            Integer rowIndex = jTable_USUARIOS.getSelectedRow();
-            
-            
-
-            actualizarUsuariosForm.usuarioId = Integer.valueOf(jTable_USUARIOS.getValueAt(rowIndex, 0).toString());
-            actualizarUsuariosForm.jTextField_pnombre.setText(jTable_USUARIOS.getValueAt(rowIndex, 1).toString());
-            actualizarUsuariosForm.jTextField_snombre.setText(jTable_USUARIOS.getValueAt(rowIndex, 2).toString());
-            actualizarUsuariosForm.jTextField_papellido.setText(jTable_USUARIOS.getValueAt(rowIndex, 3).toString());
-            actualizarUsuariosForm.jTextField_sapellido.setText(jTable_USUARIOS.getValueAt(rowIndex, 4).toString());
-            actualizarUsuariosForm.jComboBox_tipodoc.setSelectedItem(jTable_USUARIOS.getValueAt(rowIndex, 5));
-            actualizarUsuariosForm.jTextField_numdoc.setText(jTable_USUARIOS.getValueAt(rowIndex, 6).toString());
-            actualizarUsuariosForm.jTextField_email.setText(jTable_USUARIOS.getValueAt(rowIndex, 7).toString());
-            actualizarUsuariosForm.jTextField_tel.setText(jTable_USUARIOS.getValueAt(rowIndex, 8).toString());
-            actualizarUsuariosForm.jTextField_dir.setText(jTable_USUARIOS.getValueAt(rowIndex, 9).toString());
-            actualizarUsuariosForm.jTextField_usuario.setText(jTable_USUARIOS.getValueAt(rowIndex, 10).toString());
-            actualizarUsuariosForm.jPasswordField_pass.setText(jTable_USUARIOS.getValueAt(rowIndex, 11).toString());
-            actualizarUsuariosForm.jComboBox_rol.setSelectedItem(jTable_USUARIOS.getValueAt(rowIndex, 12));
-          
-            actualizarUsuariosForm.setVisible(true);
-                    actualizarUsuariosForm.pack();
-                    actualizarUsuariosForm.setLocationRelativeTo(null);
-                    actualizarUsuariosForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        }catch(Exception Ex){
-            JOptionPane.showMessageDialog(null, "Seleccione un usuario de la tabla", "Sin usuarios seleccionados", 2);
-        }*/
     }//GEN-LAST:event_jButton_editarCLIENTESeleccionadoActionPerformed
 
     private void jButton_volverInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_volverInicioActionPerformed

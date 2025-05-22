@@ -11,6 +11,16 @@ import java.security.MessageDigest;
 import javax.swing.JOptionPane;
 import modelo.Conexion_DB;
 import controlador.Clientes;
+import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 /**
  *
@@ -22,13 +32,188 @@ public class FrmClientesActualizar extends javax.swing.JFrame {
      * Creates new form FrmRegistro
      */
     //creamos objeto frmregistro para llamarlo desde login
+    private int idCliente;
     public static FrmLogin fl;
     private int idClienteRecienInsertado = -1;
+   
     
     
     public FrmClientesActualizar() {
         initComponents();
     }
+    
+    public FrmClientesActualizar(int idCliente) {
+    initComponents();
+    this.idCliente = idCliente;
+    cargarDatosCliente();
+    cargarMascotasCliente(); 
+}
+    
+    private void cargarDatosCliente() {
+    Connection con = Conexion_DB.getConnection();
+    PreparedStatement ps;
+    ResultSet rs;
+
+    try {
+        ps = con.prepareStatement("SELECT * FROM clientes WHERE id_cliente = ?");
+        ps.setInt(1, idCliente); 
+        rs = ps.executeQuery();
+
+        if (rs.next()) {
+            jTextField_pnombreCLIENTEactualizar.setText(rs.getString("primer_nombre_cliente"));
+            jTextField_snombreCLIENTEactualizar.setText(rs.getString("segundo_nombre_cliente"));
+            jTextField_papellidoCLIENTEactualizar.setText(rs.getString("primer_apellido_cliente"));
+            jTextField_sapellidoCLIENTEactualizar.setText(rs.getString("segundo_apellido_cliente"));
+            jComboBox_tipodocCLIENTEactualizar.setSelectedItem(rs.getString("tipo_documento_cliente"));
+            jTextField_numdocCLIENTEactualizar.setText(rs.getString("numero_documento_cliente"));
+            jTextField_emailCLIENTEactualizar.setText(rs.getString("email_cliente"));
+            jTextField_telCLIENTEactualizar.setText(rs.getString("telefono_cliente"));
+            jTextField_dirCLIENTEactualizar.setText(rs.getString("direccion_cliente"));
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al cargar datos del cliente: " + e.getMessage());
+    }
+}
+    private void cargarMascotasCliente() {
+    Connection con = Conexion_DB.getConnection();
+    PreparedStatement ps;
+    ResultSet rs;
+
+    try {
+        ps = con.prepareStatement("SELECT id_mascota, nombre_mascota FROM mascotas WHERE id_cliente_mascota = ?");
+        ps.setInt(1, idCliente); // usa tu variable ya existente
+        rs = ps.executeQuery();
+
+        jComboBox_NOMBREMASCOTAS.removeAllItems(); // limpiar combo
+
+        boolean hayMascotas = false;
+        while (rs.next()) {
+            int idMascota = rs.getInt("id_mascota");
+            String nombreMascota = rs.getString("nombre_mascota");
+            jComboBox_NOMBREMASCOTAS.addItem(idMascota + " - " + nombreMascota);
+            hayMascotas = true;
+        }
+
+        if (!hayMascotas) {
+            jComboBox_NOMBREMASCOTAS.addItem("No hay mascotas registradas");
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al cargar mascotas: " + e.getMessage());
+    }
+}
+    
+   private void cargarDatosMascotaSeleccionada() {
+    String itemSeleccionado = (String) jComboBox_NOMBREMASCOTAS.getSelectedItem();
+
+    if (itemSeleccionado == null || itemSeleccionado.equals("No hay mascotas registradas")) {
+        JOptionPane.showMessageDialog(this, "No hay mascota seleccionada.");
+        return;
+    }
+
+    // Extraer solo el ID de la mascota desde el combo (formato "ID - NOMBRE")
+    int idMascota = Integer.parseInt(itemSeleccionado.split(" - ")[0]);
+
+    String sql = "SELECT * FROM mascotas WHERE id_mascota = ? AND id_cliente_mascota = ?";
+
+    try (Connection con = Conexion_DB.getConnection();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+
+        ps.setInt(1, idMascota);
+        ps.setInt(2, idCliente); 
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            jTextField_nombreMASCOTAactualizar.setText(rs.getString("nombre_mascota"));
+            jComboBox_especieMASCOTAactualizar.setSelectedItem(rs.getString("especie_mascota"));
+            jComboBox_generoMASCOTAactualizar.setSelectedItem(rs.getString("genero_mascota"));
+            jTextField_razaMASCOTAactualizar.setText(rs.getString("raza_mascota"));
+            jTextField_colorMASCOTAactualizar.setText(rs.getString("color_mascota"));
+            jTextField_edadMASCOTASactualizar.setText(rs.getString("edad_mascota"));
+        } else {
+            JOptionPane.showMessageDialog(this, "No se encontraron datos de la mascota.");
+        }
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al cargar datos de la mascota: " + e.getMessage());
+        e.printStackTrace();
+    }
+}
+ 
+
+
+    
+
+    /*
+    private void cargarDatosCliente() {
+    Connection con = Conexion_DB.getConnection();
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+
+    try {
+        String sql = "SELECT * FROM clientes WHERE id_cliente = ?";
+        ps = con.prepareStatement(sql);
+        ps.setInt(1, idCliente);
+        rs = ps.executeQuery();
+
+        if (rs.next()) {
+            jTextField_pnombreCLIENTEactualizar.setText(rs.getString("primer_nombre_cliente"));
+            jTextField_snombreCLIENTEactualizar.setText(rs.getString("segundo_nombre_cliente"));
+            jTextField_papellidoCLIENTEactualizar.setText(rs.getString("primer_apellido_cliente"));
+            jTextField_sapellidoCLIENTEactualizar.setText(rs.getString("segundo_apellido_cliente"));
+            jComboBox_tipodocCLIENTEactualizar.setSelectedItem(rs.getString("tipo_documento_cliente"));
+            jTextField_numdocCLIENTEactualizar.setText(rs.getString("numero_documento_cliente"));
+            jTextField_emailCLIENTEactualizar.setText(rs.getString("email_cliente"));
+            jTextField_telCLIENTEactualizar.setText(rs.getString("telefono_cliente"));
+            jTextField_dirCLIENTEactualizar.setText(rs.getString("direccion_cliente"));
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al cargar datos del cliente: " + e.getMessage());
+    } finally {
+        try { if (rs != null) rs.close(); } catch (Exception e) {}
+        try { if (ps != null) ps.close(); } catch (Exception e) {}
+        try { if (con != null) con.close(); } catch (Exception e) {}
+    }
+}
+    
+    private void cargarMascotasCliente() {
+    Connection con = Conexion_DB.getConnection();
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+
+    jComboBox_NOMBREMASCOTAS.removeAllItems();
+
+    try {
+        String sql = "SELECT id_mascota, nombre_mascota FROM mascotas WHERE id_cliente_mascota = ?";
+        ps = con.prepareStatement(sql);
+        ps.setInt(1, idCliente);
+        rs = ps.executeQuery();
+
+        boolean hayMascotas = false;
+
+        while (rs.next()) {
+            int idMascota = rs.getInt("id_mascota");
+            String nombreMascota = rs.getString("nombre_mascota");
+            jComboBox_NOMBREMASCOTAS.addItem(idMascota + " - " + nombreMascota);
+            hayMascotas = true;
+        }
+
+        if (!hayMascotas) {
+            jComboBox_NOMBREMASCOTAS.addItem("No hay mascotas registradas");
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al cargar mascotas: " + e.getMessage());
+    } finally {
+        try { if (rs != null) rs.close(); } catch (Exception e) {}
+        try { if (ps != null) ps.close(); } catch (Exception e) {}
+        try { if (con != null) con.close(); } catch (Exception e) {}
+    }
+}*/
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -433,33 +618,8 @@ public class FrmClientesActualizar extends javax.swing.JFrame {
 
     private void jButton_seleccionarMASCOTActualizarcliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_seleccionarMASCOTActualizarcliActionPerformed
         // TODO add your handling code here:
-        
-                                                    
-    String pnombre = jTextField_pnombreCLIENTEactualizar.getText();
-    String snombre = jTextField_snombreCLIENTEactualizar.getText();
-    String papellido = jTextField_papellidoCLIENTEactualizar.getText();
-    String sapellido = jTextField_sapellidoCLIENTEactualizar.getText();
-    String tipodoc = jComboBox_tipodocCLIENTEactualizar.getSelectedItem().toString();
-    String numdoc = jTextField_numdocCLIENTEactualizar.getText();
-    String email = jTextField_emailCLIENTEactualizar.getText();
-    String tel = jTextField_telCLIENTEactualizar.getText();
-    String dir = jTextField_dirCLIENTEactualizar.getText();
-
-    if (verificarCampos()) {
-        controlador.Clientes client = new controlador.Clientes(null, pnombre, snombre, papellido, sapellido, tipodoc, numdoc, email, tel, dir);
-
-        try {
-            idClienteRecienInsertado = controlador.Clientes.insertarClienteN(client);
-
-            if (idClienteRecienInsertado != -1) {
-                JOptionPane.showMessageDialog(null, "Cliente registrado correctamente.\nID: " + idClienteRecienInsertado);
-            } else {
-                JOptionPane.showMessageDialog(null, "El cliente no se registró.");
-            }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error al registrar cliente: " + ex.getMessage());
-        }
-    }
+        cargarDatosMascotaSeleccionada();                                                 
+    
         
     }//GEN-LAST:event_jButton_seleccionarMASCOTActualizarcliActionPerformed
 
