@@ -209,22 +209,13 @@
                                   <Component id="jComboBox_tipodocPROVEEORactualizar" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jTextField_telefonoPROVEEODRactualizar" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                                          <Component id="jTextField_telefonoPROVEEDORactualizar" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
                                           <Component id="jTextField_ciudadPROVEEDORactualizar" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
-                                              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="jTextField_direccionPROVEEDORactualizar" alignment="1" max="32767" attributes="0"/>
-                                          <Component id="jTextField_telefonoPROVEEDORactualizar" alignment="1" max="32767" attributes="0"/>
-                                      </Group>
+                                      <Component id="jTextField_direccionPROVEEDORactualizar" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -272,7 +263,7 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField_telefonoPROVEEODRactualizar" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextField_telefonoPROVEEDORactualizar" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -280,16 +271,9 @@
                                   <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField_direccionPROVEEDORactualizar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField_telefonoPROVEEDORactualizar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextField_direccionPROVEEDORactualizar" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
@@ -377,16 +361,6 @@
                 <Property name="text" type="java.lang.String" value="Tel&#xe9;fono"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField_telefonoPROVEEODRactualizar">
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel12">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="11" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Tel&#xe9;fono"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JTextField" name="jTextField_telefonoPROVEEDORactualizar">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel13">
@@ -421,7 +395,7 @@
             </Component>
             <Component class="javax.swing.JComboBox" name="jComboBox_PRODUCTOproveed">
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value=""/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="jButton_seleccionaACTUALIZARproov">

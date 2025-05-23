@@ -11,6 +11,7 @@ import java.security.MessageDigest;
 import javax.swing.JOptionPane;
 import modelo.Conexion_DB;
 import controlador.Clientes;
+import controlador.ItemProducto;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import controlador.ItemProducto;
 
 
 /**
@@ -32,9 +34,10 @@ public class FrmProveedoresActualizar extends javax.swing.JFrame {
      * Creates new form FrmRegistro
      */
     //creamos objeto frmregistro para llamarlo desde login
-    private int idCliente;
+    private int idProveedor;
+    
     public static FrmLogin fl;
-    private int idClienteRecienInsertado = -1;
+    private int idProveedorRecienInsertado = -1;
    
     
     
@@ -42,13 +45,69 @@ public class FrmProveedoresActualizar extends javax.swing.JFrame {
         initComponents();
     }
     
-    public FrmProveedoresActualizar(int idCliente) {
-    initComponents(); // se cargan los componentes de la ventana
-    this.idCliente = idCliente; // se guarda el id del cliente que llegó desde FrmClientesAdministrar
+    public FrmProveedoresActualizar(int idProveedor) {
+    initComponents(); // cargarn los componentes delform
+    this.idProveedor = idProveedor; // guardar el id del proveedor que llegó desde FrmProveedoresAdministrar
     
-
+    cargarDatosProveedor();
+    cargarProductosDelProveedor(idProveedor);
     
 }
+    
+    private void cargarDatosProveedor() {
+    String sql = "SELECT tipodocumento_proveedor, documento_proveedor, nombre_proveedor, email_proveedor, telefono_proveedor, direccion_proveedor, ciudad_proveedor FROM proveedores WHERE id_proveedor = ?";
+
+    try (Connection con = Conexion_DB.getConnection();
+         PreparedStatement pst = con.prepareStatement(sql)) {
+
+        pst.setInt(1, idProveedor);
+        ResultSet rs = pst.executeQuery();
+
+        if (rs.next()) {
+            jComboBox_tipodocPROVEEORactualizar.setSelectedItem(rs.getString("tipodocumento_proveedor"));
+            jTextField_numdocPROVEEDORactualizar.setText(rs.getString("documento_proveedor"));
+            jTextField_nombrePROVEEDORactualizar.setText(rs.getString("nombre_proveedor"));
+            jTextField_emailPROVEEDORactualizar.setText(rs.getString("email_proveedor"));
+            jTextField_telefonoPROVEEDORactualizar.setText(rs.getString("telefono_proveedor"));
+            jTextField_direccionPROVEEDORactualizar.setText(rs.getString("direccion_proveedor"));
+            jTextField_ciudadPROVEEDORactualizar.setText(rs.getString("ciudad_proveedor"));
+        }
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al cargar los datos del proveedor: " + e.getMessage());
+    }
+}
+
+    
+    private void cargarProductosDelProveedor(int idProveedor) {
+    jComboBox_PRODUCTOproveed.removeAllItems(); // limpiar antes
+
+    try {
+        Connection conn = Conexion_DB.getConnection();
+        String sql = "SELECT id, nombre_producto FROM productos WHERE fk_id_proveedor = ?";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setInt(1, idProveedor);
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            int idProducto = rs.getInt("id");
+            String nombre = rs.getString("nombre_producto");
+
+            jComboBox_PRODUCTOproveed.addItem(new ItemProducto(idProducto, nombre));
+        }
+
+        rs.close();
+        stmt.close();
+        conn.close();
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al cargar productos del proveedor: " + e.getMessage());
+    }
+}
+
+
+
+    
+
 
 
 
@@ -80,13 +139,11 @@ public class FrmProveedoresActualizar extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jTextField_emailPROVEEDORactualizar = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jTextField_telefonoPROVEEODRactualizar = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
         jTextField_telefonoPROVEEDORactualizar = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox_PRODUCTOproveed = new javax.swing.JComboBox<>();
+        jComboBox_PRODUCTOproveed = new javax.swing.JComboBox();
         jButton_seleccionaACTUALIZARproov = new javax.swing.JButton();
         jTextField_ciudadPROVEEDORactualizar = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
@@ -162,9 +219,6 @@ public class FrmProveedoresActualizar extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel11.setText("Teléfono");
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel12.setText("Teléfono");
-
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel13.setText("Ciudad");
 
@@ -222,18 +276,12 @@ public class FrmProveedoresActualizar extends javax.swing.JFrame {
                             .addComponent(jComboBox_tipodocPROVEEORactualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField_telefonoPROVEEODRactualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField_telefonoPROVEEDORactualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextField_ciudadPROVEEDORactualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(75, 75, 75)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(3, 3, 3)
-                                        .addComponent(jLabel12))
-                                    .addComponent(jLabel8))
+                                .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField_direccionPROVEEDORactualizar)
-                                    .addComponent(jTextField_telefonoPROVEEDORactualizar)))))
+                                .addComponent(jTextField_direccionPROVEEDORactualizar))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -270,19 +318,14 @@ public class FrmProveedoresActualizar extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
-                            .addComponent(jTextField_telefonoPROVEEODRactualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField_telefonoPROVEEDORactualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField_ciudadPROVEEDORactualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel13)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jTextField_direccionPROVEEDORactualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(jTextField_telefonoPROVEEDORactualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(jTextField_direccionPROVEEDORactualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(38, 38, 38)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -493,7 +536,7 @@ public class FrmProveedoresActualizar extends javax.swing.JFrame {
         this.dispose();
 
         // Abrir el formulario de administración
-        FrmClientesAdministrar frmAdministrar = new FrmClientesAdministrar();
+        FrmProveedoresAdministrar frmAdministrar = new FrmProveedoresAdministrar();
         frmAdministrar.setVisible(true);
     }//GEN-LAST:event_jButton_VOLVERPROVEEDORactualizarActionPerformed
 
@@ -544,13 +587,12 @@ public class FrmProveedoresActualizar extends javax.swing.JFrame {
     private javax.swing.JButton jButton_VOLVERPROVEEDORactualizar;
     private javax.swing.JButton jButton_agregarPROOVprod;
     private javax.swing.JButton jButton_seleccionaACTUALIZARproov;
-    private javax.swing.JComboBox<String> jComboBox_PRODUCTOproveed;
+    private javax.swing.JComboBox jComboBox_PRODUCTOproveed;
     private javax.swing.JComboBox<String> jComboBox_categoriaPRODUCTOactualizar;
     private javax.swing.JComboBox<String> jComboBox_tipodocPROVEEORactualizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -582,6 +624,5 @@ public class FrmProveedoresActualizar extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField_preciocompraACTUALIZAR;
     private javax.swing.JTextField jTextField_precioventaprodACTUALIZAR;
     private javax.swing.JTextField jTextField_telefonoPROVEEDORactualizar;
-    private javax.swing.JTextField jTextField_telefonoPROVEEODRactualizar;
     // End of variables declaration//GEN-END:variables
 }

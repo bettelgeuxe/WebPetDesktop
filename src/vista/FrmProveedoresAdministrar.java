@@ -93,7 +93,7 @@ public class FrmProveedoresAdministrar extends javax.swing.JFrame {
         while (rs.next()) {
             // Guardamos el ID del proveedor en la lista
             int idProveedor = rs.getInt("id_proveedor");
-            listaIdProveedores.add(idProveedor); // 👈 aquí se asocia con la fila actual
+            listaIdProveedores.add(idProveedor); // se asocia con la fila actual
 
             String documento = rs.getString("documento_proveedor");
             String nombre = rs.getString("nombre_proveedor");
@@ -409,17 +409,15 @@ public class FrmProveedoresAdministrar extends javax.swing.JFrame {
 
     private void jButton_editarPROVEEDORSeleccionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_editarPROVEEDORSeleccionadoActionPerformed
         // TODO add your handling code here:
-       /*int filaSeleccionada = jTable_PROVEEDORES.getSelectedRow();
-    if (filaSeleccionada >= 0 && filaSeleccionada < listaIdProveedores.size()) {
-        int idProveedorSeleccionado = listaIdProveedores.get(filaSeleccionada);
-        
-        // Aquí puedes pasar ese ID al formulario de actualización
-        FrmProveedorActualizar ventana = new FrmProveedorActualizar(idProveedorSeleccionado);
-        ventana.setVisible(true);
-        
+       int fila = jTable_PROVEEDORES.getSelectedRow();
+    if (fila >= 0) {
+        int idProveedor = listaIdProveedores.get(fila);
+        FrmProveedoresActualizar actualizar = new FrmProveedoresActualizar(idProveedor); // pasas el id al constructor
+        actualizar.setVisible(true);
+        this.dispose(); // cerrar el formulario actual si quieres
     } else {
-        JOptionPane.showMessageDialog(this, "Selecciona una fila para editar.");
-    }*/
+        JOptionPane.showMessageDialog(this, "Por favor selecciona un proveedor para editar.");
+    }
 
     }//GEN-LAST:event_jButton_editarPROVEEDORSeleccionadoActionPerformed
 
