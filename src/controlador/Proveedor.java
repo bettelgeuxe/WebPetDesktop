@@ -16,6 +16,10 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import modelo.Conexion_DB;
+import java.sql.*;
+import javax.swing.JOptionPane;
+import modelo.Conexion_DB;
+import controlador.Proveedor;
 
 /**
  *
@@ -46,6 +50,9 @@ import modelo.Conexion_DB;
         this.direccion_proveedor = dir;
         this.ciudad_proveedor = ciudad;
     }
+    
+   
+    
 
     public int getId_proveedor() {
         return id_proveedor;
@@ -111,6 +118,38 @@ import modelo.Conexion_DB;
         this.ciudad_proveedor = ciudad_proveedor;
     }
     
+    public int insertarProveedor() {
+    int idGenerado = -1;
+    String sql = "INSERT INTO proveedores (tipodocumento_proveedor, documento_proveedor, nombre_proveedor, email_proveedor, telefono_proveedor, direccion_proveedor, ciudad_proveedor) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+    try (Connection conn = Conexion_DB.getConnection(); 
+         PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+        ps.setString(1, tipodocumento_proveedor);
+        ps.setString(2, documento_proveedor);
+        ps.setString(3, nombre_proveedor);
+        ps.setString(4, email_proveedor);
+        ps.setString(5, telefono_proveedor);
+        ps.setString(6, direccion_proveedor);
+        ps.setString(7, ciudad_proveedor);
+
+        int filasAfectadas = ps.executeUpdate();
+        if (filasAfectadas > 0) {
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                idGenerado = rs.getInt(1);
+            }
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al insertar proveedor: " + e.getMessage());
+    }
+
+    return idGenerado;
+}
+
+
+
     
     
 }
