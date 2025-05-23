@@ -450,8 +450,14 @@ private void limpiarCamposProducto() {
     }
 
     try (Connection conn = Conexion_DB.getConnection()) {
-        String sql = "INSERT INTO productos (codigo_producto, nombre_producto, cantidad_producto, precio_venta, fk_id_categoria, fk_id_proveedor) VALUES (?, ?, ?, ?, ?, ?)";
-        PreparedStatement ps = conn.prepareStatement(sql);
+        String sqlInsertProducto = "INSERT INTO productos (codigo_producto, nombre_producto, cantidad_producto, precio_venta, fk_id_categoria, fk_id_proveedor) VALUES (?, ?, ?, ?, ?, ?)";
+        PreparedStatement psProducto = conn.prepareStatement(sqlInsertProducto);
+
+        String sqlVerificarRelacion = "SELECT COUNT(*) FROM proveedor_categoria WHERE fk_id_proveedor = ? AND fk_id_categoria = ?";
+        PreparedStatement psVerificar = conn.prepareStatement(sqlVerificarRelacion);
+
+        String sqlInsertRelacion = "INSERT INTO proveedor_categoria (fk_id_proveedor, fk_id_categoria) VALUES (?, ?)";
+        PreparedStatement psRelacion = conn.prepareStatement(sqlInsertRelacion);
 
         for (int i = 0; i < filas; i++) {
             String nombreCategoria = model.getValueAt(i, 0).toString();
@@ -460,26 +466,37 @@ private void limpiarCamposProducto() {
             int cantidad = Integer.parseInt(model.getValueAt(i, 3).toString());
             BigDecimal precioVenta = new BigDecimal(model.getValueAt(i, 4).toString());
 
-            // Obtener id_categoria desde nombre
+            // Obtener id_categoria desde el nombre
             int idCategoria = obtenerIdCategoria(nombreCategoria, conn);
             if (idCategoria == -1) {
                 JOptionPane.showMessageDialog(this, "Categoría no encontrada: " + nombreCategoria);
                 return;
             }
 
-            ps.setString(1, codigo);
-            ps.setString(2, nombre);
-            ps.setInt(3, cantidad);
-            ps.setBigDecimal(4, precioVenta);
-            ps.setInt(5, idCategoria);
-            ps.setInt(6, idProveedor);
+            // Insertar el producto
+            psProducto.setString(1, codigo);
+            psProducto.setString(2, nombre);
+            psProducto.setInt(3, cantidad);
+            psProducto.setBigDecimal(4, precioVenta);
+            psProducto.setInt(5, idCategoria);
+            psProducto.setInt(6, idProveedor);
+            psProducto.executeUpdate();
 
-            ps.executeUpdate();
+            // Verificar si la relación ya existe
+            psVerificar.setInt(1, idProveedor);
+            psVerificar.setInt(2, idCategoria);
+            ResultSet rs = psVerificar.executeQuery();
+            if (rs.next() && rs.getInt(1) == 0) {
+                // Si no existe, insertar en proveedor_categoria
+                psRelacion.setInt(1, idProveedor);
+                psRelacion.setInt(2, idCategoria);
+                psRelacion.executeUpdate();
+            }
         }
 
         JOptionPane.showMessageDialog(this, "✅ Productos guardados correctamente.");
-        model.setRowCount(0); // Limpiar la tabla después de guardar
-        limpiarCamposProducto();
+        model.setRowCount(0); // Limpiar la tabla
+        limpiarCamposProducto(); // Limpiar campos si tienes este método
 
     } catch (Exception e) {
         e.printStackTrace();
