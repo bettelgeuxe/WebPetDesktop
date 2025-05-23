@@ -114,8 +114,7 @@ private void limpiarCamposProducto() {
     jSpinner_cantidadPRODUCTO.setValue(1);
     jTextField_preciocompraPRODUCTO.setText("");
     jTextField_precioventaPRODUCTO.setText("");
-    jTextField_ivacompraPRODUCTO.setText("");
-    jTextField_ivaventaPRODUCTO.setText("");
+   
 }
 
     private void agregarProductoATabla() {
@@ -187,10 +186,6 @@ private void limpiarCamposProducto() {
         jSpinner_cantidadPRODUCTO = new javax.swing.JSpinner();
         jLabel12 = new javax.swing.JLabel();
         jTextField_precioventaPRODUCTO = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        jTextField_ivacompraPRODUCTO = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        jTextField_ivaventaPRODUCTO = new javax.swing.JTextField();
         jButton_agregarPRODUCTOtabla = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jComboBox_categoriaPRODUCTOS = new javax.swing.JComboBox<>();
@@ -232,12 +227,6 @@ private void limpiarCamposProducto() {
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel12.setText("P.Venta");
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel13.setText("IVA compra");
-
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel14.setText("IVA Venta");
-
         jButton_agregarPRODUCTOtabla.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton_agregarPRODUCTOtabla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-derecha-webpet-app.png"))); // NOI18N
         jButton_agregarPRODUCTOtabla.setText("Enviar a lista");
@@ -274,18 +263,14 @@ private void limpiarCamposProducto() {
                     .addComponent(jLabel11)
                     .addComponent(jLabel10)
                     .addComponent(jLabel12)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel14)
                     .addComponent(jLabel1))
-                .addGap(22, 22, 22)
+                .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextField_codigoPRODUCTO, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                     .addComponent(jTextField_nombrePRODUCTO, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                     .addComponent(jTextField_preciocompraPRODUCTO, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                     .addComponent(jSpinner_cantidadPRODUCTO, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField_precioventaPRODUCTO, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                    .addComponent(jTextField_ivacompraPRODUCTO, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                    .addComponent(jTextField_ivaventaPRODUCTO, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                     .addComponent(jComboBox_categoriaPRODUCTOS, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -316,15 +301,7 @@ private void limpiarCamposProducto() {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField_precioventaPRODUCTO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_ivacompraPRODUCTO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_ivaventaPRODUCTO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jButton_agregarPRODUCTOtabla, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -434,10 +411,10 @@ private void limpiarCamposProducto() {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addGap(49, 49, 49)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_SALIRmascotas, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -615,8 +592,6 @@ private void limpiarCamposProducto() {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -630,8 +605,6 @@ private void limpiarCamposProducto() {
     private javax.swing.JSpinner jSpinner_cantidadPRODUCTO;
     private javax.swing.JTable jTable_PRODUCTOSadd;
     private javax.swing.JTextField jTextField_codigoPRODUCTO;
-    private javax.swing.JTextField jTextField_ivacompraPRODUCTO;
-    private javax.swing.JTextField jTextField_ivaventaPRODUCTO;
     private javax.swing.JTextField jTextField_nombrePRODUCTO;
     private javax.swing.JTextField jTextField_preciocompraPRODUCTO;
     private javax.swing.JTextField jTextField_precioventaPRODUCTO;
