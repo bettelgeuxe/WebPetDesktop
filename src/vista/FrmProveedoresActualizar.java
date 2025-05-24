@@ -23,6 +23,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import controlador.ItemProducto;
 import controlador.ItemCategoria;
+import java.math.BigDecimal;
 
 /**
  *
@@ -43,6 +44,10 @@ public class FrmProveedoresActualizar extends javax.swing.JFrame {
     
     public FrmProveedoresActualizar() {
         initComponents();
+         cargarDatosProveedor();
+        cargarProductosDelProveedor(idProveedor);
+        cargarCategoriasEnCombo();
+    
     }
     
     public FrmProveedoresActualizar(int idProveedor) {
@@ -51,6 +56,8 @@ public class FrmProveedoresActualizar extends javax.swing.JFrame {
     
     cargarDatosProveedor();
     cargarProductosDelProveedor(idProveedor);
+    cargarCategoriasEnCombo();
+    cargarCategoriaVacia();
     
 }
     
@@ -141,7 +148,101 @@ public class FrmProveedoresActualizar extends javax.swing.JFrame {
     }
 }
 
-  
+  private void actualizarProducto() {
+    ItemProducto productoSeleccionado = (ItemProducto) jComboBox_PRODUCTOproveed.getSelectedItem();
+    if (productoSeleccionado == null) {
+        JOptionPane.showMessageDialog(this, "Seleccione un producto.");
+        return;
+    }
+
+    int idProducto = productoSeleccionado.getId();
+    String codigo = jTextField_codigoPRODUCTOactualizar.getText();
+    String nombre = jTextField_nombrePRODUCTOactualizar.getText();
+    int cantidad = (int) jSpinner_cantidadPRODUCTOactualizar.getValue();
+    String precioCompraStr = jTextField_preciocompraACTUALIZAR.getText();
+    String precioVentaStr = jTextField_precioventaprodACTUALIZAR.getText();
+    ItemCategoria categoriaSeleccionada = (ItemCategoria) jComboBox_categoriaPRODUCTOactualizar.getSelectedItem();
+
+    if (codigo.isEmpty() || nombre.isEmpty() || precioCompraStr.isEmpty() || precioVentaStr.isEmpty() || categoriaSeleccionada == null) {
+        JOptionPane.showMessageDialog(this, "Complete todos los campos.");
+        return;
+    }
+
+    try {
+        BigDecimal precioCompra = new BigDecimal(precioCompraStr);
+        BigDecimal precioVenta = new BigDecimal(precioVentaStr);
+        int idCategoria = categoriaSeleccionada.getId();
+
+        String sql = "UPDATE productos SET codigo_producto = ?, nombre_producto = ?, cantidad_producto = ?, precio_compra = ?, precio_venta = ?, fk_id_categoria = ? WHERE id = ?";
+
+        try (Connection con = Conexion_DB.getConnection();
+             PreparedStatement pst = con.prepareStatement(sql)) {
+
+            pst.setString(1, codigo);
+            pst.setString(2, nombre);
+            pst.setInt(3, cantidad);
+            pst.setBigDecimal(4, precioCompra);
+            pst.setBigDecimal(5, precioVenta);
+            pst.setInt(6, idCategoria);
+            pst.setInt(7, idProducto);
+
+            int filasActualizadas = pst.executeUpdate();
+
+            if (filasActualizadas > 0) {
+                JOptionPane.showMessageDialog(this, "Producto actualizado correctamente.");
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo actualizar el producto.");
+            }
+        }
+
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Error en el formato de precios.");
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al actualizar el producto: " + e.getMessage());
+    }
+}
+
+
+private void cargarCategoriasEnCombo() {
+    jComboBox_categoriaPRODUCTOactualizar.removeAllItems();
+
+    String sql = "SELECT id_categoria, categoria FROM categorias";
+
+    try (Connection con = Conexion_DB.getConnection();
+         PreparedStatement pst = con.prepareStatement(sql);
+         ResultSet rs = pst.executeQuery()) {
+
+        while (rs.next()) {
+            int id = rs.getInt("id_categoria");
+            String nombre = rs.getString("categoria");
+            jComboBox_categoriaPRODUCTOactualizar.addItem(new ItemCategoria(id, nombre));
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al cargar categorías: " + e.getMessage());
+    }
+}
+
+private void cargarCategoriaVacia() {
+    jComboBox_categoriaPRODUCTOactualizar.removeAllItems(); // Limpiar combo primero
+
+    // Agregamos un ítem vacío como primer elemento
+    jComboBox_categoriaPRODUCTOactualizar.addItem(new ItemCategoria(-1, "Seleccione:"));
+
+    try (Connection con = Conexion_DB.getConnection();
+         PreparedStatement pst = con.prepareStatement("SELECT id_categoria, categoria FROM categorias");
+         ResultSet rs = pst.executeQuery()) {
+
+        while (rs.next()) {
+            int id = rs.getInt("id_categoria");
+            String nombre = rs.getString("categoria");
+            jComboBox_categoriaPRODUCTOactualizar.addItem(new ItemCategoria(id, nombre));
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al cargar categorías: " + e.getMessage());
+    }
+}
 
 
 
@@ -570,6 +671,7 @@ public class FrmProveedoresActualizar extends javax.swing.JFrame {
 
     private void jButton_ACTUALIZARprovprodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ACTUALIZARprovprodActionPerformed
         // TODO add your handling code here:
+        actualizarProducto();
       
     }//GEN-LAST:event_jButton_ACTUALIZARprovprodActionPerformed
 
