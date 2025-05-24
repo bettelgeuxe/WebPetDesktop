@@ -5,25 +5,19 @@
  */
 package vista;
 
+
 import java.awt.Color;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import javax.swing.JOptionPane;
 import modelo.Conexion_DB;
-import controlador.Clientes;
-import controlador.ItemProducto;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.DefaultComboBoxModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import controlador.ItemProducto;
 import controlador.ItemCategoria;
 import java.math.BigDecimal;
+
+
 
 /**
  *
@@ -244,6 +238,46 @@ private void cargarCategoriaVacia() {
     }
 }
 
+private void actualizarProveedor() {
+    String tipoDocumento = (String) jComboBox_tipodocPROVEEORactualizar.getSelectedItem();
+    String documento = jTextField_numdocPROVEEDORactualizar.getText();
+    String nombre = jTextField_nombrePROVEEDORactualizar.getText();
+    String email = jTextField_emailPROVEEDORactualizar.getText();
+    String telefono = jTextField_telefonoPROVEEDORactualizar.getText();
+    String direccion = jTextField_direccionPROVEEDORactualizar.getText();
+    String ciudad = jTextField_ciudadPROVEEDORactualizar.getText();
+
+    if (tipoDocumento == null || documento.isEmpty() || nombre.isEmpty() || email.isEmpty() || telefono.isEmpty() || direccion.isEmpty() || ciudad.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Complete todos los campos del proveedor.");
+        return;
+    }
+
+    String sql = "UPDATE proveedores SET tipodocumento_proveedor = ?, documento_proveedor = ?, nombre_proveedor = ?, email_proveedor = ?, telefono_proveedor = ?, direccion_proveedor = ?, ciudad_proveedor = ? WHERE id_proveedor = ?";
+
+    try (Connection con = Conexion_DB.getConnection();
+         PreparedStatement pst = con.prepareStatement(sql)) {
+
+        pst.setString(1, tipoDocumento);
+        pst.setString(2, documento);
+        pst.setString(3, nombre);
+        pst.setString(4, email);
+        pst.setString(5, telefono);
+        pst.setString(6, direccion);
+        pst.setString(7, ciudad);
+        pst.setInt(8, idProveedor); // Usa el idProveedor actual
+
+        int filas = pst.executeUpdate();
+
+        if (filas > 0) {
+            JOptionPane.showMessageDialog(this, "Proveedor actualizado correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo actualizar el proveedor.");
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al actualizar proveedor: " + e.getMessage());
+    }
+}
 
 
 
@@ -296,7 +330,6 @@ private void cargarCategoriaVacia() {
         jLabel21 = new javax.swing.JLabel();
         jSpinner_cantidadPRODUCTOactualizar = new javax.swing.JSpinner();
         jLabel20 = new javax.swing.JLabel();
-        jButton_agregarPROOVprod = new javax.swing.JButton();
         jButton_ACTUALIZARprovprod = new javax.swing.JButton();
         jButton_VOLVERPROVEEDORactualizar = new javax.swing.JButton();
 
@@ -554,13 +587,9 @@ private void cargarCategoriaVacia() {
                 .addContainerGap(65, Short.MAX_VALUE))
         );
 
-        jButton_agregarPROOVprod.setFont(new java.awt.Font("Montserrat", 0, 11)); // NOI18N
-        jButton_agregarPROOVprod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-agregar-webpet-app.png"))); // NOI18N
-        jButton_agregarPROOVprod.setText("Registrar");
-
         jButton_ACTUALIZARprovprod.setFont(new java.awt.Font("Montserrat", 0, 11)); // NOI18N
         jButton_ACTUALIZARprovprod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-actualizar-webpet-app.png"))); // NOI18N
-        jButton_ACTUALIZARprovprod.setText("Actualizar");
+        jButton_ACTUALIZARprovprod.setText("Actualizar Proveedor y Producto");
         jButton_ACTUALIZARprovprod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_ACTUALIZARprovprodActionPerformed(evt);
@@ -592,12 +621,9 @@ private void cargarCategoriaVacia() {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(40, 40, 40)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jButton_ACTUALIZARprovprod)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton_agregarPROOVprod, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton_ACTUALIZARprovprod, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addComponent(jLabel2)
@@ -619,11 +645,9 @@ private void cargarCategoriaVacia() {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_ACTUALIZARprovprod, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_agregarPROOVprod, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addComponent(jButton_ACTUALIZARprovprod, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -659,19 +683,20 @@ private void cargarCategoriaVacia() {
 
     private void jButton_seleccionaACTUALIZARproovMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_seleccionaACTUALIZARproovMouseEntered
         // TODO add your handling code here:
-        jButton_seleccionaACTUALIZARproov.setBackground(new Color(88,129,87));
-        jButton_seleccionaACTUALIZARproov.setForeground(new Color(0,0,0));
+        //jButton_seleccionaACTUALIZARproov.setBackground(new Color(88,129,87));
+        //jButton_seleccionaACTUALIZARproov.setForeground(new Color(0,0,0));
     }//GEN-LAST:event_jButton_seleccionaACTUALIZARproovMouseEntered
 
     private void jButton_seleccionaACTUALIZARproovMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_seleccionaACTUALIZARproovMouseExited
         // TODO add your handling code here:
-        jButton_seleccionaACTUALIZARproov.setBackground(new Color(58,90,64));
-        jButton_seleccionaACTUALIZARproov.setForeground(new Color(218,215,205));
+        //jButton_seleccionaACTUALIZARproov.setBackground(new Color(58,90,64));
+        //jButton_seleccionaACTUALIZARproov.setForeground(new Color(218,215,205));
     }//GEN-LAST:event_jButton_seleccionaACTUALIZARproovMouseExited
 
     private void jButton_ACTUALIZARprovprodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ACTUALIZARprovprodActionPerformed
         // TODO add your handling code here:
         actualizarProducto();
+        actualizarProveedor();
       
     }//GEN-LAST:event_jButton_ACTUALIZARprovprodActionPerformed
 
@@ -730,7 +755,6 @@ private void cargarCategoriaVacia() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_ACTUALIZARprovprod;
     private javax.swing.JButton jButton_VOLVERPROVEEDORactualizar;
-    private javax.swing.JButton jButton_agregarPROOVprod;
     private javax.swing.JButton jButton_seleccionaACTUALIZARproov;
     private javax.swing.JComboBox jComboBox_PRODUCTOproveed;
     private javax.swing.JComboBox jComboBox_categoriaPRODUCTOactualizar;
