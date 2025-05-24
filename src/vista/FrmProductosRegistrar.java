@@ -41,10 +41,15 @@ public class FrmProductosRegistrar extends javax.swing.JFrame {
     
     public FrmProductosRegistrar() {
         initComponents();
-        String[] columnas = {"Categoría", "Código", "Nombre", "Cantidad", "PVP"};
+        String[] columnas = {"Categoría", "Código", "Nombre", "Cantidad", "PVP", "Precio Compra"};
+
         DefaultTableModel model = new DefaultTableModel(null, columnas);
         jTable_PRODUCTOSadd.setModel(model);
-        
+        // Ocultar la columna de precio_compra
+        jTable_PRODUCTOSadd.getColumnModel().getColumn(5).setMinWidth(0);
+        jTable_PRODUCTOSadd.getColumnModel().getColumn(5).setMaxWidth(0);
+        jTable_PRODUCTOSadd.getColumnModel().getColumn(5).setWidth(0);
+
         
         //crear color
         //Color verdeOscuro = new Color(52,78,65);
@@ -61,9 +66,15 @@ public class FrmProductosRegistrar extends javax.swing.JFrame {
     
     public FrmProductosRegistrar(int idProveedor) {
     initComponents();
-    String[] columnas = {"Categoría", "Código", "Nombre", "Cantidad", "PVP"};
+    String[] columnas = {"Categoría", "Código", "Nombre", "Cantidad", "PVP", "Precio Compra"};
+
         DefaultTableModel model = new DefaultTableModel(null, columnas);
         jTable_PRODUCTOSadd.setModel(model);
+        // Ocultar la columna de precio_compra
+        jTable_PRODUCTOSadd.getColumnModel().getColumn(5).setMinWidth(0);
+        jTable_PRODUCTOSadd.getColumnModel().getColumn(5).setMaxWidth(0);
+        jTable_PRODUCTOSadd.getColumnModel().getColumn(5).setWidth(0);
+
         //crear color
         //Color verdeOscuro = new Color(52,78,65);
         jTable_PRODUCTOSadd.setShowGrid(true);
@@ -111,7 +122,7 @@ private void limpiarCamposProducto() {
     jComboBox_categoriaPRODUCTOS.setSelectedIndex(0); // Valor por defecto: "Seleccione"
     jTextField_codigoPRODUCTO.setText("");
     jTextField_nombrePRODUCTO.setText("");
-    jSpinner_cantidadPRODUCTO.setValue(1);
+    jSpinner_cantidadPRODUCTO.setValue(0);
     jTextField_preciocompraPRODUCTO.setText("");
     jTextField_precioventaPRODUCTO.setText("");
    
@@ -123,23 +134,30 @@ private void limpiarCamposProducto() {
     String nombre = jTextField_nombrePRODUCTO.getText().trim();
     int cantidad = (int) jSpinner_cantidadPRODUCTO.getValue();
     String pvpStr = jTextField_precioventaPRODUCTO.getText().trim();
-
+    String precioCompraStr = jTextField_preciocompraPRODUCTO.getText().trim();
     // Validación
-    if (categoriaSeleccionada.equals("Seleccione:") || codigo.isEmpty() || nombre.isEmpty() || pvpStr.isEmpty()) {
+    if (categoriaSeleccionada.equals("Seleccione:") || codigo.isEmpty() || nombre.isEmpty() || pvpStr.isEmpty() || precioCompraStr.isEmpty()) {
         JOptionPane.showMessageDialog(this, "Por favor completa todos los campos correctamente.");
         return;
     }
 
     BigDecimal precioVenta;
+    BigDecimal precioCompra;
     try {
         precioVenta = new BigDecimal(pvpStr);
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(this, "El precio de venta debe ser un número válido.");
         return;
     }
+    try {
+        precioCompra = new BigDecimal(precioCompraStr);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "El precio de compra debe ser un número válido.");
+        return;
+    }
 
     DefaultTableModel model = (DefaultTableModel) jTable_PRODUCTOSadd.getModel();
-    model.addRow(new Object[]{categoriaSeleccionada, codigo, nombre, cantidad, precioVenta});
+    model.addRow(new Object[]{categoriaSeleccionada, codigo, nombre, cantidad, precioVenta, precioCompra});
     limpiarCamposProducto();
 }
 
@@ -450,7 +468,7 @@ private void limpiarCamposProducto() {
     }
 
     try (Connection conn = Conexion_DB.getConnection()) {
-        String sqlInsertProducto = "INSERT INTO productos (codigo_producto, nombre_producto, cantidad_producto, precio_venta, fk_id_categoria, fk_id_proveedor) VALUES (?, ?, ?, ?, ?, ?)";
+        String sqlInsertProducto = "INSERT INTO productos (codigo_producto, nombre_producto, cantidad_producto, precio_venta, precio_compra, fk_id_categoria, fk_id_proveedor) VALUES (?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement psProducto = conn.prepareStatement(sqlInsertProducto);
 
         String sqlVerificarRelacion = "SELECT COUNT(*) FROM proveedor_categoria WHERE fk_id_proveedor = ? AND fk_id_categoria = ?";
@@ -465,6 +483,7 @@ private void limpiarCamposProducto() {
             String nombre = model.getValueAt(i, 2).toString();
             int cantidad = Integer.parseInt(model.getValueAt(i, 3).toString());
             BigDecimal precioVenta = new BigDecimal(model.getValueAt(i, 4).toString());
+            BigDecimal precioCompra = new BigDecimal(model.getValueAt(i, 5).toString());
 
             // Obtener id_categoria desde el nombre
             int idCategoria = obtenerIdCategoria(nombreCategoria, conn);
@@ -478,8 +497,9 @@ private void limpiarCamposProducto() {
             psProducto.setString(2, nombre);
             psProducto.setInt(3, cantidad);
             psProducto.setBigDecimal(4, precioVenta);
-            psProducto.setInt(5, idCategoria);
-            psProducto.setInt(6, idProveedor);
+            psProducto.setBigDecimal(5, precioCompra);
+            psProducto.setInt(6, idCategoria);
+            psProducto.setInt(7, idProveedor);
             psProducto.executeUpdate();
 
             // Verificar si la relación ya existe

@@ -22,7 +22,7 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import controlador.ItemProducto;
-
+import controlador.ItemCategoria;
 
 /**
  *
@@ -103,10 +103,45 @@ public class FrmProveedoresActualizar extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Error al cargar productos del proveedor: " + e.getMessage());
     }
 }
-
-
-
     
+    private void cargarDatosProducto(int idProducto) {
+    String sql = "SELECT codigo_producto, nombre_producto, cantidad_producto, precio_compra, precio_venta, fk_id_categoria FROM productos WHERE id = ?";
+
+    try (Connection con = Conexion_DB.getConnection();
+         PreparedStatement pst = con.prepareStatement(sql)) {
+
+        pst.setInt(1, idProducto);
+        ResultSet rs = pst.executeQuery();
+
+        if (rs.next()) {
+            jTextField_codigoPRODUCTOactualizar.setText(rs.getString("codigo_producto"));
+            jTextField_nombrePRODUCTOactualizar.setText(rs.getString("nombre_producto"));
+            jSpinner_cantidadPRODUCTOactualizar.setValue(rs.getInt("cantidad_producto"));
+            jTextField_preciocompraACTUALIZAR.setText(rs.getString("precio_compra"));
+            jTextField_precioventaprodACTUALIZAR.setText(rs.getString("precio_venta"));
+
+            int idCategoria = rs.getInt("fk_id_categoria");
+
+            // ahora seleccionamos la categoría en el combo
+            seleccionarCategoriaEnCombo(idCategoria);
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al cargar datos del producto: " + e.getMessage());
+    }
+}
+    
+    private void seleccionarCategoriaEnCombo(int idCategoria) {
+    for (int i = 0; i < jComboBox_categoriaPRODUCTOactualizar.getItemCount(); i++) {
+        ItemCategoria item = (ItemCategoria) jComboBox_categoriaPRODUCTOactualizar.getItemAt(i);
+        if (item.getId() == idCategoria) {
+            jComboBox_categoriaPRODUCTOactualizar.setSelectedIndex(i);
+            break;
+        }
+    }
+}
+
+  
 
 
 
@@ -152,7 +187,7 @@ public class FrmProveedoresActualizar extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jTextField_nombrePRODUCTOactualizar = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        jComboBox_categoriaPRODUCTOactualizar = new javax.swing.JComboBox<>();
+        jComboBox_categoriaPRODUCTOactualizar = new javax.swing.JComboBox();
         jLabel17 = new javax.swing.JLabel();
         jTextField_precioventaprodACTUALIZAR = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
@@ -383,7 +418,7 @@ public class FrmProveedoresActualizar extends javax.swing.JFrame {
                             .addComponent(jComboBox_categoriaPRODUCTOactualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField_preciocompraACTUALIZAR, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField_precioventaprodACTUALIZAR, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinner_cantidadPRODUCTOactualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jSpinner_cantidadPRODUCTOactualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -508,6 +543,14 @@ public class FrmProveedoresActualizar extends javax.swing.JFrame {
 
     private void jButton_seleccionaACTUALIZARproovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_seleccionaACTUALIZARproovActionPerformed
         // TODO add your handling code here:
+        ItemProducto productoSeleccionado = (ItemProducto) jComboBox_PRODUCTOproveed.getSelectedItem();
+
+    if (productoSeleccionado != null) {
+        int idProducto = productoSeleccionado.getId();
+        cargarDatosProducto(idProducto);
+    } else {
+        JOptionPane.showMessageDialog(this, "Por favor seleccione un producto.");
+    }
                                                        
     
         
@@ -588,7 +631,7 @@ public class FrmProveedoresActualizar extends javax.swing.JFrame {
     private javax.swing.JButton jButton_agregarPROOVprod;
     private javax.swing.JButton jButton_seleccionaACTUALIZARproov;
     private javax.swing.JComboBox jComboBox_PRODUCTOproveed;
-    private javax.swing.JComboBox<String> jComboBox_categoriaPRODUCTOactualizar;
+    private javax.swing.JComboBox jComboBox_categoriaPRODUCTOactualizar;
     private javax.swing.JComboBox<String> jComboBox_tipodocPROVEEORactualizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
