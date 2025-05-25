@@ -6,9 +6,12 @@
 package vista;
 
 
+import controlador.RoundedBorder;
+import java.awt.Color;
 import javax.swing.JFrame;
 import modelo.Conexion_DB;
 import java.sql.Connection;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,6 +25,11 @@ public class FrmInicio extends javax.swing.JFrame {
      */
     public FrmInicio() {
         initComponents();
+        jButton_ATENDERmascota.setFocusPainted(false);
+        Color verdeOliva = Color.decode("#588157");
+        RoundedBorder bordeRedondeado = new RoundedBorder(15, verdeOliva);
+        jButton_ATENDERmascota.setBorder(bordeRedondeado);
+
        
     }
     
@@ -41,7 +49,7 @@ public class FrmInicio extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton_VENDER = new javax.swing.JButton();
         jButton_SALIR = new javax.swing.JButton();
-        jButton_ATENDER = new javax.swing.JButton();
+        jButton_ATENDERmascota = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -85,13 +93,13 @@ public class FrmInicio extends javax.swing.JFrame {
             }
         });
 
-        jButton_ATENDER.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
-        jButton_ATENDER.setForeground(new java.awt.Color(52, 78, 65));
-        jButton_ATENDER.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-atender-servicio-webpet-app.png"))); // NOI18N
-        jButton_ATENDER.setText("ATENDER");
-        jButton_ATENDER.addActionListener(new java.awt.event.ActionListener() {
+        jButton_ATENDERmascota.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
+        jButton_ATENDERmascota.setForeground(new java.awt.Color(52, 78, 65));
+        jButton_ATENDERmascota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-atender-servicio-webpet-app.png"))); // NOI18N
+        jButton_ATENDERmascota.setText("ATENDER");
+        jButton_ATENDERmascota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_ATENDERActionPerformed(evt);
+                jButton_ATENDERmascotaActionPerformed(evt);
             }
         });
 
@@ -109,7 +117,7 @@ public class FrmInicio extends javax.swing.JFrame {
                         .addComponent(jLabel3))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(237, 237, 237)
-                        .addComponent(jButton_ATENDER, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton_ATENDERmascota, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton_VENDER, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -127,7 +135,7 @@ public class FrmInicio extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_VENDER, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_SALIR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_ATENDER, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton_ATENDERmascota, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(191, Short.MAX_VALUE))
         );
 
@@ -287,9 +295,9 @@ public class FrmInicio extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton_SALIRActionPerformed
 
-    private void jButton_ATENDERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ATENDERActionPerformed
+    private void jButton_ATENDERmascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ATENDERmascotaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_ATENDERActionPerformed
+    }//GEN-LAST:event_jButton_ATENDERmascotaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -327,7 +335,7 @@ public class FrmInicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton_ATENDER;
+    private javax.swing.JButton jButton_ATENDERmascota;
     private javax.swing.JButton jButton_SALIR;
     private javax.swing.JButton jButton_VENDER;
     private javax.swing.JLabel jLabel1;
