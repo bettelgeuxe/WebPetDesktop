@@ -101,8 +101,11 @@ public class FrmUsuariosAdministrar extends javax.swing.JFrame {
         jButton_eliminarUsuarioSeleccionado = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(900, 600));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(52, 78, 65));
+        jPanel1.setPreferredSize(new java.awt.Dimension(900, 600));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/webpetdef 50px.png"))); // NOI18N
 
@@ -221,7 +224,7 @@ public class FrmUsuariosAdministrar extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton_ACTUALIZAR_USUARIOS, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,7 +253,7 @@ public class FrmUsuariosAdministrar extends javax.swing.JFrame {
                                     .addComponent(jTextField_VALOR_BUSQUEDA_USUARIOS, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -362,6 +365,7 @@ public class FrmUsuariosAdministrar extends javax.swing.JFrame {
         // TODO add your handling code here:
         vista.FrmInicio inicioForm = new vista.FrmInicio();
         inicioForm.setVisible(true);
+        this.dispose();
         
     }//GEN-LAST:event_jButton_volverInicioActionPerformed
 

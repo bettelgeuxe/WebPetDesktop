@@ -5,12 +5,25 @@
  */
 package vista;
 
+import controlador.RoundedBorder;
 import java.awt.Color;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modelo.Conexion_DB;
+import controlador.RoundedBorder;
+import java.awt.Color;
+import javax.swing.JFrame;
+import modelo.Conexion_DB;
+import java.sql.Connection;
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.Painter;
+import javax.swing.UIDefaults;
+import javax.swing.JComponent;
 
 /**
  *
@@ -26,6 +39,23 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
     
     public FrmUsuariosRegistrar() {
         initComponents();
+        jButton_registrarUsuario.setFocusPainted(false);
+        Color colorOliva = Color.decode("#588157");
+        jButton_registrarUsuario.setForeground(colorOliva); // texto color oliva
+        jButton_registrarUsuario.setBorder(new RoundedBorder(15, colorOliva)); // borde redondeado
+        
+        jButton_registrarUsuario.setFocusPainted(false); // quita el borde azul al hacer clic
+        jButton_registrarUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            jButton_registrarUsuario.setBackground(new Color(223, 245, 230)); // color al pasar el mouse
+        }
+
+        @Override
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            jButton_registrarUsuario.setBackground(new Color(240, 255, 244)); // color normal
+        }
+    });
     }
 
     /**
@@ -128,6 +158,7 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
         jLabel16.setText("Confirmar Contraseña");
 
         jButton_registrarUsuario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton_registrarUsuario.setForeground(new java.awt.Color(52, 78, 65));
         jButton_registrarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-agregar-webpet-app.png"))); // NOI18N
         jButton_registrarUsuario.setText("Registrar Usuario");
         jButton_registrarUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -579,7 +610,7 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Inicio;
+    public javax.swing.JButton Inicio;
     private javax.swing.JButton jButton_IR_A_LOGIN;
     private javax.swing.JButton jButton_SALIR;
     private javax.swing.JButton jButton_registrarUsuario;

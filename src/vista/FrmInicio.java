@@ -245,6 +245,11 @@ public class FrmInicio extends javax.swing.JFrame {
         jMenuItem1.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/buscar-icono-webpet.png"))); // NOI18N
         jMenuItem1.setText("Administrar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu_CLIENTES.add(jMenuItem1);
 
         jMenuItem_REGISTRAR_CLIENTE.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
@@ -295,6 +300,7 @@ public class FrmInicio extends javax.swing.JFrame {
         // TODO add your handling code here:
         vista.FrmUsuariosRegistrar regForm = new vista.FrmUsuariosRegistrar();
         regForm.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jMenuItem_REGISTRAR_USUARIOActionPerformed
 
     private void jMenuItem_REGISTRAR_CLIENTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_REGISTRAR_CLIENTEActionPerformed
@@ -306,6 +312,7 @@ public class FrmInicio extends javax.swing.JFrame {
         // TODO add your handling code here:
         vista.FrmUsuariosAdministrar usuariosForm = new vista.FrmUsuariosAdministrar();
         usuariosForm.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jMenuItem_ADMINISTRAR_USUARIOSActionPerformed
 
     private void jButton_VENDERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VENDERActionPerformed
@@ -347,6 +354,10 @@ public class FrmInicio extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton_ATENDERmascotaActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -379,7 +390,7 @@ public class FrmInicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenuBar jMenuBar1;
+    public javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     public javax.swing.JMenuItem jMenuItem_ADMINISTRAR_USUARIOS;
     private javax.swing.JMenuItem jMenuItem_REGISTRAR_CLIENTE;

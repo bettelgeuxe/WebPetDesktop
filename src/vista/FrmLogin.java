@@ -57,6 +57,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(52, 78, 65));
         jPanel1.setMaximumSize(new java.awt.Dimension(800, 600));
@@ -75,9 +76,8 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(218, 215, 205));
         jLabel4.setText("Contraseña:");
 
-        jButton_registroLog.setBackground(new java.awt.Color(58, 90, 64));
         jButton_registroLog.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton_registroLog.setForeground(new java.awt.Color(218, 215, 205));
+        jButton_registroLog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-registro-webpet-app.png"))); // NOI18N
         jButton_registroLog.setText("Registro");
         jButton_registroLog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,6 +88,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jButton_ingresar.setBackground(new java.awt.Color(218, 215, 205));
         jButton_ingresar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton_ingresar.setForeground(new java.awt.Color(52, 78, 65));
+        jButton_ingresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-login-abierto-webpet-app.png"))); // NOI18N
         jButton_ingresar.setText("Ingresar");
         jButton_ingresar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -108,25 +109,23 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(39, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
                             .addComponent(jLabel3))
-                        .addGap(39, 39, 39)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField_usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                            .addComponent(jPasswordField_passwd)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                        .addComponent(jButton_registroLog, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(120, 120, 120))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton_registroLog, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextField_usuario)
+                                .addComponent(jPasswordField_passwd, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(30, 30, 30))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(138, 138, 138))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,16 +134,16 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jPasswordField_passwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordField_passwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addGap(44, 44, 44)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_registroLog, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton_registroLog, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -157,10 +156,10 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(294, 294, 294)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(292, 292, 292))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,14 +175,14 @@ public class FrmLogin extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(289, 289, 289)
+                .addGap(276, 276, 276)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(311, Short.MAX_VALUE))
+                .addContainerGap(284, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(156, Short.MAX_VALUE)
+                .addContainerGap(147, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(113, 113, 113)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -208,14 +207,12 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private void jButton_ingresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_ingresarMouseExited
         // TODO add your handling code here:
-        jButton_ingresar.setBackground(new Color(218,215,205));
-        jButton_ingresar.setForeground(new Color(52,78,65));
+       
     }//GEN-LAST:event_jButton_ingresarMouseExited
 
     private void jButton_ingresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_ingresarMouseEntered
         // TODO add your handling code here:
-        jButton_ingresar.setBackground(new Color(52,78,65));
-        jButton_ingresar.setForeground(new Color(218,215,205));
+       
 
     }//GEN-LAST:event_jButton_ingresarMouseEntered
 
@@ -225,7 +222,9 @@ public class FrmLogin extends javax.swing.JFrame {
         registrarUsuarioForm.pack();
         registrarUsuarioForm.setVisible(true);
         registrarUsuarioForm.setLocationRelativeTo(null);
+        registrarUsuarioForm.Inicio.setVisible(false);
         registrarUsuarioForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.dispose();
     }//GEN-LAST:event_jButton_registroLogActionPerformed
 
     private void jButton_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ingresarActionPerformed
@@ -295,10 +294,29 @@ public class FrmLogin extends javax.swing.JFrame {
                 if(rs.getString("rol_usuario").equals("Empleado"))
                 {
                     //jMenu_USUARIO del formulario al que voy  debe ser publico
-                    
+                    inicioForm.jMenu_USUARIOS.setOpaque(true);
+                    inicioForm.jMenu_USUARIOS.setBackground(new Color(218, 215, 205)); // tu color personalizado
+                    inicioForm.jMenu_USUARIOS.setForeground(new Color(52, 78, 65)); 
+                    inicioForm.jMenuBar1.setBackground(new Color(218, 215, 205));
                     inicioForm.jMenu_USUARIOS.setVisible(false);
                     inicioForm.jMenuItem_REGISTRAR_USUARIO.setVisible(false);
                     inicioForm.jMenuItem_REGISTRAR_USUARIO.setVisible(false);
+                    inicioForm.jMenu_USUARIOS.addMenuListener(new javax.swing.event.MenuListener() {
+    @Override
+    public void menuSelected(javax.swing.event.MenuEvent e) {
+        inicioForm.jMenu_USUARIOS.setBackground(new Color(163, 177, 138)); // Verde suave al hacer clic
+    }
+
+    @Override
+    public void menuDeselected(javax.swing.event.MenuEvent e) {
+        inicioForm.jMenu_USUARIOS.setBackground(new Color(218, 215, 205)); // Vuelve al original
+    }
+
+    @Override
+    public void menuCanceled(javax.swing.event.MenuEvent e) {
+        inicioForm.jMenu_USUARIOS.setBackground(new Color(218, 215, 205)); // Por si se cancela sin abrir
+    }
+});
                     
                 }
                 
