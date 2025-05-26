@@ -76,7 +76,6 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(900, 600));
 
         jPanel1.setBackground(new java.awt.Color(52, 78, 65));
         jPanel1.setPreferredSize(new java.awt.Dimension(900, 600));
@@ -166,6 +165,11 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
         Inicio.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Inicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-home-webpet-app.png"))); // NOI18N
         Inicio.setText("Inicio");
+        Inicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InicioActionPerformed(evt);
+            }
+        });
 
         jButton_SALIR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-salir-webpet-app.png"))); // NOI18N
         jButton_SALIR.setText("Salir");
@@ -353,7 +357,6 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(10, 10, 10)))
-                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -463,15 +466,13 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
 
     private void jButton_registrarUsuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_registrarUsuarioMouseEntered
         // TODO add your handling code here:
-        jButton_registrarUsuario.setBackground(new Color(88,129,87));
-        jButton_registrarUsuario.setForeground(new Color(0,0,0));
+       
         
     }//GEN-LAST:event_jButton_registrarUsuarioMouseEntered
 
     private void jButton_registrarUsuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_registrarUsuarioMouseExited
         // TODO add your handling code here:
-        jButton_registrarUsuario.setBackground(new Color(58,90,64));
-        jButton_registrarUsuario.setForeground(new Color(218,215,205));
+       
     }//GEN-LAST:event_jButton_registrarUsuarioMouseExited
 
     private void jButton_SALIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SALIRActionPerformed
@@ -492,6 +493,10 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
             
 
     }//GEN-LAST:event_jButton_SALIRActionPerformed
+
+    private void InicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InicioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InicioActionPerformed
 
     
     
