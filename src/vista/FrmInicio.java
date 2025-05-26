@@ -31,54 +31,37 @@ public class FrmInicio extends javax.swing.JFrame {
      */
     public FrmInicio() {
         initComponents();
-        // Cambiar colores de selección en JMenuItem bajo Nimbus
-            try {
-        // Establecer Nimbus L&F desde aquí mismo
-        for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-            if ("Nimbus".equals(info.getName())) {
-                UIManager.setLookAndFeel(info.getClassName());
-                break;
-            }
-        }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         
-            // Estilos personalizados para JMenuItem
-        UIDefaults defaults = UIManager.getLookAndFeelDefaults();
-        Color colorFondoSeleccion = new Color(218, 215, 205); // Tu color personalizado
-        Color colorTextoSeleccion = new Color(52, 78, 65);
-        
-        // Cambia fondo al seleccionar
-        defaults.put("MenuItem[Selected].backgroundPainter", (Painter<JComponent>) (g, c, w, h) -> {
-        g.setColor(colorFondoSeleccion);
-        g.fillRect(0, 0, w, h);
-        });
-        // Cambia texto al seleccionar
-        defaults.put("MenuItem[Selected].textForeground", colorTextoSeleccion);
-
-        // Color de fondo y texto normales
-        UIManager.put("MenuItem.background", new Color(240, 255, 244));
-        UIManager.put("MenuItem.foreground", new Color(52, 78, 65));
-
-        // Actualizar componentes visuales
-        SwingUtilities.updateComponentTreeUI(this);
-        
-            
-            /* Cambiar colores del menú (fondo seleccionado y color del texto)
-    UIManager.put("MenuItem.selectionBackground", new Color(218, 215, 205)); // fondo al seleccionar
-    UIManager.put("MenuItem.selectionForeground", new Color(52, 78, 65));     // texto al seleccionar
-
-                // Aplicar cambios (necesario para algunos LAF)
-        SwingUtilities.updateComponentTreeUI(this);*/
         jButton_ATENDERmascota.setFocusPainted(false);
         Color colorOliva = Color.decode("#588157");
+        jMenu_USUARIOS.setOpaque(true);
+        jMenu_USUARIOS.setBackground(new Color(218, 215, 205)); // tu color personalizado
+        jMenu_USUARIOS.setForeground(new Color(52, 78, 65)); 
+        jMenuBar1.setBackground(new Color(218, 215, 205));
         //jButton_ATENDERmascota.setBackground(new Color(240, 255, 244)); // fondo muy suave verde claro
         jButton_ATENDERmascota.setForeground(colorOliva); // texto color oliva
         jButton_ATENDERmascota.setBorder(new RoundedBorder(15, colorOliva)); // borde redondeado
+        
         jButton_ATENDERmascota.setFocusPainted(false); // quita el borde azul al hacer clic
         //jButton_ATENDERmascota.setContentAreaFilled(true); // permite que el fondo se pinte
         //jButton_ATENDERmascota.setOpaque(true); // asegura que se vea el fondo personalizado
+        jMenu_USUARIOS.addMenuListener(new javax.swing.event.MenuListener() {
+    @Override
+    public void menuSelected(javax.swing.event.MenuEvent e) {
+        jMenu_USUARIOS.setBackground(new Color(163, 177, 138)); // Verde suave al hacer clic
+    }
+
+    @Override
+    public void menuDeselected(javax.swing.event.MenuEvent e) {
+        jMenu_USUARIOS.setBackground(new Color(218, 215, 205)); // Vuelve al original
+    }
+
+    @Override
+    public void menuCanceled(javax.swing.event.MenuEvent e) {
+        jMenu_USUARIOS.setBackground(new Color(218, 215, 205)); // Por si se cancela sin abrir
+    }
+});
+        
         jButton_ATENDERmascota.addMouseListener(new java.awt.event.MouseAdapter() {
     @Override
     public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -126,6 +109,7 @@ public class FrmInicio extends javax.swing.JFrame {
         jMenu_PRODUCTOS = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(218, 215, 205));
         jPanel1.setPreferredSize(new java.awt.Dimension(900, 600));
@@ -366,49 +350,26 @@ public class FrmInicio extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
     try {
-        // Establecer el Look and Feel Nimbus
-        for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-            if ("Nimbus".equals(info.getName())) {
-                UIManager.setLookAndFeel(info.getClassName());
+        // No se aplica Nimbus ni ningún LAF externo
 
-                // Personalizar colores de selección del JMenuItem
-                UIDefaults defaults = UIManager.getLookAndFeelDefaults();
+        // Colores personalizados para los JMenuItem
+        UIManager.put("MenuItem.selectionBackground", new java.awt.Color(218, 215, 205));
+        UIManager.put("MenuItem.selectionForeground", new java.awt.Color(52, 78, 65));
+        UIManager.put("MenuItem.background", new java.awt.Color(240, 255, 244));
+        UIManager.put("MenuItem.foreground", new java.awt.Color(52, 78, 65));
 
-                // Colores personalizados
-                Color colorFondoSeleccion = new Color(218, 215, 205); // Fondo cuando está seleccionado
-                Color colorTextoSeleccion = new Color(52, 78, 65);    // Texto cuando está seleccionado
-                Color colorFondoNormal = new Color(240, 255, 244);    // Fondo sin seleccionar
-                Color colorTextoNormal = new Color(52, 78, 65);       // Texto sin seleccionar
-
-                // Pintar el fondo del item seleccionado
-                defaults.put("MenuItem[Selected].backgroundPainter", (Painter<JComponent>) (g, c, w, h) -> {
-                    g.setColor(colorFondoSeleccion);
-                    g.fillRect(0, 0, w, h);
-                });
-
-                // Cambiar color del texto al seleccionar
-                defaults.put("MenuItem[Selected].textForeground", colorTextoSeleccion);
-
-                // Colores normales (sin seleccionar)
-                UIManager.put("MenuItem.background", colorFondoNormal);
-                UIManager.put("MenuItem.foreground", colorTextoNormal);
-
-                break;
-            }
-        }
-    } catch (Exception ex) {
-        ex.printStackTrace();
+    } catch (Exception e) {
+        e.printStackTrace();
     }
 
-    // Crear y mostrar el formulario
-    java.awt.EventQueue.invokeLater(() -> {
+    javax.swing.SwingUtilities.invokeLater(() -> {
         FrmInicio frm = new FrmInicio();
         frm.setVisible(true);
-        SwingUtilities.updateComponentTreeUI(frm); // Aplica los cambios a la interfaz
     });
 }
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
