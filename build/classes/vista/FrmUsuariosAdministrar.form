@@ -127,7 +127,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/vista/images/webpetdef 50px.png"/>
+              <Image iconType="3" name="/vista/images/logo webpet beige.png"/>
             </Property>
           </Properties>
         </Component>
@@ -199,6 +199,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Actualizar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_ACTUALIZAR_USUARIOSActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField_VALOR_BUSQUEDA_USUARIOS">
           <Properties>

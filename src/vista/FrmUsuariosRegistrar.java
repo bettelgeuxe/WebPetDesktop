@@ -100,17 +100,18 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
         jComboBox_rol = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
         jButton_IR_A_LOGIN = new javax.swing.JButton();
+        jButton_irLOGIN = new javax.swing.JButton();
         Inicio = new javax.swing.JButton();
-        jButton_SALIR = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(52, 78, 65));
         jPanel1.setPreferredSize(new java.awt.Dimension(900, 600));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/webpetdef 50px.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/logo webpet beige.png"))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(218, 215, 205));
@@ -185,11 +186,19 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
         jLabel18.setText("REGISTRO DE USUARIOS DEL SISTEMA");
 
         jButton_IR_A_LOGIN.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton_IR_A_LOGIN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-login-webpet-app.png"))); // NOI18N
-        jButton_IR_A_LOGIN.setText("Volver a Login");
+        jButton_IR_A_LOGIN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-usuarios-webpet-app.png"))); // NOI18N
+        jButton_IR_A_LOGIN.setText("Administrar Usuarios");
         jButton_IR_A_LOGIN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_IR_A_LOGINActionPerformed(evt);
+            }
+        });
+
+        jButton_irLOGIN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-login-abierto-webpet-app.png"))); // NOI18N
+        jButton_irLOGIN.setText("Login");
+        jButton_irLOGIN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_irLOGINActionPerformed(evt);
             }
         });
 
@@ -199,14 +208,6 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
         Inicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InicioActionPerformed(evt);
-            }
-        });
-
-        jButton_SALIR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-salir-webpet-app.png"))); // NOI18N
-        jButton_SALIR.setText("Salir");
-        jButton_SALIR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_SALIRActionPerformed(evt);
             }
         });
 
@@ -238,7 +239,7 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(96, 96, 96)
                                         .addComponent(jLabel18)
-                                        .addGap(0, 32, Short.MAX_VALUE))))
+                                        .addGap(0, 63, Short.MAX_VALUE))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)
@@ -279,11 +280,11 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton_registrarUsuario)
                         .addGap(18, 18, 18)
-                        .addComponent(Inicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
                         .addComponent(jButton_IR_A_LOGIN)
-                        .addGap(26, 26, 26)
-                        .addComponent(jButton_SALIR)))
+                        .addGap(18, 18, 18)
+                        .addComponent(Inicio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton_irLOGIN, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -333,10 +334,10 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
                     .addComponent(jComboBox_rol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_registrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_IR_A_LOGIN, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_SALIR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton_irLOGIN, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -350,46 +351,48 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(331, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(274, 274, 274))
+                .addGap(275, 275, 275))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(51, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGap(41, 41, 41))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(jLabel2)
+                .addGap(68, 68, 68)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(jLabel2)
-                        .addGap(131, 131, 131)
+                        .addGap(63, 63, 63)
                         .addComponent(jLabel3))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(165, Short.MAX_VALUE))
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(88, Short.MAX_VALUE)
                         .addComponent(jLabel3)
-                        .addGap(10, 10, 10)))
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)))
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -506,27 +509,24 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
        
     }//GEN-LAST:event_jButton_registrarUsuarioMouseExited
 
-    private void jButton_SALIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SALIRActionPerformed
+    private void jButton_irLOGINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_irLOGINActionPerformed
         // TODO add your handling code here:
-        try {
-        // Cerrar la conexión a la base de datos si está abierta
-        if (Conexion_DB.getConnection() != null && !Conexion_DB.getConnection().isClosed()) {
-            Conexion_DB.getConnection().close();
-            System.out.println("Conexión cerrada correctamente");
-        }
-    } catch (Exception e) {
-        System.out.println("Error al cerrar la conexión: " + e.getMessage());
-    }
-
-            // Cerrar  el formulario UsuariosRegistrar
-            this.dispose(); // o this.setVisible(false);
+        FrmLogin loginForm = new FrmLogin();
+        loginForm.pack();
+        loginForm.setVisible(true);
+        loginForm.setLocationRelativeTo(null);
+        this.dispose();
+        
 
             
 
-    }//GEN-LAST:event_jButton_SALIRActionPerformed
+    }//GEN-LAST:event_jButton_irLOGINActionPerformed
 
     private void InicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InicioActionPerformed
         // TODO add your handling code here:
+        vista.FrmInicio inicioForm = new vista.FrmInicio();
+        inicioForm.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_InicioActionPerformed
 
     
@@ -611,8 +611,8 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton Inicio;
-    private javax.swing.JButton jButton_IR_A_LOGIN;
-    private javax.swing.JButton jButton_SALIR;
+    public javax.swing.JButton jButton_IR_A_LOGIN;
+    private javax.swing.JButton jButton_irLOGIN;
     private javax.swing.JButton jButton_registrarUsuario;
     private javax.swing.JComboBox<String> jComboBox_rol;
     private javax.swing.JComboBox<String> jComboBox_tipodoc;

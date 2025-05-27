@@ -107,7 +107,7 @@ public class FrmUsuariosAdministrar extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(52, 78, 65));
         jPanel1.setPreferredSize(new java.awt.Dimension(900, 600));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/webpetdef 50px.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/logo webpet beige.png"))); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(218, 215, 205));
 
@@ -145,6 +145,11 @@ public class FrmUsuariosAdministrar extends javax.swing.JFrame {
         jButton_ACTUALIZAR_USUARIOS.setForeground(new java.awt.Color(52, 78, 65));
         jButton_ACTUALIZAR_USUARIOS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-actualizar-webpet-app.png"))); // NOI18N
         jButton_ACTUALIZAR_USUARIOS.setText("Actualizar");
+        jButton_ACTUALIZAR_USUARIOS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ACTUALIZAR_USUARIOSActionPerformed(evt);
+            }
+        });
 
         jTextField_VALOR_BUSQUEDA_USUARIOS.setBackground(new java.awt.Color(218, 215, 205));
         jTextField_VALOR_BUSQUEDA_USUARIOS.setForeground(new java.awt.Color(52, 78, 65));
@@ -287,6 +292,8 @@ public class FrmUsuariosAdministrar extends javax.swing.JFrame {
             registrarUsuarioForm.setVisible(true);
             registrarUsuarioForm.setLocationRelativeTo(null);
             registrarUsuarioForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+           
+        this.dispose();
     }//GEN-LAST:event_jButton_registrarUsuarioActionPerformed
 
     private void jButton_editarUsuarioSeleccionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_editarUsuarioSeleccionadoActionPerformed
@@ -326,6 +333,8 @@ public class FrmUsuariosAdministrar extends javax.swing.JFrame {
     } catch(Exception e) {
         JOptionPane.showMessageDialog(null, "Error al abrir formulario de edición: " + e.getMessage());
     }
+        
+        this.dispose();
         
         /*
         try{
@@ -406,6 +415,12 @@ public class FrmUsuariosAdministrar extends javax.swing.JFrame {
 
         
     }//GEN-LAST:event_jButton_eliminarUsuarioSeleccionadoActionPerformed
+
+    private void jButton_ACTUALIZAR_USUARIOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ACTUALIZAR_USUARIOSActionPerformed
+        // TODO add your handling code here:
+        llenarJtableParam("");
+        
+    }//GEN-LAST:event_jButton_ACTUALIZAR_USUARIOSActionPerformed
 
     /**
      * @param args the command line arguments

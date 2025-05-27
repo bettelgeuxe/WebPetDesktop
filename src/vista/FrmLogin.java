@@ -66,7 +66,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(52, 78, 65));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(88, 129, 87)));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/webpetdef 50px.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/logo webpet beige.png"))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(218, 215, 205));
@@ -223,6 +223,7 @@ public class FrmLogin extends javax.swing.JFrame {
         registrarUsuarioForm.setVisible(true);
         registrarUsuarioForm.setLocationRelativeTo(null);
         registrarUsuarioForm.Inicio.setVisible(false);
+        registrarUsuarioForm.jButton_IR_A_LOGIN.setVisible(false);
         registrarUsuarioForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.dispose();
     }//GEN-LAST:event_jButton_registroLogActionPerformed
