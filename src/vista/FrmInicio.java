@@ -18,6 +18,7 @@ import javax.swing.UIManager;
 import javax.swing.Painter;
 import javax.swing.UIDefaults;
 import javax.swing.JComponent;
+import javax.swing.ImageIcon;
 
 
 /**
@@ -31,7 +32,9 @@ public class FrmInicio extends javax.swing.JFrame {
      */
     public FrmInicio() {
         initComponents();
-        
+        setIconImage(new ImageIcon(getClass().getResource("iconowebpetapp.png")).getImage());
+        //ImageIcon icono = new ImageIcon(getClass().getResource("/vista/images/iconoApp.png"));
+        //this.setIconImage(icono.getImage());
         jButton_ATENDERmascota.setFocusPainted(false);
         Color colorOliva = Color.decode("#588157");
         jMenu_USUARIOS.setOpaque(true);
