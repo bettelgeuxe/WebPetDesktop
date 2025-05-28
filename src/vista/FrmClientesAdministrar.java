@@ -264,7 +264,7 @@ public class FrmClientesAdministrar extends javax.swing.JFrame {
         jButton_volverInicio.setFont(new java.awt.Font("Montserrat", 0, 11)); // NOI18N
         jButton_volverInicio.setForeground(new java.awt.Color(52, 78, 65));
         jButton_volverInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-home-webpet-app.png"))); // NOI18N
-        jButton_volverInicio.setText("Volver a INICIO");
+        jButton_volverInicio.setText("Inicio");
         jButton_volverInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_volverInicioActionPerformed(evt);
@@ -397,6 +397,7 @@ public class FrmClientesAdministrar extends javax.swing.JFrame {
 
     private void jButton_registrarCLIENTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_registrarCLIENTEActionPerformed
         // TODO add your handling code here:
+        this.dispose();
         FrmClientesRegistrar registrarClienteForm = new FrmClientesRegistrar();
             registrarClienteForm.pack();
             registrarClienteForm.setVisible(true);

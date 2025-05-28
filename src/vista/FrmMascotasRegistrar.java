@@ -138,10 +138,10 @@ public class FrmMascotasRegistrar extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         Inicio = new javax.swing.JButton();
-        jButton_SALIRmascotas = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_MASCOTASadd = new javax.swing.JTable();
         jButton_GuardarMASCOTAS = new javax.swing.JButton();
+        jButton_SALIRmascotas1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -283,14 +283,6 @@ public class FrmMascotasRegistrar extends javax.swing.JFrame {
         Inicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-home-webpet-app.png"))); // NOI18N
         Inicio.setText("Inicio");
 
-        jButton_SALIRmascotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-salir-webpet-app.png"))); // NOI18N
-        jButton_SALIRmascotas.setText("Salir");
-        jButton_SALIRmascotas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_SALIRmascotasActionPerformed(evt);
-            }
-        });
-
         jTable_MASCOTASadd.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -309,6 +301,14 @@ public class FrmMascotasRegistrar extends javax.swing.JFrame {
             }
         });
 
+        jButton_SALIRmascotas1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-atras-webpet-app.png"))); // NOI18N
+        jButton_SALIRmascotas1.setText("Volver a Administrar Clientes");
+        jButton_SALIRmascotas1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_SALIRmascotas1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -318,16 +318,16 @@ public class FrmMascotasRegistrar extends javax.swing.JFrame {
                 .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton_SALIRmascotas)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton_GuardarMASCOTAS, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton_SALIRmascotas1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton_GuardarMASCOTAS)))
                         .addGap(55, 55, 55))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -338,7 +338,7 @@ public class FrmMascotasRegistrar extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(242, 242, 242)
                                 .addComponent(jLabel18)))
-                        .addContainerGap(214, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -350,16 +350,16 @@ public class FrmMascotasRegistrar extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel18))
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_SALIRmascotas, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_GuardarMASCOTAS, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                    .addComponent(jButton_GuardarMASCOTAS, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_SALIRmascotas1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -444,9 +444,14 @@ public class FrmMascotasRegistrar extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton_GuardarMASCOTASActionPerformed
 
-    private void jButton_SALIRmascotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SALIRmascotasActionPerformed
+    private void jButton_SALIRmascotas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SALIRmascotas1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_SALIRmascotasActionPerformed
+        this.dispose();
+
+        // Abrir el formulario de administración
+        FrmClientesAdministrar frmAdministrar = new FrmClientesAdministrar();
+        frmAdministrar.setVisible(true);
+    }//GEN-LAST:event_jButton_SALIRmascotas1ActionPerformed
 
     
     
@@ -518,7 +523,7 @@ public class FrmMascotasRegistrar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Inicio;
     private javax.swing.JButton jButton_GuardarMASCOTAS;
-    private javax.swing.JButton jButton_SALIRmascotas;
+    private javax.swing.JButton jButton_SALIRmascotas1;
     private javax.swing.JButton jButton_agregarMASCOTAtabla;
     private javax.swing.JComboBox<String> jComboBox_especieMASCOTA;
     private javax.swing.JComboBox<String> jComboBox_generoMASCOTA;

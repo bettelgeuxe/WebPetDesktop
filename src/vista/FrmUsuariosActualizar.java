@@ -181,7 +181,7 @@ public class FrmUsuariosActualizar extends javax.swing.JFrame {
         jButton_irINICIO.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton_irINICIO.setForeground(new java.awt.Color(52, 78, 65));
         jButton_irINICIO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-home-webpet-app.png"))); // NOI18N
-        jButton_irINICIO.setText("Volver a Inicio");
+        jButton_irINICIO.setText("Inicio");
         jButton_irINICIO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_irINICIOActionPerformed(evt);

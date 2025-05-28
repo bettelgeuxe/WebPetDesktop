@@ -292,7 +292,7 @@ public class FrmProveedoresAdministrar extends javax.swing.JFrame {
         jButton_volverInicio.setFont(new java.awt.Font("Montserrat", 0, 11)); // NOI18N
         jButton_volverInicio.setForeground(new java.awt.Color(52, 78, 65));
         jButton_volverInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-home-webpet-app.png"))); // NOI18N
-        jButton_volverInicio.setText("Volver a INICIO");
+        jButton_volverInicio.setText("Inicio");
         jButton_volverInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_volverInicioActionPerformed(evt);
@@ -405,6 +405,9 @@ public class FrmProveedoresAdministrar extends javax.swing.JFrame {
 
     private void jButton_registrarPROVEEDORESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_registrarPROVEEDORESActionPerformed
         // TODO add your handling code here:
+        vista.FrmProveedoresRegistrar registroForm = new vista.FrmProveedoresRegistrar();
+        registroForm.setVisible(true);
+        this.dispose(); 
         
     }//GEN-LAST:event_jButton_registrarPROVEEDORESActionPerformed
 
