@@ -26,7 +26,7 @@ public class Producto {
     
     Connection connection;
     
-    private int id;
+    private Integer id;
     private String codigo_producto;
     private String nombre_producto;
     private int cantidad_producto;
@@ -37,9 +37,9 @@ public class Producto {
 
     public Producto() {}
     
-    public Producto(int id, String codigo_producto, String nombre_producto, int cantidad_producto,
+    public Producto(Integer id, String codigo_producto, String nombre_producto, int cantidad_producto,
                 BigDecimal precio_compra, BigDecimal precio_venta,
-                int id_categoria, int id_proveedor) {
+                Integer id_categoria, Integer id_proveedor) {
     this.id = id;
     this.codigo_producto = codigo_producto;
     this.nombre_producto = nombre_producto;

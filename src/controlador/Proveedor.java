@@ -29,7 +29,7 @@ import controlador.Proveedor;
     public class Proveedor {
         
         Connection connection;
-        private int id_proveedor;
+        private Integer id_proveedor;
         private String tipodocumento_proveedor;
         private String documento_proveedor;
         private String nombre_proveedor;
@@ -40,7 +40,7 @@ import controlador.Proveedor;
 
     public Proveedor() {}
 
-    public Proveedor(int id, String tipoDoc, String doc, String nombre, String email, String tel, String dir, String ciudad) {
+    public Proveedor(Integer id, String tipoDoc, String doc, String nombre, String email, String tel, String dir, String ciudad) {
         this.id_proveedor = id;
         this.tipodocumento_proveedor = tipoDoc;
         this.documento_proveedor = doc;
