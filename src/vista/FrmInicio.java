@@ -32,14 +32,24 @@ public class FrmInicio extends javax.swing.JFrame {
      */
     public FrmInicio() {
         initComponents();
+        Color mColorFondo = new Color( 218,215,205);
         setIconImage(new ImageIcon(getClass().getResource("iconowebpetapp.png")).getImage());
         //ImageIcon icono = new ImageIcon(getClass().getResource("/vista/images/iconoApp.png"));
         //this.setIconImage(icono.getImage());
         jButton_ATENDERmascota.setFocusPainted(false);
         Color colorOliva = Color.decode("#588157");
         jMenu_USUARIOS.setOpaque(true);
-        jMenu_USUARIOS.setBackground(new Color(218, 215, 205)); // tu color personalizado
+        jMenu_CLIENTES.setOpaque(true);
+        jMenu_PROVEEDORES.setOpaque(true);
+        jMenu_PRODUCTOS.setOpaque(true);
+        jMenu_USUARIOS.setBackground(new Color(218, 215, 205)); // color personalizado
+        jMenu_CLIENTES.setBackground(new Color(218, 215, 205));
+        jMenu_PROVEEDORES.setBackground(new Color(218, 215, 205));
+        jMenu_PRODUCTOS.setBackground(new Color(218, 215, 205));
         jMenu_USUARIOS.setForeground(new Color(52, 78, 65)); 
+        jMenu_CLIENTES.setForeground(new Color(52, 78, 65)); 
+        jMenu_PROVEEDORES.setForeground(new Color(52, 78, 65)); 
+        jMenu_PRODUCTOS.setForeground(new Color(52, 78, 65)); 
         jMenuBar1.setBackground(new Color(218, 215, 205));
         //jButton_ATENDERmascota.setBackground(new Color(240, 255, 244)); // fondo muy suave verde claro
         jButton_ATENDERmascota.setForeground(colorOliva); // texto color oliva
@@ -106,10 +116,14 @@ public class FrmInicio extends javax.swing.JFrame {
         jMenuItem_ADMINISTRAR_USUARIOS = new javax.swing.JMenuItem();
         jMenuItem_REGISTRAR_USUARIO = new javax.swing.JMenuItem();
         jMenu_CLIENTES = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem_REGISTRAR_CLIENTE = new javax.swing.JMenuItem();
+        jMenuItem_ADMINISTRAR_CLIENTES = new javax.swing.JMenuItem();
+        jMenuItem_REGISTRAR_CLIENTES = new javax.swing.JMenuItem();
         jMenu_PROVEEDORES = new javax.swing.JMenu();
+        jMenuItem_ADMINISTRAR_PROVEEDORES = new javax.swing.JMenuItem();
+        jMenuItem_REGISTRAR_PROVEEDORES = new javax.swing.JMenuItem();
         jMenu_PRODUCTOS = new javax.swing.JMenu();
+        jMenuItem_ADMINISTRAR_PRODUCTOS = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -247,36 +261,68 @@ public class FrmInicio extends javax.swing.JFrame {
         jMenu_CLIENTES.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         jMenu_CLIENTES.setPreferredSize(new java.awt.Dimension(93, 50));
 
-        jMenuItem1.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/buscar-icono-webpet.png"))); // NOI18N
-        jMenuItem1.setText("Administrar");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem_ADMINISTRAR_CLIENTES.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+        jMenuItem_ADMINISTRAR_CLIENTES.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/buscar-icono-webpet.png"))); // NOI18N
+        jMenuItem_ADMINISTRAR_CLIENTES.setText("Administrar");
+        jMenuItem_ADMINISTRAR_CLIENTES.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuItem_ADMINISTRAR_CLIENTESActionPerformed(evt);
             }
         });
-        jMenu_CLIENTES.add(jMenuItem1);
+        jMenu_CLIENTES.add(jMenuItem_ADMINISTRAR_CLIENTES);
 
-        jMenuItem_REGISTRAR_CLIENTE.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
-        jMenuItem_REGISTRAR_CLIENTE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-agregar-webpet-app.png"))); // NOI18N
-        jMenuItem_REGISTRAR_CLIENTE.setText("Registrar");
-        jMenuItem_REGISTRAR_CLIENTE.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem_REGISTRAR_CLIENTES.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+        jMenuItem_REGISTRAR_CLIENTES.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-agregar-webpet-app.png"))); // NOI18N
+        jMenuItem_REGISTRAR_CLIENTES.setText("Registrar");
+        jMenuItem_REGISTRAR_CLIENTES.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem_REGISTRAR_CLIENTEActionPerformed(evt);
+                jMenuItem_REGISTRAR_CLIENTESActionPerformed(evt);
             }
         });
-        jMenu_CLIENTES.add(jMenuItem_REGISTRAR_CLIENTE);
+        jMenu_CLIENTES.add(jMenuItem_REGISTRAR_CLIENTES);
 
         jMenuBar1.add(jMenu_CLIENTES);
 
         jMenu_PROVEEDORES.setText("PROVEEDORES |");
         jMenu_PROVEEDORES.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         jMenu_PROVEEDORES.setPreferredSize(new java.awt.Dimension(137, 50));
+
+        jMenuItem_ADMINISTRAR_PROVEEDORES.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+        jMenuItem_ADMINISTRAR_PROVEEDORES.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/buscar-icono-webpet.png"))); // NOI18N
+        jMenuItem_ADMINISTRAR_PROVEEDORES.setText("Administrar");
+        jMenuItem_ADMINISTRAR_PROVEEDORES.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_ADMINISTRAR_PROVEEDORESActionPerformed(evt);
+            }
+        });
+        jMenu_PROVEEDORES.add(jMenuItem_ADMINISTRAR_PROVEEDORES);
+
+        jMenuItem_REGISTRAR_PROVEEDORES.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+        jMenuItem_REGISTRAR_PROVEEDORES.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-agregar-webpet-app.png"))); // NOI18N
+        jMenuItem_REGISTRAR_PROVEEDORES.setText("Registrar");
+        jMenuItem_REGISTRAR_PROVEEDORES.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_REGISTRAR_PROVEEDORESActionPerformed(evt);
+            }
+        });
+        jMenu_PROVEEDORES.add(jMenuItem_REGISTRAR_PROVEEDORES);
+
         jMenuBar1.add(jMenu_PROVEEDORES);
 
         jMenu_PRODUCTOS.setText("PRODUCTOS");
         jMenu_PRODUCTOS.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         jMenu_PRODUCTOS.setPreferredSize(new java.awt.Dimension(109, 50));
+
+        jMenuItem_ADMINISTRAR_PRODUCTOS.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+        jMenuItem_ADMINISTRAR_PRODUCTOS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/buscar-icono-webpet.png"))); // NOI18N
+        jMenuItem_ADMINISTRAR_PRODUCTOS.setText("Administrar");
+        jMenu_PRODUCTOS.add(jMenuItem_ADMINISTRAR_PRODUCTOS);
+
+        jMenuItem1.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-agregar-webpet-app.png"))); // NOI18N
+        jMenuItem1.setText("Registrar");
+        jMenu_PRODUCTOS.add(jMenuItem1);
+
         jMenuBar1.add(jMenu_PRODUCTOS);
 
         setJMenuBar(jMenuBar1);
@@ -303,10 +349,14 @@ public class FrmInicio extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jMenuItem_REGISTRAR_USUARIOActionPerformed
 
-    private void jMenuItem_REGISTRAR_CLIENTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_REGISTRAR_CLIENTEActionPerformed
+    private void jMenuItem_REGISTRAR_CLIENTESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_REGISTRAR_CLIENTESActionPerformed
         // TODO add your handling code here:
+        vista.FrmClientesRegistrar clientesRegForm = new vista.FrmClientesRegistrar();
+        clientesRegForm.setVisible(true);
+        this.dispose();
+        
        
-    }//GEN-LAST:event_jMenuItem_REGISTRAR_CLIENTEActionPerformed
+    }//GEN-LAST:event_jMenuItem_REGISTRAR_CLIENTESActionPerformed
 
     private void jMenuItem_ADMINISTRAR_USUARIOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ADMINISTRAR_USUARIOSActionPerformed
         // TODO add your handling code here:
@@ -354,9 +404,27 @@ public class FrmInicio extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton_ATENDERmascotaActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMenuItem_ADMINISTRAR_CLIENTESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ADMINISTRAR_CLIENTESActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        vista.FrmClientesAdministrar clientesForm = new vista.FrmClientesAdministrar();
+        clientesForm.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_jMenuItem_ADMINISTRAR_CLIENTESActionPerformed
+
+    private void jMenuItem_ADMINISTRAR_PROVEEDORESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ADMINISTRAR_PROVEEDORESActionPerformed
+        // TODO add your handling code here:
+        vista.FrmProveedoresAdministrar proveedoresAdmForm = new vista.FrmProveedoresAdministrar();
+        proveedoresAdmForm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem_ADMINISTRAR_PROVEEDORESActionPerformed
+
+    private void jMenuItem_REGISTRAR_PROVEEDORESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_REGISTRAR_PROVEEDORESActionPerformed
+        // TODO add your handling code here:
+        vista.FrmProveedoresRegistrar proveedoresRegForm = new vista.FrmProveedoresRegistrar();
+        proveedoresRegForm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem_REGISTRAR_PROVEEDORESActionPerformed
 
     /**
      * @param args the command line arguments
@@ -392,8 +460,12 @@ public class FrmInicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     public javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem_ADMINISTRAR_CLIENTES;
+    private javax.swing.JMenuItem jMenuItem_ADMINISTRAR_PRODUCTOS;
+    private javax.swing.JMenuItem jMenuItem_ADMINISTRAR_PROVEEDORES;
     public javax.swing.JMenuItem jMenuItem_ADMINISTRAR_USUARIOS;
-    private javax.swing.JMenuItem jMenuItem_REGISTRAR_CLIENTE;
+    private javax.swing.JMenuItem jMenuItem_REGISTRAR_CLIENTES;
+    private javax.swing.JMenuItem jMenuItem_REGISTRAR_PROVEEDORES;
     public javax.swing.JMenuItem jMenuItem_REGISTRAR_USUARIO;
     private javax.swing.JMenu jMenu_CLIENTES;
     private javax.swing.JMenu jMenu_PRODUCTOS;

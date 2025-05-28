@@ -208,9 +208,9 @@
                           <Group type="102" attributes="0">
                               <Component id="jButton_registrarUsuario" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jButton_IR_A_LOGIN" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButton_ADMINusuarios" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="Inicio" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButton_Inicio" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="jButton_irLOGIN" min="-2" pref="93" max="-2" attributes="0"/>
                           </Group>
@@ -274,9 +274,9 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButton_registrarUsuario" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="jButton_IR_A_LOGIN" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="jButton_ADMINusuarios" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="jButton_irLOGIN" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="Inicio" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="jButton_Inicio" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="20" max="32767" attributes="0"/>
                   </Group>
@@ -470,7 +470,7 @@
                 <Property name="text" type="java.lang.String" value="REGISTRO DE USUARIOS DEL SISTEMA"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton_IR_A_LOGIN">
+            <Component class="javax.swing.JButton" name="jButton_ADMINusuarios">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="11" style="1"/>
@@ -481,7 +481,7 @@
                 <Property name="text" type="java.lang.String" value="Administrar Usuarios"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_IR_A_LOGINActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_ADMINusuariosActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -498,7 +498,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_irLOGINActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="Inicio">
+            <Component class="javax.swing.JButton" name="jButton_Inicio">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="11" style="1"/>
@@ -509,7 +509,7 @@
                 <Property name="text" type="java.lang.String" value="Inicio"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InicioActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_InicioActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

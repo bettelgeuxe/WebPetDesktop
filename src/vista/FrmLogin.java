@@ -222,8 +222,8 @@ public class FrmLogin extends javax.swing.JFrame {
         registrarUsuarioForm.pack();
         registrarUsuarioForm.setVisible(true);
         registrarUsuarioForm.setLocationRelativeTo(null);
-        registrarUsuarioForm.Inicio.setVisible(false);
-        registrarUsuarioForm.jButton_IR_A_LOGIN.setVisible(false);
+        registrarUsuarioForm.jButton_Inicio.setVisible(false);
+        registrarUsuarioForm.jButton_ADMINusuarios.setVisible(false);
         registrarUsuarioForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.dispose();
     }//GEN-LAST:event_jButton_registroLogActionPerformed

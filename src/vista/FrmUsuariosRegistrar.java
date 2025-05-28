@@ -99,9 +99,9 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jComboBox_rol = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
-        jButton_IR_A_LOGIN = new javax.swing.JButton();
+        jButton_ADMINusuarios = new javax.swing.JButton();
         jButton_irLOGIN = new javax.swing.JButton();
-        Inicio = new javax.swing.JButton();
+        jButton_Inicio = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -185,12 +185,12 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
         jLabel18.setForeground(new java.awt.Color(52, 78, 65));
         jLabel18.setText("REGISTRO DE USUARIOS DEL SISTEMA");
 
-        jButton_IR_A_LOGIN.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton_IR_A_LOGIN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-usuarios-webpet-app.png"))); // NOI18N
-        jButton_IR_A_LOGIN.setText("Administrar Usuarios");
-        jButton_IR_A_LOGIN.addActionListener(new java.awt.event.ActionListener() {
+        jButton_ADMINusuarios.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton_ADMINusuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-usuarios-webpet-app.png"))); // NOI18N
+        jButton_ADMINusuarios.setText("Administrar Usuarios");
+        jButton_ADMINusuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_IR_A_LOGINActionPerformed(evt);
+                jButton_ADMINusuariosActionPerformed(evt);
             }
         });
 
@@ -202,12 +202,12 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
             }
         });
 
-        Inicio.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Inicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-home-webpet-app.png"))); // NOI18N
-        Inicio.setText("Inicio");
-        Inicio.addActionListener(new java.awt.event.ActionListener() {
+        jButton_Inicio.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton_Inicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/images/icono-home-webpet-app.png"))); // NOI18N
+        jButton_Inicio.setText("Inicio");
+        jButton_Inicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InicioActionPerformed(evt);
+                jButton_InicioActionPerformed(evt);
             }
         });
 
@@ -280,9 +280,9 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton_registrarUsuario)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton_IR_A_LOGIN)
+                        .addComponent(jButton_ADMINusuarios)
                         .addGap(18, 18, 18)
-                        .addComponent(Inicio)
+                        .addComponent(jButton_Inicio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton_irLOGIN, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -335,9 +335,9 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_registrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_IR_A_LOGIN, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_ADMINusuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_irLOGIN, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton_Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -473,9 +473,37 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
          }
     }//GEN-LAST:event_jButton_registrarUsuarioActionPerformed
 
-    private void jButton_IR_A_LOGINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_IR_A_LOGINActionPerformed
+    private void jButton_ADMINusuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ADMINusuariosActionPerformed
         // TODO add your handling code here:
-        try {
+        
+            
+
+            // Abrir el formulario de login
+            FrmUsuariosAdministrar frmUsuariosAdmin = new FrmUsuariosAdministrar();
+            frmUsuariosAdmin.setVisible(true);
+            frmUsuariosAdmin.pack();
+            frmUsuariosAdmin.setLocationRelativeTo(null);
+            frmUsuariosAdmin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            // Cerrar  el formulario UsuariosRegistrar
+            this.dispose(); // o this.setVisible(false);
+        
+       
+    }//GEN-LAST:event_jButton_ADMINusuariosActionPerformed
+
+    private void jButton_registrarUsuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_registrarUsuarioMouseEntered
+        // TODO add your handling code here:
+       
+        
+    }//GEN-LAST:event_jButton_registrarUsuarioMouseEntered
+
+    private void jButton_registrarUsuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_registrarUsuarioMouseExited
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_jButton_registrarUsuarioMouseExited
+
+    private void jButton_irLOGINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_irLOGINActionPerformed
+        // TODO add your handling code here:
+         try {
         // Cerrar la conexión a la base de datos si está abierta
         if (Conexion_DB.getConnection() != null && !Conexion_DB.getConnection().isClosed()) {
             Conexion_DB.getConnection().close();
@@ -495,39 +523,17 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
             login.setLocationRelativeTo(null);
             login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-       
-    }//GEN-LAST:event_jButton_IR_A_LOGINActionPerformed
-
-    private void jButton_registrarUsuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_registrarUsuarioMouseEntered
-        // TODO add your handling code here:
-       
-        
-    }//GEN-LAST:event_jButton_registrarUsuarioMouseEntered
-
-    private void jButton_registrarUsuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_registrarUsuarioMouseExited
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_jButton_registrarUsuarioMouseExited
-
-    private void jButton_irLOGINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_irLOGINActionPerformed
-        // TODO add your handling code here:
-        FrmLogin loginForm = new FrmLogin();
-        loginForm.pack();
-        loginForm.setVisible(true);
-        loginForm.setLocationRelativeTo(null);
-        this.dispose();
-        
 
             
 
     }//GEN-LAST:event_jButton_irLOGINActionPerformed
 
-    private void InicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InicioActionPerformed
+    private void jButton_InicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_InicioActionPerformed
         // TODO add your handling code here:
         vista.FrmInicio inicioForm = new vista.FrmInicio();
         inicioForm.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_InicioActionPerformed
+    }//GEN-LAST:event_jButton_InicioActionPerformed
 
     
     
@@ -610,8 +616,8 @@ public class FrmUsuariosRegistrar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton Inicio;
-    public javax.swing.JButton jButton_IR_A_LOGIN;
+    public javax.swing.JButton jButton_ADMINusuarios;
+    public javax.swing.JButton jButton_Inicio;
     private javax.swing.JButton jButton_irLOGIN;
     private javax.swing.JButton jButton_registrarUsuario;
     private javax.swing.JComboBox<String> jComboBox_rol;
